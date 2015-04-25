@@ -31,7 +31,9 @@ public class insDdaGUI extends JFrame{
     
     JLabel lblTitle = new JLabel("Lado Azul");
     JLabel lbljogador = new JLabel("Jogador");
-
+    JLabel lbltorre = new JLabel("Torres:");
+    JLabel lbldrag = new JLabel("Dragões:");
+    JLabel lblbaron = new JLabel("Barões:");
     JLabel lblchamp = new JLabel("Campeão");
     JLabel lblkill = new JLabel("Abates");
     JLabel lblassist = new JLabel("Assistências");
@@ -68,6 +70,9 @@ public class insDdaGUI extends JFrame{
     JTextField txtgold3 = new JTextField();
     JTextField txtgold4 = new JTextField();
     JTextField txtgold5 = new JTextField();
+    JTextField txttorre = new JTextField();
+    JTextField txtdrag = new JTextField();
+    JTextField txtbaron = new JTextField();
     JButton btnProx = new JButton("Próximo");
     
     Container cp = getContentPane();
@@ -336,7 +341,32 @@ public class insDdaGUI extends JFrame{
         
         cp.add(txtgold5, c);
         //----------------------------
+        c.gridx = 1;
         c.gridy = 7;
+        
+        cp.add(lbltorre, c);
+        
+        c.gridx = 2;
+        
+        cp.add(txttorre, c);
+        
+        c.gridx = 3;
+        
+        cp.add(lbldrag, c);
+        
+        c.gridx = 4;
+        
+        cp.add(txtdrag, c);
+        
+        c.gridx = 5;
+        
+        cp.add(lblbaron, c);
+        
+        c.gridx = 6;
+        
+        cp.add(txtbaron, c);
+        //--------------------------
+        c.gridy = 8;
         c.fill = GridBagConstraints.NONE;
         
         cp.add(btnProx, c);
