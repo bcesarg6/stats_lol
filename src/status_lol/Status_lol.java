@@ -13,8 +13,6 @@ import java.io.IOException;
  * @author cristofer
  */
 public class Status_lol {
-    static File arq = new File( "/jogos" );
-    static boolean ext = arq.exists();
     
     /**
      * @param args the command line arguments
@@ -22,9 +20,8 @@ public class Status_lol {
      */
     public static void main(String[] args) throws IOException{
         // TODO code application logic here
-        if(ext){
-        }
-        else{
+        File arq = new File("jogos");
+        if(!arq.exists()){
             arq.mkdir();
         }
         new inicialGUI();
