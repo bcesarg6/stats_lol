@@ -377,7 +377,8 @@ public class insDdvGUI extends JFrame{
 
             @Override
             public void actionPerformed(ActionEvent e) {
-              dispose();
+                dispose();
+                new finGUI();
             }
         });
    

@@ -81,8 +81,8 @@ public class insJgGUI extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                if((blue.getSelectedIndex()) != (red.getSelectedIndex())){
-                   new insDdaGUI(blue.getSelectedIndex(), red.getSelectedIndex());
                    dispose();
+                   new insDIGUI(blue.getSelectedIndex(), red.getSelectedIndex());
                }
                else{
                    new errGUI();

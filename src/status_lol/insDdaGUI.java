@@ -5,7 +5,6 @@
  */
 package status_lol;
 
-import java.lang.String;
 import java.awt.Container;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
