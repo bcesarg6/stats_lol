@@ -24,7 +24,7 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
  */
 public class inicialGUI extends JFrame{
     
-    JLabel lblTitle = new JLabel("Selecione sua opção");
+    JLabel lblTitle = new JLabel("Selecione");
     JButton btnVerStats = new JButton("Ver Stats");
     JButton btnInsJg = new JButton("Inserir novo jogo");
     
