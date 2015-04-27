@@ -62,22 +62,28 @@ public class statsGUI extends JFrame{
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                
+                new plyStatsGUI();
                
-            }
-            });
-         btnStsTim.addActionListener(new ActionListener() {
+                }
+        });
+        btnStsTim.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                
+                new timStatsGUI();
                
-            }
-            });
-          btnStsCh.addActionListener(new ActionListener() {
+                }
+        });
+        btnStsCh.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                
+                new chStatsGUI();
                
-            }
-            });
+                }
+        });
     }
 }

@@ -5,7 +5,6 @@
  */
 package status_lol;
 
-import java.lang.String;
 import java.awt.Container;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -23,13 +22,9 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
  */
 public class insDdvGUI extends JFrame{
     
-    public String jogador1;
-    public String jogador2;
-    public String jogador3;
-    public String jogador4;
-    public String jogador5;
+    Stats_lol jg = new Stats_lol();
     
-    JLabel lblTitle = new JLabel("Lado Vermelho");
+    JLabel lblTitle = new JLabel("Lado Azul");
     JLabel lbljogador = new JLabel("Jogador");
     JLabel lbltorre = new JLabel("Torres:");
     JLabel lbldrag = new JLabel("Dragões:");
@@ -40,6 +35,46 @@ public class insDdvGUI extends JFrame{
     JLabel lbldeath = new JLabel("Mortes");
     JLabel lblcreep = new JLabel("Tropas");
     JLabel lblgold = new JLabel("Ouro");
+    JLabel lbljogador1 = new JLabel("" + jg.jogador1);
+    JLabel lbljogador2 = new JLabel("" + jg.jogador2);
+    JLabel lbljogador3 = new JLabel("" + jg.jogador3);
+    JLabel lbljogador4 = new JLabel("" + jg.jogador4);
+    JLabel lbljogador5 = new JLabel("" + jg.jogador5);
+    JLabel lbljogador6 = new JLabel("" + jg.jogador6);
+    JLabel lbljogador7 = new JLabel("" + jg.jogador7);
+    JLabel lbljogador8 = new JLabel("" + jg.jogador8);
+    JLabel lbljogador9 = new JLabel("" + jg.jogador9);
+    JLabel lbljogador10 = new JLabel("" + jg.jogador10);
+    JLabel lbljogador11 = new JLabel("" + jg.jogador11);
+    JLabel lbljogador12 = new JLabel("" + jg.jogador12);
+    JLabel lbljogador13 = new JLabel("" + jg.jogador13);
+    JLabel lbljogador14 = new JLabel("" + jg.jogador14);
+    JLabel lbljogador15 = new JLabel("" + jg.jogador15);
+    JLabel lbljogador16 = new JLabel("" + jg.jogador16);
+    JLabel lbljogador17 = new JLabel("" + jg.jogador17);
+    JLabel lbljogador18 = new JLabel("" + jg.jogador18);
+    JLabel lbljogador19 = new JLabel("" + jg.jogador19);
+    JLabel lbljogador20 = new JLabel("" + jg.jogador20);
+    JLabel lbljogador21 = new JLabel("" + jg.jogador21);
+    JLabel lbljogador22 = new JLabel("" + jg.jogador22);
+    JLabel lbljogador23 = new JLabel("" + jg.jogador23);
+    JLabel lbljogador24 = new JLabel("" + jg.jogador24);
+    JLabel lbljogador25 = new JLabel("" + jg.jogador25);
+    JLabel lbljogador26 = new JLabel("" + jg.jogador26);
+    JLabel lbljogador27 = new JLabel("" + jg.jogador27);
+    JLabel lbljogador28 = new JLabel("" + jg.jogador28);
+    JLabel lbljogador29 = new JLabel("" + jg.jogador29);
+    JLabel lbljogador30 = new JLabel("" + jg.jogador30);
+    JLabel lbljogador31 = new JLabel("" + jg.jogador31);
+    JLabel lbljogador32 = new JLabel("" + jg.jogador32);
+    JLabel lbljogador33 = new JLabel("" + jg.jogador33);
+    JLabel lbljogador34 = new JLabel("" + jg.jogador34);
+    JLabel lbljogador35 = new JLabel("" + jg.jogador35);
+    JLabel lbljogador36 = new JLabel("" + jg.jogador36);
+    JLabel lbljogador37 = new JLabel("" + jg.jogador37);
+    JLabel lbljogador38 = new JLabel("" + jg.jogador38);
+    JLabel lbljogador39 = new JLabel("" + jg.jogador39);
+    JLabel lbljogador40 = new JLabel("" + jg.jogador40);
     JTextField txtchamp1 = new JTextField();
     JTextField txtchamp2 = new JTextField();
     JTextField txtchamp3 = new JTextField();
@@ -77,71 +112,7 @@ public class insDdvGUI extends JFrame{
     
     Container cp = getContentPane();
     
-    public insDdvGUI(int a){
-       switch(a){
-           case 0:
-               jogador1 = "Ignatius";
-               jogador2 = "Vithrow";
-               jogador3 = "esquelda";
-               jogador4 = "tij";
-               jogador5 = "Leoxes";
-               break;
-           case 1:
-               jogador1 = "Xuleta JJ";
-               jogador2 = "Trullian";
-               jogador3 = "vargas baloso";
-               jogador4 = "rS Berta1";
-               jogador5 = "WISER Perachi Oz";
-               break;
-           case 2:
-               jogador1 = "GHKgustavo";
-               jogador2 = "proX KungBANG";
-               jogador3 = "farélinho";
-               jogador4 = "StarLine";
-               jogador5 = "PrimooN";
-               break;
-           case 3:
-               jogador1 = "Lukinhas Monxtro";
-               jogador2 = "jbiyvh";
-               jogador3 = "gahgreguer";
-               jogador4 = "Andreeez1nPLAY";
-               jogador5 = "KoitOShiro";
-               break;
-           case 4:
-               jogador1 = "Jhony o Pedreiro";
-               jogador2 = "rS XandimonZ";
-               jogador3 = "Minkão desu RXRX";
-               jogador4 = "Oceanz";
-               jogador5 = "Supremo Sir Goku";
-               break;
-           case 5:
-               jogador1 = "Charlie Vraum";
-               jogador2 = "WISER médium";
-               jogador3 = "Persh";
-               jogador4 = "falconkiler";
-               jogador5 = "zerovampire730";
-               break;
-           case 6:
-               jogador1 = "SooLdaaDOOO";
-               jogador2 = "iHamm";
-               jogador3 = "SooLdaaDOO";
-               jogador4 = "parag41o";
-               jogador5 = "kranionakara";
-               break;
-           case 7:
-               jogador1 = "DaarkFighter";
-               jogador2 = "BlazeeKryst";
-               jogador3 = "xXDownloadXx";
-               jogador4 = "xGlhc";
-               jogador5 = "ThunderCraash";
-               break;
-        }
-       
-        JLabel lbljogador1 = new JLabel("" + jogador1);
-        JLabel lbljogador2 = new JLabel("" + jogador2);
-        JLabel lbljogador3 = new JLabel("" + jogador3);
-        JLabel lbljogador4 = new JLabel("" + jogador4);
-        JLabel lbljogador5 = new JLabel("" + jogador5);
+    public insDdvGUI(int b){
         
         setTitle("LOL Stats");
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -166,25 +137,192 @@ public class insDdvGUI extends JFrame{
  
         cp.add(lbljogador, c);
        //------------------------
-        c.gridy = 2;
+        switch(b){
+            case 0:
+                c.gridy = 2;
         
-        cp.add(lbljogador1, c);
+                cp.add(lbljogador1, c);
         
-        c.gridy = 3;
+                c.gridy = 3;
         
-        cp.add(lbljogador2, c);
+                cp.add(lbljogador2, c);
         
-        c.gridy = 4;
+                c.gridy = 4;
         
-        cp.add(lbljogador3, c);
+                cp.add(lbljogador3, c);
         
-        c.gridy = 5;
+                c.gridy = 5;
         
-        cp.add(lbljogador4, c);
+                cp.add(lbljogador4, c);
         
-        c.gridy = 6;
+                c.gridy = 6;
         
-        cp.add(lbljogador5, c);
+                cp.add(lbljogador5, c);
+                
+                break;
+                
+            case 1:
+                c.gridy = 2;
+        
+                cp.add(lbljogador6, c);
+        
+                c.gridy = 3;
+        
+                cp.add(lbljogador7, c);
+        
+                c.gridy = 4;
+        
+                cp.add(lbljogador8, c);
+        
+                c.gridy = 5;
+        
+                cp.add(lbljogador9, c);
+        
+                c.gridy = 6;
+        
+                cp.add(lbljogador10, c);
+                
+                break;
+                
+            case 2:
+                c.gridy = 2;
+        
+                cp.add(lbljogador11, c);
+        
+                c.gridy = 3;
+        
+                cp.add(lbljogador12, c);
+        
+                c.gridy = 4;
+        
+                cp.add(lbljogador13, c);
+        
+                c.gridy = 5;
+        
+                cp.add(lbljogador14, c);
+        
+                c.gridy = 6;
+        
+                cp.add(lbljogador15, c);
+                
+                break;
+                
+            case 3:
+                c.gridy = 2;
+        
+                cp.add(lbljogador16, c);
+        
+                c.gridy = 3;
+        
+                cp.add(lbljogador17, c);
+        
+                c.gridy = 4;
+        
+                cp.add(lbljogador18, c);
+        
+                c.gridy = 5;
+        
+                cp.add(lbljogador19, c);
+        
+                c.gridy = 6;
+        
+                cp.add(lbljogador20, c);
+                
+                break;
+                
+            case 4:
+                c.gridy = 2;
+        
+                cp.add(lbljogador21, c);
+        
+                c.gridy = 3;
+        
+                cp.add(lbljogador22, c);
+        
+                c.gridy = 4;
+        
+                cp.add(lbljogador23, c);
+        
+                c.gridy = 5;
+        
+                cp.add(lbljogador24, c);
+        
+                c.gridy = 6;
+        
+                cp.add(lbljogador25, c);
+                
+                break;
+                
+            case 5:
+                c.gridy = 2;
+        
+                cp.add(lbljogador26, c);
+        
+                c.gridy = 3;
+        
+                cp.add(lbljogador27, c);
+        
+                c.gridy = 4;
+        
+                cp.add(lbljogador28, c);
+        
+                c.gridy = 5;
+        
+                cp.add(lbljogador29, c);
+        
+                c.gridy = 6;
+        
+                cp.add(lbljogador30, c);
+                
+                break;
+                
+            case 6:
+                c.gridy = 2;
+        
+                cp.add(lbljogador31, c);
+        
+                c.gridy = 3;
+        
+                cp.add(lbljogador32, c);
+        
+                c.gridy = 4;
+        
+                cp.add(lbljogador33, c);
+        
+                c.gridy = 5;
+        
+                cp.add(lbljogador34, c);
+        
+                c.gridy = 6;
+        
+                cp.add(lbljogador35, c);
+                
+                break;
+                
+            case 7:
+                c.gridy = 2;
+        
+                cp.add(lbljogador36, c);
+        
+                c.gridy = 3;
+        
+                cp.add(lbljogador37, c);
+        
+                c.gridy = 4;
+        
+                cp.add(lbljogador38, c);
+        
+                c.gridy = 5;
+        
+                cp.add(lbljogador39, c);
+        
+                c.gridy = 6;
+        
+                cp.add(lbljogador40, c);
+                
+                break;
+                
+        }
         //------------------
         c.gridy = 1;
         c.gridx = 1;
@@ -365,7 +503,7 @@ public class insDdvGUI extends JFrame{
         c.gridx = 6;
         
         cp.add(txtbaron, c);
-        //----------------------------
+        //--------------------------
         c.gridy = 8;
         c.fill = GridBagConstraints.NONE;
         
@@ -377,8 +515,9 @@ public class insDdvGUI extends JFrame{
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                dispose();
-                new finGUI();
+              new finGUI();
+              dispose();
+               
             }
         });
    

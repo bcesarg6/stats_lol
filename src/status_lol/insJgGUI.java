@@ -22,16 +22,15 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
  */
 public class insJgGUI extends JFrame{
     
-    String [] teams = {"O Famoso Clã", "Moleques Transantes", "ProXdigious", "TPMstronda", "Vivo Dibra",
-            "Não Temos Nome", "Cassiolurdes", "Team Pulse Gaming"};
+    Stats_lol tm = new Stats_lol();
     
-    String [] sides = {"Azul", "Vermelho"};
+    String [] teams = {tm.time1, tm.time2, tm.time3, tm.time4, tm.time5,
+            tm.time6, tm.time7, tm.time8};
     
     JLabel lblazul = new JLabel("Lado azul:");
     JLabel lblvermelho = new JLabel("Lado vermelho:");
     JComboBox blue = new JComboBox(teams);
     JComboBox red = new JComboBox(teams);
-    JComboBox side = new JComboBox(sides);
     JButton btnProx = new JButton("Próximo");
     
     Container cp = getContentPane();
