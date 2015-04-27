@@ -24,6 +24,8 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
  */
 public class inicialGUI extends JFrame{
     
+    
+    
     JLabel lblTitle = new JLabel("Selecione sua opção");
     JButton btnVerStats = new JButton("Ver Stats");
     JButton btnInsJg = new JButton("Inserir novo jogo");
@@ -31,7 +33,9 @@ public class inicialGUI extends JFrame{
     Container cp = getContentPane();
     
     public inicialGUI(){
-        setTitle("LOL Stats");
+        checkVersion checkVersion = new checkVersion();
+        
+        setTitle("LoL Stats " + checkVersion.version);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setVisible(true);
         setSize(300, 150);

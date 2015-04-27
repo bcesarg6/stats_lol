@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.BufferedWriter;
 import java.io.IOException;
+import java.net.URISyntaxException;
 
 /**
  *
@@ -198,8 +199,12 @@ public class Stats_lol {
      * @param args the command line arguments
      * @throws java.io.IOException
      */
-    public static void main(String[] args) throws IOException{
+    public static void main(String[] args) throws IOException, URISyntaxException{
         // TODO code application logic here
+        
+        checkVersion checkVersion = new checkVersion();
+        checkVersion.checkVersion();
+        
         File jg = new File("jogos");
         if(!jg.exists()){
             jg.mkdir();
@@ -230,6 +235,7 @@ public class Stats_lol {
         reB.write("Qualquer problema me contate e tire um screenshot se possível.");
         reB.close();
         reW.close();
+        
         new inicialGUI();
         
     }

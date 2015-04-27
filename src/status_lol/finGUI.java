@@ -28,8 +28,9 @@ public class finGUI extends JFrame {
     Container cp = getContentPane();
     
     public finGUI() {
-       
-        setTitle("LOL Stats");
+       checkVersion checkVersion = new checkVersion();
+        
+        setTitle("LoL Stats " + checkVersion.version);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setVisible(true);
         setSize(300, 100);

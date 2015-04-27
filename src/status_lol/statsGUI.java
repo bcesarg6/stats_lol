@@ -30,7 +30,9 @@ public class statsGUI extends JFrame{
     Container cp = getContentPane();
     
     public statsGUI(){
-        setTitle("LOL Stats");
+        checkVersion checkVersion = new checkVersion();
+        
+        setTitle("LoL Stats " + checkVersion.version);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setVisible(true);
         setSize(300, 250);

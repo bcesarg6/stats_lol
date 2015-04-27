@@ -47,7 +47,9 @@ public class insDIGUI extends JFrame{
         btgwin.add(rbtazul);
         btgwin.add(rbtverm);
         
-        setTitle("LOL Stats");
+        checkVersion checkVersion = new checkVersion();
+        
+        setTitle("LoL Stats " + checkVersion.version);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setVisible(true);
         setSize(400, 150);

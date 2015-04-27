@@ -54,7 +54,9 @@ public class timStatsGUI extends JFrame {
         
         tblply.setEnabled(false);
              
-        setTitle("LOL Stats");
+        checkVersion checkVersion = new checkVersion();
+        
+        setTitle("LoL Stats " + checkVersion.version);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setVisible(true);
         setSize(200, 200);
