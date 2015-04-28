@@ -3,8 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package status_lol;
-
+package stats_lol;
 
 import java.awt.Container;
 import java.awt.GridBagConstraints;
@@ -17,61 +16,52 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 
-
 /**
  *
- * @author cristofer
+ * @author root
  */
-public class inicialGUI extends JFrame{
+public class finGUI extends JFrame {
     
-    
-    
-    JLabel lblTitle = new JLabel("Selecione sua opção");
-    JButton btnVerStats = new JButton("Ver Stats");
-    JButton btnInsJg = new JButton("Inserir novo jogo");
-    
+    JLabel lblFin = new JLabel("Match added successfuly");
+    JButton btnFin = new JButton("Finish");
+        
     Container cp = getContentPane();
     
-    public inicialGUI(){
-        checkVersion checkVersion = new checkVersion();
+    public finGUI() {
+       checkVersion checkVersion = new checkVersion();
         
-        setTitle("LoL Stats " + checkVersion.version);
+        setTitle("LoL Stats Maker " + checkVersion.version);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setVisible(true);
-        setSize(300, 150);
+        setSize(300, 100);
         setLocationRelativeTo(null);
         
         cp.setLayout(new GridBagLayout());
+        
         GridBagConstraints c = new GridBagConstraints();
-        c.anchor = GridBagConstraints.PAGE_START;
+        c.anchor = GridBagConstraints.NORTH;
+        c.fill = GridBagConstraints.HORIZONTAL;
         c.insets = new Insets(5, 5, 5, 5);
         c.gridx = 0;
         c.gridy = 0;
         c.gridwidth = 1;
-        cp.add(lblTitle, c);
+        
+        cp.add(lblFin, c);
         
         c.gridy = 1;
-        c.anchor = GridBagConstraints.CENTER;
         
-        cp.add(btnVerStats, c);
+        cp.add(btnFin, c);
         
-        c.gridy = 2;
-        
-        cp.add(btnInsJg, c);
-        
-        btnVerStats.addActionListener(new ActionListener() {
+        btnFin.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-               new statsGUI();
+              
+                dispose();
+               
             }
-            });
-        btnInsJg.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-               new insJgGUI();
-            }
-            });
+        });
+    
     }
+    
 }

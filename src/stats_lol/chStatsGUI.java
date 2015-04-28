@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package status_lol;
+package stats_lol;
 
 import java.awt.Container;
 import java.awt.GridBagConstraints;
@@ -21,10 +21,10 @@ public class chStatsGUI extends JFrame {
     
     Stats_lol ch = new Stats_lol();
     
-    String[] columnNames =  {"% escolha",
-                        "% ban",
-                        "% de vitórias",
-                        "% de derrotas",};
+    String[] columnNames =  {"pick %",
+                        "ban %",
+                        "win ratio",
+                        "lose ratio",};
         Object[][] data = {
     {ch.Aatrox, 35,
      10, 70, 30},
@@ -276,17 +276,17 @@ public class chStatsGUI extends JFrame {
      10, 70, 30},
 };
     
-    JTable tblply = new JTable(data, columnNames);
+    JTable tblPly = new JTable(data, columnNames);
     
     Container cp = getContentPane();
     
     public chStatsGUI(){
         
-        tblply.setEnabled(false);
+        tblPly.setEnabled(false);
              
         checkVersion checkVersion = new checkVersion();
         
-        setTitle("LoL Stats " + checkVersion.version);
+        setTitle("LoL Stats Maker " + checkVersion.version);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setVisible(true);
         setSize(200, 200);
@@ -301,12 +301,12 @@ public class chStatsGUI extends JFrame {
         c.gridy = 0;
         c.gridwidth = 0;
         
-        cp.add(tblply.getTableHeader());
+        cp.add(tblPly.getTableHeader());
         
         c.insets = new Insets(0, 10, 10, 10);
         c.gridy = 1;
         
-        cp.add(tblply, c);
+        cp.add(tblPly, c);
         
         pack();
         

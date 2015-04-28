@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package status_lol;
+package stats_lol;
 
 import java.awt.Container;
 import java.awt.GridBagConstraints;
@@ -17,46 +17,46 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
  *
  * @author root
  */
-public class timStatsGUI extends JFrame {
+public class teamStatsGUI extends JFrame {
     
     Stats_lol tm = new Stats_lol();
     
-    String[] columnNames =  {"Time",
-                        "Torres por jogo",
-                        "Dragões por jogo",
-                        "Barões por jogo",
-                        "Tempo médio de jogo",
-                        "% de vitórias",};
+    String[] columnNames =  {"Team",
+                        "Averge turrets",
+                        "Averge dragons",
+                        "Averge Barons",
+                        "Averge match time",
+                        "Win ratio",};
         Object[][] data = {
-    {tm.time1, 5,
+    {tm.team1, 5,
      3, 1, 35, 70},
-    {tm.time2, 5,
+    {tm.team2, 5,
      3, 1, 35, 70},
-    {tm.time3, 5,
+    {tm.team3, 5,
      3, 1, 35, 70},
-    {tm.time4, 5,
+    {tm.team4, 5,
      3, 1, 35, 70},
-    {tm.time5, 5,
+    {tm.team5, 5,
      3, 1, 35, 70},
-    {tm.time6, 5,
+    {tm.team6, 5,
      3, 1, 35, 70},
-    {tm.time7, 5,
+    {tm.team7, 5,
      3, 1, 35, 70},
-    {tm.time8, 5,
+    {tm.team8, 5,
      3, 1, 35, 70},
 };
     
-    JTable tblply = new JTable(data, columnNames);
+    JTable tblTeam = new JTable(data, columnNames);
     
     Container cp = getContentPane();
     
-    public timStatsGUI(){
+    public teamStatsGUI(){
         
-        tblply.setEnabled(false);
+        tblTeam.setEnabled(false);
              
         checkVersion checkVersion = new checkVersion();
         
-        setTitle("LoL Stats " + checkVersion.version);
+        setTitle("LoL Stats Maker " + checkVersion.version);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setVisible(true);
         setSize(200, 200);
@@ -71,12 +71,12 @@ public class timStatsGUI extends JFrame {
         c.gridy = 0;
         c.gridwidth = 0;
         
-        cp.add(tblply.getTableHeader());
+        cp.add(tblTeam.getTableHeader());
         
         c.insets = new Insets(0, 10, 10, 10);
         c.gridy = 1;
         
-        cp.add(tblply, c);
+        cp.add(tblTeam, c);
         
         pack();
         

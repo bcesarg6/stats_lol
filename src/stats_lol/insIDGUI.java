@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package status_lol;
+package stats_lol;
 
 import java.awt.Container;
 import java.awt.GridBagConstraints;
@@ -22,34 +22,34 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
  *
  * @author root
  */
-public class insDIGUI extends JFrame{
+public class insIDGUI extends JFrame{
     
-    JLabel lblbans = new JLabel("       Bans        ");
-    JLabel lblwin = new JLabel("Lado ganhador");
-    JLabel lbltmp = new JLabel("Tempo de jogo");
+    JLabel lblBans = new JLabel("       Bans        ");
+    JLabel lblWin = new JLabel("Winner side");
+    JLabel lblTmp = new JLabel("Match time");
     JLabel lbl = new JLabel("                        ");
-    JTextField txtban1 = new JTextField();
-    JTextField txtban2 = new JTextField();
-    JTextField txtban3 = new JTextField();
-    JTextField txtban4 = new JTextField();
-    JTextField txtban5 = new JTextField();
-    JTextField txtban6 = new JTextField();
-    JTextField txttmp = new JTextField();
-    JRadioButton rbtazul = new JRadioButton("Azul");
-    JRadioButton rbtverm = new JRadioButton("Vermelho");
-    ButtonGroup  btgwin = new ButtonGroup();
-    JButton btnprox = new JButton("Próximo");    
+    JTextField txtBan1 = new JTextField();
+    JTextField txtBan2 = new JTextField();
+    JTextField txtBan3 = new JTextField();
+    JTextField txtBan4 = new JTextField();
+    JTextField txtBan5 = new JTextField();
+    JTextField txtBan6 = new JTextField();
+    JTextField txtTmp = new JTextField();
+    JRadioButton rbtBlue = new JRadioButton("Blue");
+    JRadioButton rbtRed = new JRadioButton("Red");
+    ButtonGroup  btgWin = new ButtonGroup();
+    JButton btnNext = new JButton("Next");    
     
     Container cp = getContentPane();
     
-    public insDIGUI(int a, int b){
+    public insIDGUI(int a, int b){
         
-        btgwin.add(rbtazul);
-        btgwin.add(rbtverm);
+        btgWin.add(rbtBlue);
+        btgWin.add(rbtRed);
         
         checkVersion checkVersion = new checkVersion();
         
-        setTitle("LoL Stats " + checkVersion.version);
+        setTitle("LoL Stats Maker " + checkVersion.version);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setVisible(true);
         setSize(400, 150);
@@ -65,7 +65,7 @@ public class insDIGUI extends JFrame{
         c.gridy = 0;
         c.gridwidth = 1;
         
-        cp.add(lblbans, c);
+        cp.add(lblBans, c);
         
         c.gridx = 2;
         
@@ -73,66 +73,64 @@ public class insDIGUI extends JFrame{
         
         c.gridx = 3;
         
-        cp.add(lblwin, c);
+        cp.add(lblWin, c);
         
         c.gridx = 0;
         c.gridy = 1;
-        // c.gridwidth = 2;
         
-        cp.add(txtban1, c);
+        cp.add(txtBan1, c);
         
         c.gridx = 1;
         
-        cp.add(txtban2, c);
+        cp.add(txtBan2, c);
         
         c.gridx = 2;
         
-        cp.add(txtban3, c);
+        cp.add(txtBan3, c);
         
         c.gridx = 0;
         c.gridy = 2;
         
-        cp.add(txtban4, c);
+        cp.add(txtBan4, c);
         
         c.gridx = 1;
         
-        cp.add(txtban5, c);
+        cp.add(txtBan5, c);
         
         c.gridx = 2;
         
-        cp.add(txtban6, c);
+        cp.add(txtBan6, c);
         
         c.gridx = 3;
         c.gridy = 1;
         c.gridwidth = 1;
         
-        cp.add(rbtazul, c);
+        cp.add(rbtBlue, c);
         
         c.gridy = 2;
         
-        cp.add(rbtverm, c);
+        cp.add(rbtRed, c);
         
         c.gridx = 0;
         c.gridy = 3;
         
-        cp.add(lbltmp, c);
+        cp.add(lblTmp, c);
         
         c.gridx = 1;
-        //c.gridwidth = 2;
         
-        cp.add(txttmp, c);
+        cp.add(txtTmp, c);
         
         c.gridx = 3;
         c.gridwidth = 1;
         
-        cp.add(btnprox, c);
+        cp.add(btnNext, c);
         
         pack();
-        btnprox.addActionListener(new ActionListener() {
+        btnNext.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-              new insDdaGUI(a, b);
+              new insBDGUI(a, b);
               dispose();
                
             }

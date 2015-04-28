@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package status_lol;
+package stats_lol;
 
 import java.awt.Container;
 import java.awt.GridBagConstraints;
@@ -18,14 +18,14 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
  */
 public class errGUI extends JFrame{
     
-    JLabel lblerr = new JLabel("Times iguais, coloque times diferentes");
+    JLabel lblErr = new JLabel("Same teams, select different teams");
     
     Container cp = getContentPane();
     
     public errGUI(){
         checkVersion checkVersion = new checkVersion();
         
-        setTitle("LoL Stats " + checkVersion.version);
+        setTitle("LoL Stats Maker " + checkVersion.version);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setVisible(true);
         setSize(400, 150);
@@ -38,7 +38,7 @@ public class errGUI extends JFrame{
         c.gridx = 0;
         c.gridy = 0;
         c.gridwidth = 1;
-        cp.add(lblerr, c);
+        cp.add(lblErr, c);
         
         pack();
     }

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package status_lol;
+package stats_lol;
 
 import java.io.*;
 import java.net.*;
@@ -15,7 +15,7 @@ import javax.swing.*;
  */
 public class checkVersion {
     
-    public String version = "a2.0";
+    public String version = "a1.0";
     public String currentVersion;
     public String os = System.getProperty("os.name").toLowerCase();
     public String[] ops = {"linux", "windows 7", "windows 8", "mac"};
@@ -28,7 +28,6 @@ public class checkVersion {
             URL checkPage = new URL(versionURL);
             BufferedReader reader = new BufferedReader(new InputStreamReader(new BufferedInputStream(checkPage.openConnection().getInputStream())));
             currentVersion = reader.readLine().trim(); 
-            System.out.println(os);
             reader.close();
         } 
         catch (Exception E){};

@@ -3,7 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package status_lol;
+package stats_lol;
+
 
 import java.awt.Container;
 import java.awt.GridBagConstraints;
@@ -16,32 +17,34 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 
+
 /**
  *
  * @author cristofer
  */
-public class statsGUI extends JFrame{
+public class inicialGUI extends JFrame{
     
-    JLabel lblTitle = new JLabel("Selecione sua opção");
-    JButton btnStsPly = new JButton("Stats por jogador");
-    JButton btnStsTim = new JButton("Stats por Time");
-    JButton btnStsCh = new JButton("Stats por champion");
+    
+    
+    JLabel lblTitle = new JLabel("Select your option");
+    JButton btnStats = new JButton("See stats");
+    JButton btnInsMt = new JButton("Insert new match");
     
     Container cp = getContentPane();
     
-    public statsGUI(){
+    public inicialGUI(){
         checkVersion checkVersion = new checkVersion();
         
-        setTitle("LoL Stats " + checkVersion.version);
+        setTitle("LoL Stats Maker " + checkVersion.version);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setVisible(true);
-        setSize(300, 250);
+        setSize(300, 150);
         setLocationRelativeTo(null);
         
         cp.setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
         c.anchor = GridBagConstraints.PAGE_START;
-        c.insets = new Insets(8, 8, 8, 8);
+        c.insets = new Insets(5, 5, 5, 5);
         c.gridx = 0;
         c.gridy = 0;
         c.gridwidth = 1;
@@ -50,42 +53,25 @@ public class statsGUI extends JFrame{
         c.gridy = 1;
         c.anchor = GridBagConstraints.CENTER;
         
-        cp.add(btnStsPly, c);
+        cp.add(btnStats, c);
         
         c.gridy = 2;
         
-        cp.add(btnStsTim, c);
+        cp.add(btnInsMt, c);
         
-        c.gridy = 3;
-        
-        cp.add(btnStsCh, c);
-        
-        btnStsPly.addActionListener(new ActionListener() {
+        btnStats.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                
-                new plyStatsGUI();
-               
-                }
-        });
-        btnStsTim.addActionListener(new ActionListener() {
+               new statsGUI();
+            }
+            });
+        btnInsMt.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                
-                new timStatsGUI();
-               
-                }
-        });
-        btnStsCh.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                
-                new chStatsGUI();
-               
-                }
-        });
+               new insMtGUI();
+            }
+            });
     }
 }
