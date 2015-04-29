@@ -1,9 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package stats_lol;
+
+/*I will only comment things that are new in each class, 
+90% of the comments in the "chStatsGUI" can be used in all other classes */
 
 import java.awt.Container;
 import java.awt.GridBagConstraints;
@@ -18,8 +16,10 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 
 /**
  *
- * @author cristofer
+ * @author Cristofer
  */
+
+//This is the second GUI, here you chose witch stat you want to see
 public class statsGUI extends JFrame{
     
     JLabel lblTitle = new JLabel("Chose your option");
@@ -65,7 +65,7 @@ public class statsGUI extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 
-                new plyStatsGUI();
+                new plyStatsGUI(); //Opens the player table
                
                 }
         });
@@ -74,7 +74,7 @@ public class statsGUI extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 
-                new teamStatsGUI();
+                new teamStatsGUI(); //Opens the teams table
                
                 }
         });
@@ -83,7 +83,7 @@ public class statsGUI extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 
-                new chStatsGUI();
+                new chStatsGUI(); //Opens the champion table
                
                 }
         });

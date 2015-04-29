@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package stats_lol;
 
 import java.io.*;
@@ -11,11 +6,13 @@ import javax.swing.*;
 
 /**
  *
- * @author root
+ * @author Cristofer
  */
+
+//Checks if the version is compatible, if not asks to download the new one
 public class checkVersion {
     
-    public String version = "a1.0"; //Version of the program
+    public String version = "a0.1"; //Version of the program
     public String currentVersion; //Atual version
     public String os = System.getProperty("os.name").toLowerCase(); //Gets user OS
     public String[] ops = {"linux", "windows 7", "windows 8", "windows 8.1", "mac"}; //OSs
@@ -34,10 +31,10 @@ public class checkVersion {
         if(currentVersion.equals(version)){ //Verifys the program version and the actual version
             return true;
         }
-        else{
-            final int updateQ = JOptionPane.showConfirmDialog(null,"LoL Stats Maker is outdated, update to the current version?","New Version avaible " + os,JOptionPane.YES_NO_OPTION); //Opens an window if the versions are diferent
+        else{ //Opens an window if the versions are diferent
+            final int updateQ = JOptionPane.showConfirmDialog(null,"LoL Stats Maker is outdated, update to the current version?","New Version avaible " + os,JOptionPane.YES_NO_OPTION); 
             if(updateQ==0){
-                if(os.equals(ops[0])){
+                if(os.equals(ops[0])){ //If it is linux
                     try{
                         String[] browsers = {"epiphany", "firefox", "mozilla", "konqueror",
                                                         "netscape","opera","links","lynx"};
@@ -50,7 +47,7 @@ public class checkVersion {
                         
                     }
                 }
-                else if(os.equals(ops[1]) || os.equals(ops[2]) || os.equals(ops[3])){
+                else if(os.equals(ops[1]) || os.equals(ops[2]) || os.equals(ops[3])){ //if it is Windows
                     try{
                         runtime.exec("rundll32 url.dll,FileProtocolHandler " + downloadURL);
                     }
@@ -58,7 +55,7 @@ public class checkVersion {
                         
                     }
                 }
-                else if(os.equals(ops[3])){
+                else if(os.equals(ops[3])){ //If it is Mac
                     try{
                         runtime.exec( "open" + downloadURL);
                     }

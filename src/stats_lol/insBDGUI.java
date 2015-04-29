@@ -1,9 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package stats_lol;
+
+/*I will only comment things that are new in each class, 
+90% of the comments in the "chStatsGUI" can be used in all other classes */
 
 import java.awt.Container;
 import java.awt.GridBagConstraints;
@@ -16,15 +14,17 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
+
 /**
  *
- * @author cristofer
+ * @author Cristofer
  */
+
+//After the 2º GUI the user inserts the blue side data here
 public class insBDGUI extends JFrame{
     
-    Stats_lol pl = new Stats_lol();
-    
-    
+    Stats_lol pl = new Stats_lol(); //Pushes the variables of Stats_lol
+        
     JLabel lblTitle = new JLabel("Blue side");
     JLabel lblPlayer = new JLabel("Player");
     JLabel lblTurret = new JLabel("Turrets:");
@@ -36,6 +36,7 @@ public class insBDGUI extends JFrame{
     JLabel lblDeath = new JLabel("Deaths");
     JLabel lblCreep = new JLabel("Creeps");
     JLabel lblGold = new JLabel("Gold");
+    //The name of each player is called here
     JLabel lblPlayer1 = new JLabel("" + pl.player1);
     JLabel lblPlayer2 = new JLabel("" + pl.player2);
     JLabel lblPlayer3 = new JLabel("" + pl.player3);
@@ -76,6 +77,7 @@ public class insBDGUI extends JFrame{
     JLabel lblPlayer38 = new JLabel("" + pl.player38);
     JLabel lblPlayer39 = new JLabel("" + pl.player39);
     JLabel lblPlayer40 = new JLabel("" + pl.player40);
+    //The text camp that the user will use
     JTextField txtChamp1 = new JTextField();
     JTextField txtChamp2 = new JTextField();
     JTextField txtChamp3 = new JTextField();
@@ -113,7 +115,7 @@ public class insBDGUI extends JFrame{
     
     Container cp = getContentPane();
     
-    public insBDGUI(int a, int b){
+    public insBDGUI(int a, int b){ //Recieves the data of the insMtGUI (dropbox index 1 and dropbox index 2)
         
         checkVersion checkVersion = new checkVersion();
         
@@ -140,7 +142,7 @@ public class insBDGUI extends JFrame{
  
         cp.add(lblPlayer, c);
        //------------------------
-        switch(a){
+        switch(a){ //Case team X labels a, b, c, d and e will be put
             case 0:
                 c.gridy = 2;
         
@@ -323,8 +325,7 @@ public class insBDGUI extends JFrame{
         
                 cp.add(lblPlayer40, c);
                 
-                break;
-                
+                break;               
         }
         //------------------
         c.gridy = 1;
@@ -355,7 +356,7 @@ public class insBDGUI extends JFrame{
         c.gridwidth = 1;
         c.fill = GridBagConstraints.HORIZONTAL;
         c.anchor = GridBagConstraints.WEST;
-        //------------------
+        //------------------ All the text camps
         c.gridx = 1;
         c.gridy = 2;
         
@@ -518,7 +519,7 @@ public class insBDGUI extends JFrame{
 
             @Override
             public void actionPerformed(ActionEvent e) {
-              new insRDGUI(b);
+              new insRDGUI(b); //Go to the next step giving the information of the dropbox index
               dispose();
                
             }

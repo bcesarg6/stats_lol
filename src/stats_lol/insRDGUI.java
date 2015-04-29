@@ -1,9 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package stats_lol;
+
+/*I will only comment things that are new in each class, 
+90% of the comments in the "chStatsGUI" can be used in all other classes */
 
 import java.awt.Container;
 import java.awt.GridBagConstraints;
@@ -16,16 +14,20 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
+
 /**
  *
- * @author cristofer
+ * @author Cristofer
  */
+
+/*Here the user inserts the red side data (after the blue data). 
+(The code here is almost the same as in the insBDGUI, just a few chages (commented))*/
 public class insRDGUI extends JFrame{
     
     Stats_lol pl = new Stats_lol();
     
     
-    JLabel lblTitle = new JLabel("Red side");
+    JLabel lblTitle = new JLabel("Red side"); //Other side
     JLabel lblPlayer = new JLabel("Player");
     JLabel lblTurret = new JLabel("Turrets:");
     JLabel lblDrag = new JLabel("Dragons:");
@@ -113,7 +115,7 @@ public class insRDGUI extends JFrame{
     
     Container cp = getContentPane();
     
-    public insRDGUI(int b){
+    public insRDGUI(int b){ //Gets the second index
         
         checkVersion checkVersion = new checkVersion();
         
@@ -518,7 +520,7 @@ public class insRDGUI extends JFrame{
 
             @Override
             public void actionPerformed(ActionEvent e) {
-              new finGUI();
+              new finGUI(); //Calls the final GUI
               dispose();
                
             }

@@ -1,9 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package stats_lol;
+
+/*I will only comment things that are new in each class, 
+90% of the comments in the "chStatsGUI" can be used in all other classes */
 
 import java.awt.Container;
 import java.awt.GridBagConstraints;
@@ -18,16 +16,19 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.ButtonGroup;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
+
 /**
  *
- * @author root
+ * @author Cristofer
  */
+
+//Here is the second GUI called to insert new game, the user puts the bans, winner side and match time
 public class insIDGUI extends JFrame{
     
-    JLabel lblBans = new JLabel("       Bans        ");
+    JLabel lblBans = new JLabel("       Bans        "); //Spacement required to put things in the middle
     JLabel lblWin = new JLabel("Winner side");
     JLabel lblTmp = new JLabel("Match time");
-    JLabel lbl = new JLabel("                        ");
+    JLabel lbl = new JLabel("                        ");//See above
     JTextField txtBan1 = new JTextField();
     JTextField txtBan2 = new JTextField();
     JTextField txtBan3 = new JTextField();
@@ -37,15 +38,15 @@ public class insIDGUI extends JFrame{
     JTextField txtTmp = new JTextField();
     JRadioButton rbtBlue = new JRadioButton("Blue");
     JRadioButton rbtRed = new JRadioButton("Red");
-    ButtonGroup  btgWin = new ButtonGroup();
+    ButtonGroup  btgWin = new ButtonGroup(); //This putts the radio buttons inside one thing so they can be used at the same time
     JButton btnNext = new JButton("Next");    
     
     Container cp = getContentPane();
     
-    public insIDGUI(int a, int b){
+    public insIDGUI(int a, int b){ //Recieves the dropboxes index
         
-        btgWin.add(rbtBlue);
-        btgWin.add(rbtRed);
+        btgWin.add(rbtBlue); //Puts the radio button blue insede the buttongroup
+        btgWin.add(rbtRed); //Same as above gut the red
         
         checkVersion checkVersion = new checkVersion();
         
@@ -130,7 +131,7 @@ public class insIDGUI extends JFrame{
 
             @Override
             public void actionPerformed(ActionEvent e) {
-              new insBDGUI(a, b);
+              new insBDGUI(a, b); //Drpoboxes index needed to the next class
               dispose();
                
             }

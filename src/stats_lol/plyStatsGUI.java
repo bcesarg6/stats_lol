@@ -1,9 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package stats_lol;
+
+/*I will only comment things that are new in each class, 
+90% of the comments in the "chStatsGUI" can be used in all other classes */
 
 import java.awt.Container;
 import java.awt.GridBagConstraints;
@@ -12,10 +10,13 @@ import java.awt.Insets;
 import javax.swing.JFrame;
 import javax.swing.JTable;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
+
 /**
  *
- * @author root
+ * @author Crisofer
  */
+
+//Player stats table
 public class plyStatsGUI extends JFrame {
     
     Stats_lol pl  = new Stats_lol();
@@ -148,3 +149,4 @@ public class plyStatsGUI extends JFrame {
      
     }
 }
+//Nothing new to comment here

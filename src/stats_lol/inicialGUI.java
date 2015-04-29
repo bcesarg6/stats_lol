@@ -1,10 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package stats_lol;
 
+/*I will only comment things that are new in each class, 
+90% of the comments in the "chStatsGUI" can be used in all other classes */
 
 import java.awt.Container;
 import java.awt.GridBagConstraints;
@@ -17,15 +14,14 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 
-
 /**
  *
- * @author cristofer
+ * @author Cristofer
  */
+
+//This is the first GUI of the program, here you chose between seeing stats or inserting new data
 public class inicialGUI extends JFrame{
-    
-    
-    
+           
     JLabel lblTitle = new JLabel("Select your option");
     JButton btnStats = new JButton("See stats");
     JButton btnInsMt = new JButton("Insert new match");
@@ -33,6 +29,7 @@ public class inicialGUI extends JFrame{
     Container cp = getContentPane();
     
     public inicialGUI(){
+        
         checkVersion checkVersion = new checkVersion();
         
         setTitle("LoL Stats Maker " + checkVersion.version);
@@ -63,14 +60,14 @@ public class inicialGUI extends JFrame{
 
             @Override
             public void actionPerformed(ActionEvent e) {
-               new statsGUI();
+               new statsGUI(); //Opens the statsGUI if clicked
             }
             });
         btnInsMt.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-               new insMtGUI();
+               new insMtGUI(); //Open the insert Match GUI
             }
             });
     }

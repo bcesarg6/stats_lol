@@ -1,9 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package stats_lol;
+
+/*I will only comment things that are new in each class, 
+90% of the comments in the "chStatsGUI" can be used in all other classes */
 
 import java.awt.Container;
 import java.awt.GridBagConstraints;
@@ -16,21 +14,24 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
+
 /**
  *
- * @author cristofer
+ * @author Cristofer
  */
+
+//First GUI to insert new game. Select the teams.
 public class insMtGUI extends JFrame{
     
-    Stats_lol tm = new Stats_lol();
+    Stats_lol tm = new Stats_lol(); //To use Stats_lol variables
     
     String [] teams = {tm.team1, tm.team2, tm.team3, tm.team4, tm.team5,
             tm.team6, tm.team7, tm.team8};
     
     JLabel lblBlue = new JLabel("Blue side:");
     JLabel lblRed = new JLabel("Red side:");
-    JComboBox blue = new JComboBox(teams);
-    JComboBox red = new JComboBox(teams);
+    JComboBox blue = new JComboBox(teams); //Creates a combobox (aka dropbox) with the teams String
+    JComboBox red = new JComboBox(teams); //Above
     JButton btnNext = new JButton("Next");
     
     Container cp = getContentPane();
@@ -81,12 +82,12 @@ public class insMtGUI extends JFrame{
 
             @Override
             public void actionPerformed(ActionEvent e) {
-               if((blue.getSelectedIndex()) != (red.getSelectedIndex())){
+               if((blue.getSelectedIndex()) != (red.getSelectedIndex())){ //If the teams selected are different
                    dispose();
-                   new insIDGUI(blue.getSelectedIndex(), red.getSelectedIndex());
+                   new insIDGUI(blue.getSelectedIndex(), red.getSelectedIndex()); //Sends the index to the next class
                }
                else{
-                   new errGUI();
+                   new errGUI(); //Else calls the error GUI
                }
             }
         });

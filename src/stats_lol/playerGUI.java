@@ -1,14 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package stats_lol;
+
+/*I will only comment things that are new in each class, 
+90% of the comments in the "chStatsGUI" can be used in all other classes */
 
 /**
  *
- * @author cristofer
+ * @author Cristofer
  */
+
 public class playerGUI {
-    
+    //This class is still empety, made to later use
 }

@@ -1,22 +1,20 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package stats_lol;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.BufferedWriter;
-import java.io.IOException;
+import java.io.File; //Imports Java file creator
+import java.io.FileWriter; //Imports java file writer
+import java.io.BufferedWriter; //Writer too
+import java.io.IOException; //IOException
 import java.net.URISyntaxException;
 
 /**
  *
- * @author cristofer
+ * @author Cristofer
  */
+
+//This is the main class of the program. This will call the main GUI
 public class Stats_lol {
     
+    //Team names
     public String team1 = "O Famoso Clã";
     public String team2 = "Moleques Transantes";
     public String team3 = "ProXdigious";
@@ -26,9 +24,11 @@ public class Stats_lol {
     public String team7 = "Cassiolurdes";
     public String team8 = "Team Pulse Gaming";
     
+    //Side names
     public String sideB = "Azul";
     public String sideR = "Vermelho";
     
+    //Players names
     public String player1 = "Ignatius";
     public String player2 = "Vithrow";
     public String player3 = "esquelda";
@@ -70,6 +70,7 @@ public class Stats_lol {
     public String player39 = "xGlhc";
     public String player40 = "ThunderCraash";
     
+    //Champions names
     public String Aatrox = "Aatrox";
     public String Ahri = "Ahri";
     public String Akali = "Akali";
@@ -195,37 +196,44 @@ public class Stats_lol {
     public String Zilean = "Zilean";
     public String Zyra = "Zyra";
     
-    /**
-     * @param args the command line arguments
-     * @throws java.io.IOException
-     */
+ 
     public static void main(String[] args) throws IOException, URISyntaxException{
-        // TODO code application logic here
         
         checkVersion checkVersion = new checkVersion();
-        checkVersion.checkVersion();
+        checkVersion.checkVersion(); //Verifies if the program version is the actual version
         
-        File jg = new File("data");
-        if(!jg.exists()){
-            jg.mkdir();
-        } //Verifies if the directory exists, if not create a new
+        File dt = new File("data");
+        File plDt = new File("data/plData");
+        File tmDt = new File("data/tmData");
+        File chDt = new File("data/chData");
+        File rdm = new File("data/README");
         
-        File rdm = new File("README");
-        if(!rdm.exists()){
-            rdm.mkdir();
-        } //Same as before
-        
-        
-            File rd = new File(rdm, "README.txt");
-            if(!rd.exists()){
-                rd.createNewFile();
+        if(!dt.exists()){
+            dt.mkdir();        //Creates data directory    
+            if(!plDt.exists()){
+            plDt.mkdir();     //Creates plData directory
             }
-        //Create a README file into the README directory if it doesn't exists
+            if(!tmDt.exists()){
+            tmDt.mkdir();     //Creates tmData directory
+            }
+            if(!chDt.exists()){
+            chDt.mkdir();    //Creates chData directory
+            }
+             if(!rdm.exists()){
+            rdm.mkdir();    //Creates README directory
+            }  
+        }
+        
+        File rd = new File(rdm, "README.txt");
+        
+        if(!rd.exists()){
+            rd.createNewFile(); //Creates README.txt file
+        }
         
         FileWriter reW = new FileWriter(rd);
         BufferedWriter reB = new BufferedWriter(reW); //Set the writer to the REAMDE file
-        reB.write("Program made to create statistics for championships of the League of Legends game.");
-        reB.newLine();
+        reB.write("Program made to create statistics for championships of the League of Legends game."); //Write this
+        reB.newLine(); //Jumps to the next line
         reB.write("Chose between seeing actual championship stats or insert new game stats.");
         reB.newLine();
         reB.write("The stats will be shown in tables.");
@@ -233,10 +241,10 @@ public class Stats_lol {
         reB.write("The game data will be stored in .txt files.");
         reB.newLine();
         reB.write("If you find any problem contact me and, if possible, take a screenshot.");
-        reB.close();
-        reW.close();
+        reB.close();//Ends the writer
+        reW.close();//Ends the buffer
         
-        new inicialGUI();
+        new inicialGUI(); //Calls inicialGUI
         
     }
 }

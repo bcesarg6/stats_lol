@@ -1,9 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package stats_lol;
+
+/*I will only comment things that are new in each class, 
+90% of the comments in the "chStatsGUI" can be used in all other classes */
 
 import java.awt.Container;
 import java.awt.GridBagConstraints;
@@ -18,8 +16,10 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 
 /**
  *
- * @author root
+ * @author Cristofer
  */
+
+//GUI called when the user finishes putting data
 public class finGUI extends JFrame {
     
     JLabel lblFin = new JLabel("Match added successfuly");
@@ -52,12 +52,11 @@ public class finGUI extends JFrame {
         
         cp.add(btnFin, c);
         
-        btnFin.addActionListener(new ActionListener() {
+        btnFin.addActionListener(new ActionListener() { //"Listens" to the button click
 
             @Override
-            public void actionPerformed(ActionEvent e) {
-              
-                dispose();
+            public void actionPerformed(ActionEvent e) {              
+                dispose(); //Closes the actual GUI
                
             }
         });
