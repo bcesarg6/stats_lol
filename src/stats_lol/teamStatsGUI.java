@@ -19,6 +19,8 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 //Teams stats GUI
 public class teamStatsGUI extends JFrame {
     
+    Object data[][];
+    
     Stats_lol tm = new Stats_lol();
     
     String[] columnNames =  {"Team",
@@ -27,30 +29,37 @@ public class teamStatsGUI extends JFrame {
                         "Averge Barons",
                         "Averge match time",
                         "Win ratio",};
-        Object[][] data = {
-    {tm.team1, 5,
-     3, 1, 35, 70},
-    {tm.team2, 5,
-     3, 1, 35, 70},
-    {tm.team3, 5,
-     3, 1, 35, 70},
-    {tm.team4, 5,
-     3, 1, 35, 70},
-    {tm.team5, 5,
-     3, 1, 35, 70},
-    {tm.team6, 5,
-     3, 1, 35, 70},
-    {tm.team7, 5,
-     3, 1, 35, 70},
-    {tm.team8, 5,
-     3, 1, 35, 70},
-};
-    
-    JTable tblTeam = new JTable(data, columnNames);
     
     Container cp = getContentPane();
     
     public teamStatsGUI(){
+        
+        data = new Object[8][6];
+                                        //Set the content of each column in respective order (not done yet)
+        for(int i = 0; i < 8; i++){
+            for(int j = 0; j < 6; j++){
+                if(j == 0){
+                    data[i][j] = tm.team[i];
+                }
+                else if(j == 1){
+                    data[i][j] = 5;
+                }
+                else if(j == 2){
+                    data[i][j] = 3;
+                }
+                else if(j == 3){
+                    data[i][j] = 1;
+                }
+                else if(j == 4){
+                    data[i][j] = 35;
+                }
+                else if(j == 5){
+                    data[i][j] = 60;                  
+                }
+            }
+        }
+        
+        JTable tblTeam = new JTable(data, columnNames);
         
         tblTeam.setEnabled(false);
              

@@ -19,7 +19,10 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 //Player stats table
 public class plyStatsGUI extends JFrame {
     
+    Object data[][];
+    
     Stats_lol pl  = new Stats_lol();
+    
     String[] columnNames =  {"Player",
                         "KDA",
                         "Averge farm",
@@ -27,96 +30,40 @@ public class plyStatsGUI extends JFrame {
                         "Gold",
                         "Gold per minute",
                         "kill participation",};
-        Object[][] data = { 
-    {pl.player1, 5,
-     200, 10, 19.4, 250, 75},
-    {pl.player2, 5,
-     200, 10, 19.4, 250, 75},
-    {pl.player3, 5,
-     200, 10, 19.4, 250, 75},
-    {pl.player4, 5,
-     200, 10, 19.4, 250, 75},
-    {pl.player5, 5,
-     200, 10, 19.4, 250, 75},
-    {pl.player6, 5,
-     200, 10, 19.4, 250, 75},
-    {pl.player7, 5,
-     200, 10, 19.4, 250, 75},
-    {pl.player8, 5,
-     200, 10, 19.4, 250, 75},
-    {pl.player9, 5,
-     200, 10, 19.4, 250, 75},
-    {pl.player10, 5,
-     200, 10, 19.4, 250, 75},
-    {pl.player11, 5,
-     200, 10, 19.4, 250, 75},
-    {pl.player12, 5,
-     200, 10, 19.4, 250, 75},
-    {pl.player13, 5,
-     200, 10, 19.4, 250, 75},
-    {pl.player14, 5,
-     200, 10, 19.4, 250, 75},
-    {pl.player15, 5,
-     200, 10, 19.4, 250, 75},
-    {pl.player16, 5,
-     200, 10, 19.4, 250, 75},
-    {pl.player17, 5,
-     200, 10, 19.4, 250, 75},
-    {pl.player18, 5,
-     200, 10, 19.4, 250, 75},
-    {pl.player19, 5,
-     200, 10, 19.4, 250, 75},
-    {pl.player20, 5,
-     200, 10, 19.4, 250, 75},
-    {pl.player21, 5,
-     200, 10, 19.4, 250, 75},
-    {pl.player22, 5,
-     200, 10, 19.4, 250, 75},
-    {pl.player23, 5,
-     200, 10, 19.4, 250, 75},
-    {pl.player24, 5,
-     200, 10, 19.4, 250, 75},
-    {pl.player25, 5,
-     200, 10, 19.4, 250, 75},
-    {pl.player26, 5,
-     200, 10, 19.4, 250, 75},
-    {pl.player27, 5,
-     200, 10, 19.4, 250, 75},
-    {pl.player28, 5,
-     200, 10, 19.4, 250, 75},
-    {pl.player29, 5,
-     200, 10, 19.4, 250, 75},
-    {pl.player30, 5,
-     200, 10, 19.4, 250, 75},
-    {pl.player31, 5,
-     200, 10, 19.4, 250, 75},
-    {pl.player32, 5,
-     200, 10, 19.4, 250, 75},
-    {pl.player33, 5,
-     200, 10, 19.4, 250, 75},
-    {pl.player34, 5,
-     200, 10, 19.4, 250, 75},
-    {pl.player35, 5,
-     200, 10, 19.4, 250, 75},
-    {pl.player36, 5,
-     200, 10, 19.4, 250, 75},
-    {pl.player37, 5,
-     200, 10, 19.4, 250, 75},
-    {pl.player38, 5,
-     200, 10, 19.4, 250, 75},
-    {pl.player39, 5,
-     200, 10, 19.4, 250, 75},
-    {pl.player40, 5,
-     200, 10, 19.4, 250, 75},
-    
-};
-    
-    JTable tblPly = new JTable(data, columnNames);
     
     Container cp = getContentPane();
     
     public plyStatsGUI(){
         
+         data = new Object[40][7];
+                                        //Set the content of each column in respective order (not done yet)
+        for(int i = 0; i < 40; i++){
+            for(int j = 0; j < 7; j++){
+                if(j == 0){
+                    data[i][j] = pl.player[i];
+                }
+                else if(j == 1){
+                    data[i][j] = 5;
+                }
+                else if(j == 2){
+                    data[i][j] = 234;
+                }
+                else if(j == 3){
+                    data[i][j] = 12;
+                }
+                else if(j == 4){
+                    data[i][j] = 13.4;
+                }
+                else if(j == 5){
+                    data[i][j] = 250;                  
+                }
+                else if(j == 6){
+                    data[i][j] = 75;                   
+                }
+            }
+        }
+        
+        JTable tblPly = new JTable(data, columnNames);
         
         tblPly.setEnabled(false);
              

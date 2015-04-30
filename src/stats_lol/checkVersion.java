@@ -17,7 +17,7 @@ public class checkVersion {
     public String os = System.getProperty("os.name").toLowerCase(); //Gets user OS
     public String[] ops = {"linux", "windows 7", "windows 8", "windows 8.1", "mac"}; //OSs
     public String versionURL = "http://pastebin.com/raw.php?i=tqZcCMdQ"; //URL that is checked to see the version
-    public String downloadURL = "http://pastebin.com/raw.php?i=tqZcCMdQ"; //Download URL
+    public String downloadURL = "http://lolstatsmaker.webs.com/LoL%20Stats%20Maker.rar"; //Download URL
     Runtime runtime = Runtime.getRuntime(); //CMD
     
     public boolean checkVersion() throws URISyntaxException{

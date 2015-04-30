@@ -25,18 +25,18 @@ public class insMtGUI extends JFrame{
     
     Stats_lol tm = new Stats_lol(); //To use Stats_lol variables
     
-    String [] teams = {tm.team1, tm.team2, tm.team3, tm.team4, tm.team5,
-            tm.team6, tm.team7, tm.team8};
+    String teams[];
     
     JLabel lblBlue = new JLabel("Blue side:");
     JLabel lblRed = new JLabel("Red side:");
-    JComboBox blue = new JComboBox(teams); //Creates a combobox (aka dropbox) with the teams String
-    JComboBox red = new JComboBox(teams); //Above
+    JComboBox blue = new JComboBox(tm.team); //Creates a combobox (aka dropbox) with the team String (from the main class)
+    JComboBox red = new JComboBox(tm.team); //Above
     JButton btnNext = new JButton("Next");
     
     Container cp = getContentPane();
     
     public insMtGUI(){
+           
         checkVersion checkVersion = new checkVersion();
         
         setTitle("LoL Stats Maker " + checkVersion.version);
