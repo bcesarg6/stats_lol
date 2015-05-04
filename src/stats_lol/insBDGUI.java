@@ -26,6 +26,7 @@ public class insBDGUI extends JFrame{
     int i = 0;
     
     Stats_lol pl = new Stats_lol(); //Pushes the variables of Stats_lol
+    insIDGUI in = new insIDGUI(0, 0);
         
     JLabel lblTitle = new JLabel("Blue side");
     JLabel lblPlayer = new JLabel("Player");
@@ -118,6 +119,8 @@ public class insBDGUI extends JFrame{
     Container cp = getContentPane();
     
     public insBDGUI(int a, int b){ //Recieves the data of the insMtGUI (dropbox index 1 and dropbox index 2)
+        System.out.println(""+pl.w1);
+        System.out.println(""+in.w1);
         
         checkVersion checkVersion = new checkVersion();
         

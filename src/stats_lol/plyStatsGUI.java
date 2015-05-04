@@ -8,6 +8,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import javax.swing.JFrame;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 
@@ -36,7 +37,7 @@ public class plyStatsGUI extends JFrame {
     public plyStatsGUI(){
         
          data = new Object[40][7];
-                                        //Set the content of each column in respective order (not done yet)
+                                        
         for(int i = 0; i < 40; i++){
             for(int j = 0; j < 7; j++){
                 if(j == 0){
@@ -65,6 +66,8 @@ public class plyStatsGUI extends JFrame {
         
         JTable tblPly = new JTable(data, columnNames);
         
+        JScrollPane scroll = new JScrollPane(tblPly);
+        
         tblPly.setEnabled(false);
              
         checkVersion checkVersion = new checkVersion();
@@ -89,10 +92,9 @@ public class plyStatsGUI extends JFrame {
         c.insets = new Insets(0, 10, 10, 10);
         c.gridy = 1;
         
-        cp.add(tblPly, c);
+        cp.add(scroll, c);
         
-        pack();
-        
+        pack();       
      
     }
 }

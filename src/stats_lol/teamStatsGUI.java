@@ -35,7 +35,7 @@ public class teamStatsGUI extends JFrame {
     public teamStatsGUI(){
         
         data = new Object[8][6];
-                                        //Set the content of each column in respective order (not done yet)
+                                        
         for(int i = 0; i < 8; i++){
             for(int j = 0; j < 6; j++){
                 if(j == 0){

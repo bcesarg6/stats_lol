@@ -5,6 +5,7 @@ import java.awt.GridBagConstraints; //The constrains of the conatainer
 import java.awt.GridBagLayout; //The layout of the container
 import java.awt.Insets; //Spacements
 import javax.swing.JFrame; //The frame
+import javax.swing.JScrollPane;
 import javax.swing.JTable; //Table
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE; //Imports the class that closes the program when you hit the "x"
 
@@ -31,7 +32,7 @@ public class chStatsGUI extends JFrame {
     public chStatsGUI(){
                 
         data = new Object[124][5];
-                                        //Set the content of each column in respective order (not done yet)
+                                        //Set the content of each column in respective order
         for(int i = 0; i < 124; i++){
             for(int j = 0; j < 5; j++){
                 if(j == 0){
@@ -55,6 +56,8 @@ public class chStatsGUI extends JFrame {
         JTable tblPly = new JTable(data, columnNames); //Calls the table
         
         tblPly.setEnabled(false); //You can't edit the cells (false)
+        
+        JScrollPane scroll = new JScrollPane(tblPly); //Puts the table inside of a scroll panel
              
         checkVersion checkVersion = new checkVersion(); //To use the version variable
         
@@ -79,7 +82,7 @@ public class chStatsGUI extends JFrame {
         c.insets = new Insets(0, 10, 10, 10);
         c.gridy = 1;
         
-        cp.add(tblPly, c); //With "c" restrictions
+        cp.add(scroll, c); //With "c" restrictions
         
         pack(); //Resizes the frame to the necessary size to the necessary size
         

@@ -25,6 +25,10 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 //Here is the second GUI called to insert new game, the user puts the bans, winner side and match time
 public class insIDGUI extends JFrame{
     
+    //Stats_lol st = new Stats_lol().;
+    
+    public String w1, w2;
+    
     JLabel lblBans = new JLabel("       Bans        "); //Spacement required to put things in the middle
     JLabel lblWin = new JLabel("Winner side");
     JLabel lblTmp = new JLabel("Match time");
@@ -36,17 +40,20 @@ public class insIDGUI extends JFrame{
     JTextField txtBan5 = new JTextField();
     JTextField txtBan6 = new JTextField();
     JTextField txtTmp = new JTextField();
-    JRadioButton rbtBlue = new JRadioButton("Blue");
-    JRadioButton rbtRed = new JRadioButton("Red");
+    JRadioButton rbtBlue = new JRadioButton(new Stats_lol().sideB);
+    JRadioButton rbtRed = new JRadioButton(new Stats_lol().sideR);
     ButtonGroup  btgWin = new ButtonGroup(); //This putts the radio buttons inside one thing so they can be used at the same time
     JButton btnNext = new JButton("Next");    
     
     Container cp = getContentPane();
     
     public insIDGUI(int a, int b){ //Recieves the dropboxes index
-        
+                      
         btgWin.add(rbtBlue); //Puts the radio button blue insede the buttongroup
         btgWin.add(rbtRed); //Same as above gut the red
+        
+        rbtBlue.setActionCommand(new Stats_lol().sideB);
+        rbtRed.setActionCommand(new Stats_lol().sideR);
         
         checkVersion checkVersion = new checkVersion();
         
@@ -127,13 +134,40 @@ public class insIDGUI extends JFrame{
         cp.add(btnNext, c);
         
         pack();
+        
         btnNext.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-              new insBDGUI(a, b); //Drpoboxes index needed to the next class
-              dispose();
+                new Stats_lol().ban1 = txtBan1.getText();
+                new Stats_lol().ban2 = txtBan2.getText();
+                new Stats_lol().ban3 = txtBan3.getText();
+                new Stats_lol().ban4 = txtBan4.getText();
+                new Stats_lol().ban5 = txtBan5.getText();
+                new Stats_lol().ban6 = txtBan6.getText();
+                //System.out.print(""+st.ban1);
+                new Stats_lol().w1 = w1;
+                System.out.println(""+w1);
+                System.out.println(""+new Stats_lol().w1);
+                new insBDGUI(a, b); //Drpoboxes index needed to the next class
+                dispose();
                
+            }
+        });
+        rbtBlue.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               w1 = e.getActionCommand();
+               //System.out.print(""+st.w1);
+            }
+        });
+        rbtRed.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               w1 = e.getActionCommand();
+               //System.out.print(""+st.w1);
             }
         });
     }

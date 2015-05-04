@@ -28,6 +28,7 @@ public class finGUI extends JFrame {
     Container cp = getContentPane();
     
     public finGUI() {
+        
        checkVersion checkVersion = new checkVersion();
         
         setTitle("LoL Stats Maker " + checkVersion.version);
