@@ -9,6 +9,9 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -67,7 +70,7 @@ public class inicialGUI extends JFrame{
 
             @Override
             public void actionPerformed(ActionEvent e) {
-               new insMtGUI(); //Open the insert Match GUI
+                new insMtGUI();
             }
             });
     }

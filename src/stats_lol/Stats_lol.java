@@ -15,15 +15,15 @@ import java.net.URISyntaxException;
 public class Stats_lol {
     
     //Team names
-    public String team[] = {"O Famoso Clã", "Moleques Transantes", "ProXdigious", "TPMstronda",
+    public static String team[] = {"O Famoso Clã", "Moleques Transantes", "ProXdigious", "TPMstronda",
                             "Vivo Dibra", "Não Temos Nome", "Cassiolurdes", "Team Pulse Gaming"};
     
     //Side names
-    public String sideB = "Blue";
-    public String sideR = "Red";
+    public static String sideB = "Blue";
+    public static String sideR = "Red";
     
     //Players names
-    public String player[] = {"Ignatius", "Vithrow", "esquelda", "tij", "Leoxes",
+    public static String player[] = {"Ignatius", "Vithrow", "esquelda", "tij", "Leoxes",
                               "Xuleta JJ", "Trullian", "vargas baloso", "rS Berta1", "WISER Perachi Oz",
                               "GHKgustavo", "proX KungBANG", "farélinho", "StarLine", "PrimooN",
                               "Lukinhas Monxtro", "jbiyvh", "gahgreguer", "Andreeez1nPLAY", "KoitOShiro",
@@ -33,7 +33,7 @@ public class Stats_lol {
                               "DaarkFighter", "BlazeeKryst", "xXDownloadXx", "xGlhc", "ThunderCraash"};
     
     //Champions names
-    public String champion[] = {"Aatrox", "Ahri", "Akali", "Alistar","Amumu",
+    public static String champion[] = {"Aatrox", "Ahri", "Akali", "Alistar","Amumu",
                                  "Anivia", "Annie", "Ashe", "Azir", "Bardo", "Blitzcrank",
                                  "Brand", "Braum", "Caitlyn", "Cassiopeia","Cho'Gath",
                                  "Corki", "Darius", "Diana", "Draven", "Dr.Mundo", "Elise",
@@ -97,6 +97,41 @@ public class Stats_lol {
             rd.createNewFile(); //Creates README.txt file
         }
         
+        for(int i = 0; i < 40; i++){
+            File pl = new File(plDt, player[i]);
+            
+            if(!pl.exists()){
+                pl.createNewFile(); //Creates README.txt file
+            }
+            
+        }
+        
+        for(int i = 0; i < 8; i++){
+            File tm = new File(tmDt, team[i]);
+            
+            if(!tm.exists()){
+                tm.createNewFile(); //Creates README.txt file
+            }
+            /*FileWriter reW = new FileWriter(tm);
+            BufferedWriter reB = new BufferedWriter(reW); //Set the writer to the REAMDE file
+            reB.write("0");
+            reB.close();//Ends the buffer
+            reW.close();//Ends the writer*/
+            //tm.delete();
+            
+        }
+        
+        for(int i = 0; i < 124; i++){
+            File ch = new File(chDt, champion[i]);
+            
+            if(!ch.exists()){
+                ch.createNewFile(); //Creates README.txt file
+            }
+            //ch.delete();
+            
+        }
+        
+        
         FileWriter reW = new FileWriter(rd);
         BufferedWriter reB = new BufferedWriter(reW); //Set the writer to the REAMDE file
         reB.write("Program made to create statistics for championships of the League of Legends game."); //Write this
@@ -108,8 +143,9 @@ public class Stats_lol {
         reB.write("The game data will be stored in .txt files.");
         reB.newLine();
         reB.write("If you find any problem contact me and, if possible, take a screenshot.");
-        reB.close();//Ends the writer
-        reW.close();//Ends the buffer
+        reB.newLine();
+        reB.close();//Ends the buffer
+        reW.close();//Ends the writer
         
         new inicialGUI(); //Calls inicialGUI
         
