@@ -13,11 +13,9 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Scanner;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -34,10 +32,10 @@ public class insMtGUI extends JFrame{
     
     int nG;
     String sNg;
-    String sp;
     int blueIn;
     int redIn;
     
+    ReadWrite rw = new ReadWrite();
     Stats_lol tm = new Stats_lol(); //To use Stats_lol variables  
     
     JLabel lblBlue = new JLabel("Blue side:");
@@ -100,46 +98,11 @@ public class insMtGUI extends JFrame{
                if(blueIn != redIn){ //If the teams selected are different
                    for(int i = 0; i < 8; i++){
                        if(blueIn == i){
-                           try{
-                               File te = new File("data/tmData/" + tm.team[i]);
-                           
-                               try (FileWriter fW = new FileWriter(te)) {
-                                   BufferedWriter bW = new BufferedWriter(fW);
-                                   
-                                   FileInputStream fR = new FileInputStream(te);
-                                   InputStreamReader in = new InputStreamReader(fR);
-                                   BufferedReader bR = new BufferedReader(in);
-                                                                 
-                                   sp = bR.readLine();
-                                   System.out.println(sp);
-                                   if(sp == null){
-                                       sp = "0";
-                                   }
-                                   sNg = bR.readLine();
-                                   System.out.println(sNg);
-                                   if(sNg == null){
-                                       sNg = "0";
-                                   }                                                                    
-                                                                     
-                                   System.out.println(sNg);
-                                   
-                                   nG++;
-                                   
-                                   sNg = Integer.toString(nG);
-                                   
-                                   bW.write(sp);
-                                   bW.newLine();
-                                   bW.write(sNg);
-                                   bW.newLine();
-                                   bW.close();
-                                   fW.close();
-                               }
-                               System.out.println(nG);
-                               
-                           }
-                           catch(IOException a){                              
-                           }
-                       }                                                                                            
+                           rw.readWrite(3, i);
+                       }
+                       else if(redIn == i){
+                           rw.readWrite(3, i);
+                       }
                    }
                    dispose();
                    new insIDGUI(blueIn, redIn); //Sends the index to the next class

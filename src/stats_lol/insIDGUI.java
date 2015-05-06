@@ -26,8 +26,10 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 public class insIDGUI extends JFrame{
     
     Stats_lol st = new Stats_lol();
+    ReadWrite rw = new ReadWrite();
     
-    public String w1, w2;
+    public String ban1, ban2, ban3, ban4, ban5, ban6, nB, mtT, w1, w2, s1, s2, sp;
+    int nb, mtt, i, x;
     
     JLabel lblBans = new JLabel("       Bans        "); //Spacement required to put things in the middle
     JLabel lblWin = new JLabel("Winner side");
@@ -139,16 +141,44 @@ public class insIDGUI extends JFrame{
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                st.ban1 = txtBan1.getText();
-                st.ban2 = txtBan2.getText();
-                st.ban3 = txtBan3.getText();
-                st.ban4 = txtBan4.getText();
-                st.ban5 = txtBan5.getText();
-                st.ban6 = txtBan6.getText();
-                //System.out.print(""+st.ban1);
-                st.w1 = w1;
-                System.out.println(""+w1);
-                System.out.println(""+st.w1);
+                ban1 = txtBan1.getText();
+                ban2 = txtBan2.getText();
+                ban3 = txtBan3.getText();
+                ban4 = txtBan4.getText();
+                ban5 = txtBan5.getText();
+                ban6 = txtBan6.getText();
+                rw.mtT = txtTmp.getText();
+                rw.mtt = Integer.parseInt(rw.mtT);
+                for(i = 0; i < 124; i++){
+                    if(ban1.equals(st.champion[i])){
+                        rw.readWrite(0, i);
+                    }
+                    else if(ban2.equals(st.champion[i])){
+                        rw.readWrite(0, i);
+                    }
+                    else if(ban3.equals(st.champion[i])){
+                        rw.readWrite(0, i);
+                    }
+                    else if(ban4.equals(st.champion[i])){
+                        rw.readWrite(0, i);
+                    }
+                    else if(ban5.equals(st.champion[i])){
+                        rw.readWrite(0, i);
+                    }
+                    else if(ban6.equals(st.champion[i])){
+                        rw.readWrite(0, i);
+                    }
+                }
+                if(w1.equals("Blue")){
+                    rw.readWrite(1, a);
+                    rw.readWrite(2, a);
+                    rw.readWrite(2, b);
+                }
+                else if(w1.equals("Red")){
+                    rw.readWrite(1, b);;
+                    rw.readWrite(2, b);
+                    rw.readWrite(2, a);
+                }
                 new insBDGUI(a, b); //Drpoboxes index needed to the next class
                 dispose();
                
@@ -159,7 +189,6 @@ public class insIDGUI extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                w1 = e.getActionCommand();
-               //System.out.print(""+st.w1);
             }
         });
         rbtRed.addActionListener(new ActionListener() {
@@ -167,7 +196,6 @@ public class insIDGUI extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                w1 = e.getActionCommand();
-               //System.out.print(""+st.w1);
             }
         });
     }

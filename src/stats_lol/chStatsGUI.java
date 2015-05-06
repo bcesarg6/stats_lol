@@ -15,7 +15,7 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE; //Imports the class 
  */
 
 //Table with the champion stats
-public class chStatsGUI extends JFrame {
+public class chStatsGUI extends JFrame{
     
     Object data[][];
     
@@ -84,8 +84,6 @@ public class chStatsGUI extends JFrame {
         
         cp.add(scroll, c); //With "c" restrictions
         
-        pack(); //Resizes the frame to the necessary size to the necessary size
-        
-     
+        pack(); //Resizes the frame to the necessary size to the necessary size           
     }
 }

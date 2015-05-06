@@ -53,17 +53,7 @@ public class Stats_lol {
                                  "Udyr", "Urgot", "Varus", "Vayne", "Veigar", "Vel'Koz", "Vi",
                                  "Viktor", "Vladimir", "Volibear", "Warwick", "Wukong", "Xerath",
                                  "Xin'Zhao", "Yasuo", "Yorick", "Zac", "Zed", "Ziggs", "Zilean", "Zyra"};
-    
-    public String ban1;
-    public String ban2;
-    public String ban3;
-    public String ban4;
-    public String ban5;
-    public String ban6;
-    public String w1;
-    public String w2;
-   
- 
+  
     public static void main(String[] args) throws IOException, URISyntaxException{
         
         checkVersion checkVersion = new checkVersion();
@@ -103,6 +93,7 @@ public class Stats_lol {
             if(!pl.exists()){
                 pl.createNewFile(); //Creates README.txt file
             }
+            //pl.delete();
             
         }
         
@@ -112,11 +103,6 @@ public class Stats_lol {
             if(!tm.exists()){
                 tm.createNewFile(); //Creates README.txt file
             }
-            /*FileWriter reW = new FileWriter(tm);
-            BufferedWriter reB = new BufferedWriter(reW); //Set the writer to the REAMDE file
-            reB.write("0");
-            reB.close();//Ends the buffer
-            reW.close();//Ends the writer*/
             //tm.delete();
             
         }
