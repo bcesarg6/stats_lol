@@ -27,7 +27,14 @@ public class finGUI extends JFrame {
         
     Container cp = getContentPane();
     
-    public finGUI() {
+    ReadWrite rw = new ReadWrite();
+    
+    public int t, r, s;
+    
+    public finGUI(int d, int a, int b) {
+        t = d;
+        r = a;
+        s = b;
         
        checkVersion checkVersion = new checkVersion();
         
@@ -56,7 +63,27 @@ public class finGUI extends JFrame {
         btnFin.addActionListener(new ActionListener() { //"Listens" to the button click
 
             @Override
-            public void actionPerformed(ActionEvent e) {              
+            public void actionPerformed(ActionEvent e) {
+                if(t == -1){
+                    System.out.println("red");
+                    rw.readWrite(true, -1, s);//red
+                    rw.readWrite(true, -3, r);
+                }
+                else if(t == -2){
+                    System.out.println("tie");
+                    rw.readWrite(true, -2, s);//tie
+                    rw.readWrite(true, -2, r);                    
+                }
+                else if(t == 3){
+                    System.out.println("blue");
+                    rw.readWrite(true, -1, r);//blue
+                    rw.readWrite(true, -3, s);
+                }
+                else if(t == 4){
+                    System.out.println("tie");
+                    rw.readWrite(true, -2, s);//tie
+                    rw.readWrite(true, -2, r);                    
+                }
                 dispose(); //Closes the actual GUI
                
             }

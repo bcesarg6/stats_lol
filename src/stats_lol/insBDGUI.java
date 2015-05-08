@@ -24,12 +24,16 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 public class insBDGUI extends JFrame{
     
     int i = 0;
+    int tr, dr, br;
+    public String[] ch, kl, as, dt, cr, gl;
     
     Stats_lol pl = new Stats_lol(); //Pushes the variables of Stats_lol
-    //insIDGUI in = new insIDGUI(0, 0);
+    ReadWrite rw = new ReadWrite();
+    public JLabel[] lblPlayer;
+    public JTextField[] txtChamp, txtKill, txtAssist, txtDeath, txtCreep, txtGold;
         
     JLabel lblTitle = new JLabel("Blue side");
-    JLabel lblPlayer = new JLabel("Player");
+    JLabel lblPlayers = new JLabel("Player");
     JLabel lblTurret = new JLabel("Turrets:");
     JLabel lblDrag = new JLabel("Dragons:");
     JLabel lblBaron = new JLabel("Barons:");
@@ -39,78 +43,8 @@ public class insBDGUI extends JFrame{
     JLabel lblDeath = new JLabel("Deaths");
     JLabel lblCreep = new JLabel("Creeps");
     JLabel lblGold = new JLabel("Gold");
-    //The name of each player is called here
-    JLabel lblPlayer1 = new JLabel("" + pl.player[i]);
-    JLabel lblPlayer2 = new JLabel("" + pl.player[i+1]);
-    JLabel lblPlayer3 = new JLabel("" + pl.player[i+2]);
-    JLabel lblPlayer4 = new JLabel("" + pl.player[i+3]);
-    JLabel lblPlayer5 = new JLabel("" + pl.player[i+4]);
-    JLabel lblPlayer6 = new JLabel("" + pl.player[i+5]);
-    JLabel lblPlayer7 = new JLabel("" + pl.player[i+6]);
-    JLabel lblPlayer8 = new JLabel("" + pl.player[i+7]);
-    JLabel lblPlayer9 = new JLabel("" + pl.player[i+8]);
-    JLabel lblPlayer10 = new JLabel("" + pl.player[i+9]);
-    JLabel lblPlayer11 = new JLabel("" + pl.player[i+10]);
-    JLabel lblPlayer12 = new JLabel("" + pl.player[i+11]);
-    JLabel lblPlayer13 = new JLabel("" + pl.player[i+12]);
-    JLabel lblPlayer14 = new JLabel("" + pl.player[i+13]);
-    JLabel lblPlayer15 = new JLabel("" + pl.player[i+14]);
-    JLabel lblPlayer16 = new JLabel("" + pl.player[i+15]);
-    JLabel lblPlayer17 = new JLabel("" + pl.player[i+16]);
-    JLabel lblPlayer18 = new JLabel("" + pl.player[i+17]);
-    JLabel lblPlayer19 = new JLabel("" + pl.player[i+18]);
-    JLabel lblPlayer20 = new JLabel("" + pl.player[i+19]);
-    JLabel lblPlayer21 = new JLabel("" + pl.player[i+20]);
-    JLabel lblPlayer22 = new JLabel("" + pl.player[i+21]);
-    JLabel lblPlayer23 = new JLabel("" + pl.player[i+22]);
-    JLabel lblPlayer24 = new JLabel("" + pl.player[i+23]);
-    JLabel lblPlayer25 = new JLabel("" + pl.player[i+24]);
-    JLabel lblPlayer26 = new JLabel("" + pl.player[i+25]);
-    JLabel lblPlayer27 = new JLabel("" + pl.player[i+26]);
-    JLabel lblPlayer28 = new JLabel("" + pl.player[i+27]);
-    JLabel lblPlayer29 = new JLabel("" + pl.player[i+28]);
-    JLabel lblPlayer30 = new JLabel("" + pl.player[i+29]);
-    JLabel lblPlayer31 = new JLabel("" + pl.player[i+30]);
-    JLabel lblPlayer32 = new JLabel("" + pl.player[i+31]);
-    JLabel lblPlayer33 = new JLabel("" + pl.player[i+32]);
-    JLabel lblPlayer34 = new JLabel("" + pl.player[i+33]);
-    JLabel lblPlayer35 = new JLabel("" + pl.player[i+34]);
-    JLabel lblPlayer36 = new JLabel("" + pl.player[i+35]);
-    JLabel lblPlayer37 = new JLabel("" + pl.player[i+36]);
-    JLabel lblPlayer38 = new JLabel("" + pl.player[i+37]);
-    JLabel lblPlayer39 = new JLabel("" + pl.player[i+38]);
-    JLabel lblPlayer40 = new JLabel("" + pl.player[i+39]);
+    
     //The text camp that the user will use
-    JTextField txtChamp1 = new JTextField();
-    JTextField txtChamp2 = new JTextField();
-    JTextField txtChamp3 = new JTextField();
-    JTextField txtChamp4 = new JTextField();
-    JTextField txtChamp5 = new JTextField();
-    JTextField txtKill1 = new JTextField();
-    JTextField txtKill2 = new JTextField();
-    JTextField txtKill3 = new JTextField();
-    JTextField txtKill4 = new JTextField();
-    JTextField txtKill5 = new JTextField();
-    JTextField txtAssist1 = new JTextField();
-    JTextField txtAssist2 = new JTextField();
-    JTextField txtAssist3 = new JTextField();
-    JTextField txtAssist4 = new JTextField();
-    JTextField txtAssist5 = new JTextField();
-    JTextField txtDeath1 = new JTextField();
-    JTextField txtDeath2 = new JTextField();
-    JTextField txtDeath3 = new JTextField();
-    JTextField txtDeath4 = new JTextField();
-    JTextField txtDeath5 = new JTextField();
-    JTextField txtCreep1 = new JTextField();
-    JTextField txtCreep2 = new JTextField();
-    JTextField txtCreep3 = new JTextField();
-    JTextField txtCreep4 = new JTextField();
-    JTextField txtCreep5 = new JTextField();
-    JTextField txtGold1 = new JTextField();
-    JTextField txtGold2 = new JTextField();
-    JTextField txtGold3 = new JTextField();
-    JTextField txtGold4 = new JTextField();
-    JTextField txtGold5 = new JTextField();
     JTextField txtTurret = new JTextField();
     JTextField txtDrag = new JTextField();
     JTextField txtBaron = new JTextField();
@@ -118,9 +52,46 @@ public class insBDGUI extends JFrame{
     
     Container cp = getContentPane();
     
-    public insBDGUI(int a, int b){ //Recieves the data of the insMtGUI (dropbox index 1 and dropbox index 2)
-        //System.out.println(""+pl.w1);
-        //System.out.println(""+in.w1);
+    public insBDGUI(int d, int a, int b){ //Recieves the data of the insMtGUI (dropbox index 1 and dropbox index 2)
+        
+        ch = new String[5];
+        kl = new String[5];
+        dt = new String[5];
+        as = new String[5];
+        cr = new String[5];
+        gl = new String[5];
+        
+        lblPlayer = new JLabel[40];
+        
+        txtChamp = new JTextField[5];
+        txtKill = new JTextField[5];
+        txtAssist = new JTextField[5];
+        txtDeath = new JTextField[5];
+        txtCreep = new JTextField[5];
+        txtGold = new JTextField[5];
+        
+        for(i = 0; i < 40; i++){
+            lblPlayer[i] = new JLabel("" + pl.player[i]);
+        }
+        
+        for(i = 0; i < 5; i++){
+            txtChamp[i] = new JTextField();
+        }
+        for(i = 0; i < 5; i++){
+            txtKill[i] = new JTextField();
+        }
+        for(i = 0; i < 5; i++){
+            txtAssist[i] = new JTextField();
+        }
+        for(i = 0; i < 5; i++){
+            txtDeath[i] = new JTextField();
+        }
+        for(i = 0; i < 5; i++){
+            txtCreep[i] = new JTextField();
+        }
+        for(i = 0; i < 5; i++){
+            txtGold[i] = new JTextField();
+        }
         
         checkVersion checkVersion = new checkVersion();
         
@@ -145,191 +116,63 @@ public class insBDGUI extends JFrame{
         c.gridx = 0;
         c.gridy = 1;
  
-        cp.add(lblPlayer, c);
+        cp.add(lblPlayers, c);
        //------------------------
         switch(a){ //Case team X labels a, b, c, d and e will be put
             case 0:
-                c.gridy = 2;
-        
-                cp.add(lblPlayer1, c);
-        
-                c.gridy = 3;
-        
-                cp.add(lblPlayer2, c);
-        
-                c.gridy = 4;
-        
-                cp.add(lblPlayer3, c);
-        
-                c.gridy = 5;
-        
-                cp.add(lblPlayer4, c);
-        
-                c.gridy = 6;
-        
-                cp.add(lblPlayer5, c);
-                
+                for(i = 0; i < 5; i++){
+                    c.gridy = i+2;
+                    cp.add(lblPlayer[i], c);
+                }
                 break;
                 
             case 1:
-                c.gridy = 2;
-        
-                cp.add(lblPlayer6, c);
-        
-                c.gridy = 3;
-        
-                cp.add(lblPlayer7, c);
-        
-                c.gridy = 4;
-        
-                cp.add(lblPlayer8, c);
-        
-                c.gridy = 5;
-        
-                cp.add(lblPlayer9, c);
-        
-                c.gridy = 6;
-        
-                cp.add(lblPlayer10, c);
-                
+                for(i = 5; i < 10; i++){
+                    c.gridy = i-3;
+                    cp.add(lblPlayer[i], c);
+                }
                 break;
                 
             case 2:
-                c.gridy = 2;
-        
-                cp.add(lblPlayer11, c);
-        
-                c.gridy = 3;
-        
-                cp.add(lblPlayer12, c);
-        
-                c.gridy = 4;
-        
-                cp.add(lblPlayer13, c);
-        
-                c.gridy = 5;
-        
-                cp.add(lblPlayer14, c);
-        
-                c.gridy = 6;
-        
-                cp.add(lblPlayer15, c);
-                
+                for(i = 10; i < 15; i++){
+                    c.gridy = i-8;
+                    cp.add(lblPlayer[i], c);                    
+                }
                 break;
                 
             case 3:
-                c.gridy = 2;
-        
-                cp.add(lblPlayer16, c);
-        
-                c.gridy = 3;
-        
-                cp.add(lblPlayer17, c);
-        
-                c.gridy = 4;
-        
-                cp.add(lblPlayer18, c);
-        
-                c.gridy = 5;
-        
-                cp.add(lblPlayer19, c);
-        
-                c.gridy = 6;
-        
-                cp.add(lblPlayer20, c);
-                
+                for(i = 15; i < 20; i++){
+                    c.gridy = i-13;
+                    cp.add(lblPlayer[i], c);
+                }
                 break;
                 
             case 4:
-                c.gridy = 2;
-        
-                cp.add(lblPlayer21, c);
-        
-                c.gridy = 3;
-        
-                cp.add(lblPlayer22, c);
-        
-                c.gridy = 4;
-        
-                cp.add(lblPlayer23, c);
-        
-                c.gridy = 5;
-        
-                cp.add(lblPlayer24, c);
-        
-                c.gridy = 6;
-        
-                cp.add(lblPlayer25, c);
-                
+                for(i = 20; i < 25; i++){
+                    c.gridy = i-18;
+                    cp.add(lblPlayer[i], c);
+                }
                 break;
                 
             case 5:
-                c.gridy = 2;
-        
-                cp.add(lblPlayer26, c);
-        
-                c.gridy = 3;
-        
-                cp.add(lblPlayer27, c);
-        
-                c.gridy = 4;
-        
-                cp.add(lblPlayer28, c);
-        
-                c.gridy = 5;
-        
-                cp.add(lblPlayer29, c);
-        
-                c.gridy = 6;
-        
-                cp.add(lblPlayer30, c);
-                
+                for(i = 25; i < 30; i++){
+                    c.gridy = i-23;
+                    cp.add(lblPlayer[i], c);
+                }
                 break;
                 
             case 6:
-                c.gridy = 2;
-        
-                cp.add(lblPlayer31, c);
-        
-                c.gridy = 3;
-        
-                cp.add(lblPlayer32, c);
-        
-                c.gridy = 4;
-        
-                cp.add(lblPlayer33, c);
-        
-                c.gridy = 5;
-        
-                cp.add(lblPlayer34, c);
-        
-                c.gridy = 6;
-        
-                cp.add(lblPlayer35, c);
-                
+                for(i = 30; i < 35; i++){
+                    c.gridy = i-28;
+                    cp.add(lblPlayer[i], c);
+                }
                 break;
                 
             case 7:
-                c.gridy = 2;
-        
-                cp.add(lblPlayer36, c);
-        
-                c.gridy = 3;
-        
-                cp.add(lblPlayer37, c);
-        
-                c.gridy = 4;
-        
-                cp.add(lblPlayer38, c);
-        
-                c.gridy = 5;
-        
-                cp.add(lblPlayer39, c);
-        
-                c.gridy = 6;
-        
-                cp.add(lblPlayer40, c);
-                
+                for(i = 35; i < 40; i++){
+                    c.gridy = i-33;
+                    cp.add(lblPlayer[i], c);
+                }
                 break;               
         }
         //------------------
@@ -344,11 +187,11 @@ public class insBDGUI extends JFrame{
         
         c.gridx = 3;
         
-        cp.add(lblAssist, c);
+        cp.add(lblDeath, c);
         
         c.gridx = 4;
         
-        cp.add(lblDeath, c);
+        cp.add(lblAssist, c);
         
         c.gridx = 5;
         
@@ -363,130 +206,42 @@ public class insBDGUI extends JFrame{
         c.anchor = GridBagConstraints.WEST;
         //------------------ All the text camps
         c.gridx = 1;
-        c.gridy = 2;
         
-        cp.add(txtChamp1, c);
-        
-        c.gridy = 3;
-        
-        cp.add(txtChamp2, c);
-        
-        c.gridy = 4;
-        
-        cp.add(txtChamp3, c);
-        
-        c.gridy = 5;
-        
-        cp.add(txtChamp4, c);
-        
-        c.gridy = 6;
-        
-        cp.add(txtChamp5, c);
+        for(i = 0; i < 5; i++){
+            c.gridy = i+2;
+            cp.add(txtChamp[i], c);
+        }
         //----------------------------
         c.gridx = 2;
-        c.gridy = 2;
         
-        cp.add(txtKill1, c);
-        
-        c.gridy = 3;
-        
-        cp.add(txtKill2, c);
-        
-        c.gridy = 4;
-        
-        cp.add(txtKill3, c);
-        
-        c.gridy = 5;
-        
-        cp.add(txtKill4, c);
-        
-        c.gridy = 6;
-        
-        cp.add(txtKill5, c);
-        //------------------
-        c.gridx = 3;
-        c.gridy = 2;
-        
-        cp.add(txtAssist1, c);
-        
-        c.gridy = 3;
-        
-        cp.add(txtAssist2, c);
-        
-        c.gridy = 4;
-        
-        cp.add(txtAssist3, c);
-        
-        c.gridy = 5;
-        
-        cp.add(txtAssist4, c);
-        
-        c.gridy = 6;
-        
-        cp.add(txtAssist5, c);
+        for(i = 0; i < 5; i++){
+            c.gridy = i+2;
+            cp.add(txtKill[i], c);
+        }
         //-----------------------
+        c.gridx = 3;
+        for(i = 0; i < 5; i++){
+            c.gridy = i+2;
+            cp.add(txtDeath[i], c);
+        }
+        //------------------
         c.gridx = 4;
-        c.gridy = 2;
-        
-        cp.add(txtDeath1, c);
-        
-        c.gridy = 3;
-        
-        cp.add(txtDeath2, c);
-        
-        c.gridy = 4;
-        
-        cp.add(txtDeath3, c);
-        
-        c.gridy = 5;
-        
-        cp.add(txtDeath4, c);
-        
-        c.gridy = 6;
-        
-        cp.add(txtDeath5, c);
+        for(i = 0; i < 5; i++){
+            c.gridy = i+2;
+            cp.add(txtAssist[i], c);
+        }        
         //-----------------------
         c.gridx = 5;
-        c.gridy = 2;
-        
-        cp.add(txtCreep1, c);
-        
-        c.gridy = 3;
-        
-        cp.add(txtCreep2, c);
-        
-        c.gridy = 4;
-        
-        cp.add(txtCreep3, c);
-        
-        c.gridy = 5;
-        
-        cp.add(txtCreep4, c);
-        
-        c.gridy = 6;
-        
-        cp.add(txtCreep5, c);
+         for(i = 0; i < 5; i++){
+            c.gridy = i+2;
+            cp.add(txtCreep[i], c);
+        } 
         //---------------------
         c.gridx = 6;
-        c.gridy = 2;
-        
-        cp.add(txtGold1, c);
-        
-        c.gridy = 3;
-        
-        cp.add(txtGold2, c);
-        
-        c.gridy = 4;
-        
-        cp.add(txtGold3, c);
-        
-        c.gridy = 5;
-        
-        cp.add(txtGold4, c);
-        
-        c.gridy = 6;
-        
-        cp.add(txtGold5, c);
+         for(i = 0; i < 5; i++){
+            c.gridy = i+2;
+            cp.add(txtGold[i], c);
+        } 
         //----------------------------
         c.gridx = 1;
         c.gridy = 7;
@@ -524,8 +279,103 @@ public class insBDGUI extends JFrame{
 
             @Override
             public void actionPerformed(ActionEvent e) {
-              new insRDGUI(b); //Go to the next step giving the information of the dropbox index
-              dispose();
+                for(i = 0; i < 5; i++){
+                    ch[i] = txtChamp[i].getText();
+                    rw.kl[i] = Integer.parseInt(txtKill[i].getText());
+                    rw.dt[i] = Integer.parseInt(txtDeath[i].getText());
+                    rw.as[i] = Integer.parseInt(txtAssist[i].getText());
+                    rw.cr[i] = Integer.parseInt(txtCreep[i].getText());
+                    rw.gl[i] = Integer.parseInt(txtGold[i].getText());
+                }
+                switch(a){
+                    case 0:
+                        rw.p = 0;
+                        for(i = 0; i < 5; i++){
+                            for(int j = 7;j < 12;j++){                              
+                                rw.readWrite(true, j, i);                                
+                            }
+                            rw.p++;
+                        }
+                        break;
+                    case 1:
+                        rw.p = 0;
+                        for(i = 5; i < 10; i++){
+                            for(int j = 7;j < 12;j++){                              
+                                rw.readWrite(true, j, i);                                
+                            }
+                            rw.p++;
+                        }
+                        break;
+                    case 2:
+                        rw.p = 0;
+                        for(i = 10; i < 15; i++){
+                            for(int j = 7;j < 12;j++){                              
+                                rw.readWrite(true, j, i);                                
+                            }
+                            rw.p++;
+                        }
+                        break;
+                    case 3:
+                        rw.p = 0;
+                        for(i = 15; i < 20; i++){
+                            for(int j = 7;j < 12;j++){                              
+                                rw.readWrite(true, j, i);                                
+                            }
+                            rw.p++;
+                        }
+                        break;
+                    case 4:
+                        rw.p = 0;
+                        for(i = 20; i < 25; i++){
+                           for(int j = 7;j < 12;j++){                              
+                                rw.readWrite(true, j, i);                                
+                            }
+                           rw.p++;
+                        }
+                        break;
+                    case 5:
+                        rw.p = 0;
+                        for(i = 25; i < 30; i++){
+                            for(int j = 7;j < 12;j++){                              
+                                rw.readWrite(true, j, i);                                
+                            }
+                            rw.p++;
+                        }
+                        break;
+                    case 6:
+                        rw.p = 0;
+                        for(i = 30; i < 35; i++){
+                            for(int j = 7;j < 12;j++){                              
+                                rw.readWrite(true, j, i);                                
+                            }
+                            rw.p++;
+                        }
+                        break;
+                    case 7:
+                        rw.p = 0;
+                        for(i = 35; i < 40; i++){
+                            for(int j = 7;j < 12;j++){                              
+                                rw.readWrite(true, j, i);                                
+                            }
+                            rw.p++;
+                        }
+                        break;
+                }
+                for(i = 0; i < 124; i++){
+                    for(int j = 0; j < 5; j++){
+                        if(ch[j].equals(pl.champion[i])){
+                        rw.readWrite(true, -4, i);
+                        }
+                    }
+                }
+                rw.tr = Integer.parseInt(txtTurret.getText());
+                rw.dr = Integer.parseInt(txtDrag.getText());
+                rw.br = Integer.parseInt(txtBaron.getText());
+                rw.readWrite(true, 3, a);
+                rw.readWrite(true, 4, a);
+                rw.readWrite(true, 5, a);
+                new insRDGUI(d, a, b); //Go to the next step giving the information of the dropbox index
+                dispose();
                
             }
         });

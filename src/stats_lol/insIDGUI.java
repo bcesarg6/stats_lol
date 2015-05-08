@@ -29,7 +29,7 @@ public class insIDGUI extends JFrame{
     ReadWrite rw = new ReadWrite();
     
     public String ban1, ban2, ban3, ban4, ban5, ban6, nB, mtT, w1, w2, s1, s2, sp;
-    int nb, mtt, i, x;
+    int nb, mtt, i, x, t;
     
     JLabel lblBans = new JLabel("       Bans        "); //Spacement required to put things in the middle
     JLabel lblWin = new JLabel("Winner side");
@@ -49,7 +49,9 @@ public class insIDGUI extends JFrame{
     
     Container cp = getContentPane();
     
-    public insIDGUI(int a, int b){ //Recieves the dropboxes index
+    public insIDGUI(int d, int a, int b){ //Recieves the dropboxes index
+        
+        t = d;
                       
         btgWin.add(rbtBlue); //Puts the radio button blue insede the buttongroup
         btgWin.add(rbtRed); //Same as above gut the red
@@ -151,35 +153,36 @@ public class insIDGUI extends JFrame{
                 rw.mtt = Integer.parseInt(rw.mtT);
                 for(i = 0; i < 124; i++){
                     if(ban1.equals(st.champion[i])){
-                        rw.readWrite(0, i);
+                        rw.readWrite(true, 0, i);
                     }
                     else if(ban2.equals(st.champion[i])){
-                        rw.readWrite(0, i);
+                        rw.readWrite(true, 0, i);
                     }
                     else if(ban3.equals(st.champion[i])){
-                        rw.readWrite(0, i);
+                        rw.readWrite(true, 0, i);
                     }
                     else if(ban4.equals(st.champion[i])){
-                        rw.readWrite(0, i);
+                        rw.readWrite(true, 0, i);
                     }
                     else if(ban5.equals(st.champion[i])){
-                        rw.readWrite(0, i);
+                        rw.readWrite(true, 0, i);
                     }
                     else if(ban6.equals(st.champion[i])){
-                        rw.readWrite(0, i);
+                        rw.readWrite(true, 0, i);
                     }
                 }
                 if(w1.equals("Blue")){
-                    rw.readWrite(1, a);
-                    rw.readWrite(2, a);
-                    rw.readWrite(2, b);
+                    t++;
+                    rw.readWrite(true, 1, a);
+                    rw.readWrite(true, 2, a);
+                    rw.readWrite(true, 2, b);
                 }
                 else if(w1.equals("Red")){
-                    rw.readWrite(1, b);;
-                    rw.readWrite(2, b);
-                    rw.readWrite(2, a);
+                    rw.readWrite(true, 1, b);
+                    rw.readWrite(true, 2, b);
+                    rw.readWrite(true, 2, a);
                 }
-                new insBDGUI(a, b); //Drpoboxes index needed to the next class
+                new insBDGUI(t, a, b); //Drpoboxes index needed to the next class
                 dispose();
                
             }

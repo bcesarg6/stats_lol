@@ -9,6 +9,10 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -25,6 +29,7 @@ public class inicialGUI extends JFrame{
     JLabel lblTitle = new JLabel("Select your option");
     JButton btnStats = new JButton("See stats");
     JButton btnInsMt = new JButton("Insert new match");
+    JButton btnClear = new JButton("Clear all data");
     
     Container cp = getContentPane();
     
@@ -35,7 +40,7 @@ public class inicialGUI extends JFrame{
         setTitle("LoL Stats Maker " + checkVersion.version);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setVisible(true);
-        setSize(300, 150);
+        setSize(300, 200);
         setLocationRelativeTo(null);
         
         cp.setLayout(new GridBagLayout());
@@ -56,19 +61,34 @@ public class inicialGUI extends JFrame{
         
         cp.add(btnInsMt, c);
         
+        c.gridy = 3;
+        
+        cp.add(btnClear, c);
+        
         btnStats.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
                new statsGUI(); //Opens the statsGUI if clicked
             }
-            });
+        });
         btnInsMt.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                new insMtGUI();
+                new insMtGUI(0);
             }
-            });
+        });
+        btnClear.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ClearData cD = new ClearData();
+                try {
+                    cD.clearData();
+                } catch (IOException | URISyntaxException ex) {}
+                dispose();
+            }
+        });
     }
 }

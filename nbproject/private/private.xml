@@ -5,7 +5,9 @@
         <group>
             <file>file:/home/cristofer/Repositories/status_lol/src/stats_lol/ReadWrite.java</file>
             <file>file:/home/cristofer/Repositories/status_lol/src/stats_lol/insMtGUI.java</file>
+            <file>file:/home/cristofer/Repositories/status_lol/src/stats_lol/insRDGUI.java</file>
             <file>file:/home/cristofer/Repositories/status_lol/src/stats_lol/insIDGUI.java</file>
+            <file>file:/home/cristofer/Repositories/status_lol/src/stats_lol/insBDGUI.java</file>
         </group>
     </open-files>
 </project-private>

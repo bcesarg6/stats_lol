@@ -54,10 +54,11 @@ public class Stats_lol {
                                  "Viktor", "Vladimir", "Volibear", "Warwick", "Wukong", "Xerath",
                                  "Xin'Zhao", "Yasuo", "Yorick", "Zac", "Zed", "Ziggs", "Zilean", "Zyra"};
   
-    public static void main(String[] args) throws IOException, URISyntaxException{
+    public static void main(String args[]) throws IOException, URISyntaxException{
         
         checkVersion checkVersion = new checkVersion();
         checkVersion.checkVersion(); //Verifies if the program version is the actual version
+        
         
         File dt = new File("data");
         File plDt = new File("data/plData");

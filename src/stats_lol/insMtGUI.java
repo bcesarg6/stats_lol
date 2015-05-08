@@ -9,13 +9,6 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -46,7 +39,7 @@ public class insMtGUI extends JFrame{
     
     Container cp = getContentPane();
     
-    public insMtGUI(){
+    public insMtGUI(int d){
            
         checkVersion checkVersion = new checkVersion();
         
@@ -98,14 +91,14 @@ public class insMtGUI extends JFrame{
                if(blueIn != redIn){ //If the teams selected are different
                    for(int i = 0; i < 8; i++){
                        if(blueIn == i){
-                           rw.readWrite(3, i);
+                           rw.readWrite(true, 13, i);
                        }
                        else if(redIn == i){
-                           rw.readWrite(3, i);
+                           rw.readWrite(true, 13, i);
                        }
                    }
                    dispose();
-                   new insIDGUI(blueIn, redIn); //Sends the index to the next class
+                   new insIDGUI(d, blueIn, redIn); //Sends the index to the next class
                }
                else{
                    new errGUI(); //Else calls the error GUI
