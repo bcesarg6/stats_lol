@@ -19,6 +19,10 @@ public class chStatsGUI extends JFrame{
     
     Object data[][];
     
+    int p, b, w, l;
+    
+    ReadWrite rw = new ReadWrite();
+    
     Stats_lol ch = new Stats_lol(); //Takes the Stats_lol variables
     
     String[] columnNames =  {"champion",//Set the column Names

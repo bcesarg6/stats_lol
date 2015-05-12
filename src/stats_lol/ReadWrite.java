@@ -98,7 +98,6 @@ public class ReadWrite {
                 }
             }
             nB = bR.readLine();
-            System.out.println("nB="+nB);
             if(nB == null){                                                               
                 nB = "0";
             }
@@ -112,7 +111,6 @@ public class ReadWrite {
                 for(int j = 0; j < n; j++){
                     sps[j] = bR.readLine();
                     if(g != 0){
-                        System.out.println("sps="+sps[j]);
                     }
                     if(sps[j] == null){                       
                         sps[j] = "0";
@@ -122,7 +120,7 @@ public class ReadWrite {
             bR.close();
             in.close();
             fR.close();
-            System.out.println("-----------------------------");
+            //System.out.println("-----------------------------");
             if(w == true){
                 nb = Integer.parseInt(nB);
                 if (x == 2){
@@ -140,23 +138,18 @@ public class ReadWrite {
                 else if((x > 6) && (x < 12)){
                     switch(x){
                         case 7:
-                            System.out.println("7");
                             nb += kl[p];
                             break;
                         case 8:
-                            System.out.println("8");
                             nb += dt[p];
                             break;
                         case 9:
-                            System.out.println("9");
                             nb += as[p];
                             break;
                         case 10:
-                            System.out.println("10");
                             nb += cr[p];
                             break;
                         case 11:
-                            System.out.println("11");
                             nb += gl[p];
                             break;
                     }
@@ -165,7 +158,7 @@ public class ReadWrite {
                 else{
                     nb = nb + t;
                 }
-                System.out.println(nb);
+                //System.out.println(nb);
                 nB = Integer.toString(nb);
                 FileWriter fW = new FileWriter(te);  
                 BufferedWriter bW = new BufferedWriter(fW);
@@ -186,7 +179,7 @@ public class ReadWrite {
                 }                               
                 bW.close();
                 fW.close();
-                System.out.println("++++++++++++++++++");
+                //System.out.println("++++++++++++++++++");
             }                                
         }catch(IOException a){}        
     }    
