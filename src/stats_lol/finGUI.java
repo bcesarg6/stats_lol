@@ -72,7 +72,9 @@ public class finGUI extends JFrame {
                 else if(t == -2){
                     System.out.println("tie");
                     rw.readWrite(true, -2, s);//tie
-                    rw.readWrite(true, -2, r);                    
+                    rw.readWrite(true, -2, r);
+                    rw.readWrite(true, 12, s);
+                    rw.readWrite(true, 12, r);
                 }
                 else if(t == 3){
                     System.out.println("blue");
@@ -82,7 +84,9 @@ public class finGUI extends JFrame {
                 else if(t == 4){
                     System.out.println("tie");
                     rw.readWrite(true, -2, s);//tie
-                    rw.readWrite(true, -2, r);                    
+                    rw.readWrite(true, -2, r);
+                    rw.readWrite(true, 12, s);
+                    rw.readWrite(true, 12, r);
                 }
                 dispose(); //Closes the actual GUI
                

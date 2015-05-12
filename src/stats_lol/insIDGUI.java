@@ -30,7 +30,7 @@ public class insIDGUI extends JFrame{
     
     public String ban1, ban2, ban3, ban4, ban5, ban6, nB, mtT, w1, w2, s1, s2, sp;
     int nb, mtt, i, x, t;
-    
+    int h = 0;
     JLabel lblBans = new JLabel("       Bans        "); //Spacement required to put things in the middle
     JLabel lblWin = new JLabel("Winner side");
     JLabel lblTmp = new JLabel("Match time");
@@ -173,6 +173,7 @@ public class insIDGUI extends JFrame{
                 }
                 if(w1.equals("Blue")){
                     t++;
+                    h++;
                     rw.readWrite(true, 1, a);
                     rw.readWrite(true, 2, a);
                     rw.readWrite(true, 2, b);
@@ -182,7 +183,7 @@ public class insIDGUI extends JFrame{
                     rw.readWrite(true, 2, b);
                     rw.readWrite(true, 2, a);
                 }
-                new insBDGUI(t, a, b); //Drpoboxes index needed to the next class
+                new insBDGUI(t, a, b, h); //Drpoboxes index needed to the next class
                 dispose();
                
             }

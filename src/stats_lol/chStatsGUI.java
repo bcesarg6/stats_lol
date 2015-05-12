@@ -19,7 +19,7 @@ public class chStatsGUI extends JFrame{
     
     Object data[][];
     
-    double[] pr, br, wr, p, b;
+    double[] pr, br, wr, p, b, w, g;
     int tGames;
     
     ReadWrite rw = new ReadWrite();
@@ -40,10 +40,16 @@ public class chStatsGUI extends JFrame{
         wr = new double[124];
         b = new double[124];
         p = new double[124];
+        w = new double[124];
+        g = new double[124];
         
         for(int i = 0; i < 8; i++){
             rw.readWrite(false, 13, i);
             tGames += Integer.parseInt(rw.nB);
+        }
+        
+        if(tGames == 0){
+            tGames = 2;
         }
         
         tGames = tGames/2;
@@ -53,11 +59,18 @@ public class chStatsGUI extends JFrame{
             p[i] = Integer.parseInt(rw.nB);
             rw.readWrite(false, 0, i);
             b[i] = Integer.parseInt(rw.nB);
+            rw.readWrite(false, -5, i);
+            w[i] = Integer.parseInt(rw.nB);
+            g[i] = p[i];
+            if(g[i] == 0){
+                g[i] = 1;
+            }
         }
         
         for(int i = 0; i < 124; i++){
             pr[i] = 100*(p[i]/tGames);
             br[i] = 100*(b[i]/tGames);
+            wr[i] = 100*(w[i]/g[i]);
         }
         
         data = new Object[124][4];

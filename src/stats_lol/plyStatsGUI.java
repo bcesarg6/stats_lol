@@ -96,19 +96,12 @@ public class plyStatsGUI extends JFrame {
             if(time[i] == 0){
                 time[i] = 1;
             }
-            System.out.println(time[i]);
             if(tk[i] == 0){
                 tk[i] = 1;
             }
         }
         
         for(int i = 0; i < 40; i++){
-            /*k[i] = 5;
-            af[i] = 265;
-            f[i] = 15;
-            g[i] = 15;
-            gm[i] = 354;
-            kp[i] = 56;*/
             int j = i < 5 ? 0 :(
                     (i > 4) && (i < 10) ? 1 : 
                         (j = (i > 9) && (i < 15) ? 2 : 

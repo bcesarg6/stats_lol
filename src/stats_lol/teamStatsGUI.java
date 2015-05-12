@@ -63,6 +63,9 @@ public class teamStatsGUI extends JFrame {
             w[i] = Integer.parseInt(rw.nB);
             rw.readWrite(false, 13, i);
             games[i] = Integer.parseInt(rw.nB);
+            if(games[i] == 0){
+                games[i] = 1;
+            }
         }
         
         for(int i = 0; i < 8; i++){
@@ -70,7 +73,7 @@ public class teamStatsGUI extends JFrame {
             ad[i] = d[i]/games[i];
             ab[i] = b[i]/games[i];
             am[i] = mt[i]/games[i];
-            wr[i] = w[i]/games[i];
+            wr[i] = 100*(w[i]/games[i]);
         }
         
         

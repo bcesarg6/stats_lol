@@ -12,7 +12,7 @@ import javax.swing.*;
 //Checks if the version is compatible, if not asks to download the new one
 public class checkVersion {
     
-    public String version = "a0.8"; //Version of the program
+    public String version = "a1.0"; //Version of the program
     public String currentVersion; //Atual version
     public String os = System.getProperty("os.name").toLowerCase(); //Gets user OS
     public String[] ops = {"linux", "windows 7", "windows 8", "windows 8.1", "mac"}; //OSs
@@ -32,7 +32,7 @@ public class checkVersion {
             return true;
         }
         else{ //Opens an window if the versions are diferent
-            final int updateQ = JOptionPane.showConfirmDialog(null,"LoL Stats Maker is outdated, update to the current version?","New Version avaible " + os,JOptionPane.YES_NO_OPTION); 
+            final int updateQ = JOptionPane.showConfirmDialog(null,"LoL Stats Maker is outdated, update to the current version?","New Version avaible ",JOptionPane.YES_NO_OPTION); 
             if(updateQ==0){
                 if(os.equals(ops[0])){ //If it is linux
                     try{

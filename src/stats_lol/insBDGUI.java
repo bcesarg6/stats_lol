@@ -52,7 +52,7 @@ public class insBDGUI extends JFrame{
     
     Container cp = getContentPane();
     
-    public insBDGUI(int d, int a, int b){ //Recieves the data of the insMtGUI (dropbox index 1 and dropbox index 2)
+    public insBDGUI(int d, int a, int b, int h){ //Recieves the data of the insMtGUI (dropbox index 1 and dropbox index 2)
         
         ch = new String[5];
         kl = new String[5];
@@ -364,7 +364,10 @@ public class insBDGUI extends JFrame{
                 for(i = 0; i < 124; i++){
                     for(int j = 0; j < 5; j++){
                         if(ch[j].equals(pl.champion[i])){
-                        rw.readWrite(true, -4, i);
+                            rw.readWrite(true, -4, i);
+                            if(h == 1){
+                                rw.readWrite(true, -5, i);
+                            }
                         }
                     }
                 }
@@ -374,7 +377,7 @@ public class insBDGUI extends JFrame{
                 rw.readWrite(true, 3, a);
                 rw.readWrite(true, 4, a);
                 rw.readWrite(true, 5, a);
-                new insRDGUI(d, a, b); //Go to the next step giving the information of the dropbox index
+                new insRDGUI(d, a, b, h); //Go to the next step giving the information of the dropbox index
                 dispose();
                
             }

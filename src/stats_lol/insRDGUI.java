@@ -54,7 +54,7 @@ public class insRDGUI extends JFrame{
     Container cp = getContentPane();
     public int t, r, s;
     
-    public insRDGUI(int d, int a, int b){ //Gets the second index
+    public insRDGUI(int d, int a, int b, int h){ //Gets the second index
         
         ch = new String[5];
         kl = new String[5];
@@ -193,11 +193,11 @@ public class insRDGUI extends JFrame{
         
         c.gridx = 3;
         
-        cp.add(lblAssist, c);
+        cp.add(lblDeath, c);
         
         c.gridx = 4;
         
-        cp.add(lblDeath, c);
+        cp.add(lblAssist, c);
         
         c.gridx = 5;
         
@@ -369,7 +369,10 @@ public class insRDGUI extends JFrame{
                 for(i = 0; i < 124; i++){
                     for(int j = 0; j < 5; j++){
                         if(ch[j].equals(pl.champion[i])){
-                        rw.readWrite(true, -4, i);
+                            rw.readWrite(true, -4, i);
+                            if(h == 0){
+                               rw.readWrite(true, -5, i);
+                            }
                         }
                     }
                 }

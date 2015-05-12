@@ -23,7 +23,7 @@ public class ReadWrite {
     public String nB, mtT, s1, s2;
     public String[] sp, sps; 
     int nb, mtt, x, s, n, t, g, tr, dr, br;
-    int p = 0;
+    int p, h = 0;
     public int kl[] = {0, 0, 0, 0, 0};
     public int dt[] = {0, 0, 0, 0, 0};
     public int as[] = {0, 0, 0, 0, 0};
@@ -33,7 +33,7 @@ public class ReadWrite {
 
     
     public void readWrite(boolean w, int x, int i){
-        n = 6;
+        n = 7;
         t = 1;
         g = 0;
         sps = new String[n];
@@ -61,6 +61,10 @@ public class ReadWrite {
                 t = 2;
                 x = 0;
             }
+            else if(x == 12){
+                x = 7;
+                h = 1;
+            }
             else if(x == -1){
                 x = 6;
                 t = 3;
@@ -75,7 +79,11 @@ public class ReadWrite {
             else if(x == -4){
                 x = 1;
             }
-            if((x < 7) || (x > 11)){
+            else if(x == -5){
+                x = 2;
+                h = 1;
+            }
+            if(((x < 7) || (x > 11)) || (!(s1.equals("plData/")))){
                 sp = new String[x];
                 if(x != 0){
                     for(int j = 0;j < x;j++){
@@ -101,7 +109,7 @@ public class ReadWrite {
             if(nB == null){                                                               
                 nB = "0";
             }
-            if ((x < 7) || (x > 11)){
+            if ((x < 7) || (x > 11) || (h == 1)){
                 n -= x;
             }
             else{
@@ -123,7 +131,7 @@ public class ReadWrite {
             //System.out.println("-----------------------------");
             if(w == true){
                 nb = Integer.parseInt(nB);
-                if (x == 2){
+                if ((x == 2) && (h == 0)){
                     nb += mtt;
                 }
                 else if(x == 3){
@@ -135,7 +143,7 @@ public class ReadWrite {
                 else if(x == 5){
                     nb += br;
                 }
-                else if((x > 6) && (x < 12)){
+                else if((x > 6) && (x < 12) && (h == 0)){
                     switch(x){
                         case 7:
                             nb += kl[p];
