@@ -68,17 +68,21 @@ public class Stats_lol {
         
         if(!dt.exists()){
             dt.mkdir();        //Creates data directory    
+            
             if(!plDt.exists()){
-            plDt.mkdir();     //Creates plData directory
+                plDt.mkdir();     //Creates plData directory
             }
+            
             if(!tmDt.exists()){
-            tmDt.mkdir();     //Creates tmData directory
+                tmDt.mkdir();     //Creates tmData directory
             }
+            
             if(!chDt.exists()){
-            chDt.mkdir();    //Creates chData directory
+                chDt.mkdir();    //Creates chData directory
             }
-             if(!rdm.exists()){
-            rdm.mkdir();    //Creates README directory
+            
+            if(!rdm.exists()){
+                rdm.mkdir();    //Creates README directory
             }  
         }
         
@@ -93,9 +97,7 @@ public class Stats_lol {
             
             if(!pl.exists()){
                 pl.createNewFile(); //Creates README.txt file
-            }
-            //pl.delete();
-            
+            }            
         }
         
         for(int i = 0; i < 8; i++){
@@ -103,9 +105,7 @@ public class Stats_lol {
             
             if(!tm.exists()){
                 tm.createNewFile(); //Creates README.txt file
-            }
-            //tm.delete();
-            
+            }           
         }
         
         for(int i = 0; i < 124; i++){
@@ -113,12 +113,9 @@ public class Stats_lol {
             
             if(!ch.exists()){
                 ch.createNewFile(); //Creates README.txt file
-            }
-            //ch.delete();
-            
+            }          
         }
-        
-        
+              
         FileWriter reW = new FileWriter(rd);
         BufferedWriter reB = new BufferedWriter(reW); //Set the writer to the REAMDE file
         reB.write("Program made to create statistics for championships of the League of Legends game."); //Write this
@@ -134,7 +131,6 @@ public class Stats_lol {
         reB.close();//Ends the buffer
         reW.close();//Ends the writer
         
-        new inicialGUI(); //Calls inicialGUI
-        
+        new inicialGUI(); //Calls inicialGUI        
     }
 }

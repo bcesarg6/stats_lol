@@ -26,6 +26,7 @@ public class statsGUI extends JFrame{
     JButton btnPlySts = new JButton("Players stats");
     JButton btnTeamSts = new JButton("Teams stats");
     JButton btnChSts = new JButton("Champions stats");
+    JButton btnTable = new JButton("Score table");
     
     Container cp = getContentPane();
     
@@ -60,6 +61,10 @@ public class statsGUI extends JFrame{
         
         cp.add(btnChSts, c);
         
+        c.gridy = 4;
+        
+        cp.add(btnTable, c);
+        
         btnPlySts.addActionListener(new ActionListener() {
 
             @Override
@@ -84,6 +89,15 @@ public class statsGUI extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 
                 new chStatsGUI(); //Opens the champion table
+               
+                }
+        });
+        btnTable.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
+                new ScoreTableGUI(); //Opens the player table
                
                 }
         });

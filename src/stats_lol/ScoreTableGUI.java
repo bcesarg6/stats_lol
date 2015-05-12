@@ -8,6 +8,6 @@ package stats_lol;
  * @author Cristofer
  */
 
-public class playerGUI {
-    //This class is still empety, made to later use
+public class ScoreTableGUI {
+    
 }

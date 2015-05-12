@@ -21,7 +21,11 @@ public class teamStatsGUI extends JFrame {
     
     Object data[][];
     
+    ReadWrite rw = new ReadWrite();
+    
     Stats_lol tm = new Stats_lol();
+    
+    double[] at, ad, ab, am, wr, t, d, b, mt, w, games;
     
     String[] columnNames =  {"Team",
                         "Averge turrets",
@@ -34,6 +38,42 @@ public class teamStatsGUI extends JFrame {
     
     public teamStatsGUI(){
         
+        at = new double[8];
+        ad = new double[8];
+        ab = new double[8];
+        am = new double[8];
+        wr = new double[8];
+        t = new double[8];
+        d = new double[8];
+        b = new double[8];
+        mt = new double[8];
+        w = new double[8];
+        games = new double[8];
+        
+        for(int i = 0; i < 8; i++){
+            rw.readWrite(false, 3, i);
+            t[i] = Integer.parseInt(rw.nB);
+            rw.readWrite(false, 4, i);
+            d[i] = Integer.parseInt(rw.nB);
+            rw.readWrite(false, 5, i);
+            b[i] = Integer.parseInt(rw.nB);
+            rw.readWrite(false, 2, i);
+            mt[i] = Integer.parseInt(rw.nB);
+            rw.readWrite(false, 1, i);
+            w[i] = Integer.parseInt(rw.nB);
+            rw.readWrite(false, 13, i);
+            games[i] = Integer.parseInt(rw.nB);
+        }
+        
+        for(int i = 0; i < 8; i++){
+            at[i] = t[i]/games[i];
+            ad[i] = d[i]/games[i];
+            ab[i] = b[i]/games[i];
+            am[i] = mt[i]/games[i];
+            wr[i] = w[i]/games[i];
+        }
+        
+        
         data = new Object[8][6];
                                         
         for(int i = 0; i < 8; i++){
@@ -42,19 +82,19 @@ public class teamStatsGUI extends JFrame {
                     data[i][j] = tm.team[i];
                 }
                 else if(j == 1){
-                    data[i][j] = 5;
+                    data[i][j] = at[i];
                 }
                 else if(j == 2){
-                    data[i][j] = 3;
+                    data[i][j] = ad[i];
                 }
                 else if(j == 3){
-                    data[i][j] = 1;
+                    data[i][j] = ab[i];
                 }
                 else if(j == 4){
-                    data[i][j] = 35;
+                    data[i][j] = am[i];
                 }
                 else if(j == 5){
-                    data[i][j] = 60;                  
+                    data[i][j] = wr[i];                  
                 }
             }
         }

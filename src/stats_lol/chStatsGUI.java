@@ -19,7 +19,8 @@ public class chStatsGUI extends JFrame{
     
     Object data[][];
     
-    int p, b, w, l;
+    double[] pr, br, wr, p, b;
+    int tGames;
     
     ReadWrite rw = new ReadWrite();
     
@@ -28,31 +29,52 @@ public class chStatsGUI extends JFrame{
     String[] columnNames =  {"champion",//Set the column Names
                         "pick %", 
                         "ban %",
-                        "win ratio",
-                        "lose ratio",};
+                        "win ratio",};
     
     Container cp = getContentPane(); //Calls the container
     
     public chStatsGUI(){
-                
-        data = new Object[124][5];
+        
+        pr = new double[124];
+        br = new double[124];
+        wr = new double[124];
+        b = new double[124];
+        p = new double[124];
+        
+        for(int i = 0; i < 8; i++){
+            rw.readWrite(false, 13, i);
+            tGames += Integer.parseInt(rw.nB);
+        }
+        
+        tGames = tGames/2;
+        
+        for(int i = 0; i < 124; i++){
+            rw.readWrite(false, -4, i);
+            p[i] = Integer.parseInt(rw.nB);
+            rw.readWrite(false, 0, i);
+            b[i] = Integer.parseInt(rw.nB);
+        }
+        
+        for(int i = 0; i < 124; i++){
+            pr[i] = 100*(p[i]/tGames);
+            br[i] = 100*(b[i]/tGames);
+        }
+        
+        data = new Object[124][4];
                                         //Set the content of each column in respective order
         for(int i = 0; i < 124; i++){
-            for(int j = 0; j < 5; j++){
+            for(int j = 0; j < 4; j++){
                 if(j == 0){
                     data[i][j] = ch.champion[i];
                 }
                 else if(j == 1){
-                    data[i][j] = 35;
+                    data[i][j] = pr[i];
                 }
                 else if(j == 2){
-                    data[i][j] = 10;
+                    data[i][j] = br[i];
                 }
                 else if(j == 3){
-                    data[i][j] = 70;
-                }
-                else if(j == 4){
-                    data[i][j] = 30;
+                    data[i][j] = wr[i];
                 }
             }
         }
