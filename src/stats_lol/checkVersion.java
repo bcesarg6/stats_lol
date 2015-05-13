@@ -12,7 +12,7 @@ import javax.swing.*;
 //Checks if the version is compatible, if not asks to download the new one
 public class checkVersion {
     
-    public String version = "a1.0"; //Version of the program
+    public String version = "a1.1"; //Version of the program
     public String currentVersion; //Atual version
     public String os = System.getProperty("os.name").toLowerCase(); //Gets user OS
     public String[] ops = {"linux", "windows 7", "windows 8", "windows 8.1", "mac"}; //OSs

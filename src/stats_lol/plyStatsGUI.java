@@ -151,6 +151,8 @@ public class plyStatsGUI extends JFrame {
         JScrollPane scroll = new JScrollPane(tblPly);
         
         tblPly.setEnabled(false);
+        
+        tblPly.setAutoCreateRowSorter(true);
              
         checkVersion checkVersion = new checkVersion();
         

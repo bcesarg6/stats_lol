@@ -5,7 +5,6 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import javax.swing.JFrame;
-import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import static stats_lol.Stats_lol.*;
@@ -116,7 +115,9 @@ public class ScoreTableGUI extends JFrame {
         
         JTable tblScore = new JTable(data, columnNames);
         
-        tblScore.setEnabled(false);          
+        tblScore.setEnabled(false); 
+        
+        tblScore.setAutoCreateRowSorter(true);
         
         setTitle("LoL Stats Maker " + checkVersion.version);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);

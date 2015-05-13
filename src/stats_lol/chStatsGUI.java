@@ -92,18 +92,20 @@ public class chStatsGUI extends JFrame{
             }
         }
         
-        JTable tblPly = new JTable(data, columnNames); //Calls the table
+        JTable tblCh = new JTable(data, columnNames); //Calls the table
         
-        tblPly.setEnabled(false); //You can't edit the cells (false)
+        tblCh.setEnabled(false); //You can't edit the cells (false)
         
-        JScrollPane scroll = new JScrollPane(tblPly); //Puts the table inside of a scroll panel
+        tblCh.setAutoCreateRowSorter(true);
+        
+        JScrollPane scroll = new JScrollPane(tblCh); //Puts the table inside of a scroll panel
              
         checkVersion checkVersion = new checkVersion(); //To use the version variable
         
         setTitle("LoL Stats Maker " + checkVersion.version); //Sets the tile off the frame in case "LoL Stats Maker #.##"
         setDefaultCloseOperation(DISPOSE_ON_CLOSE); //Closes the frame if hit the "x"
         setVisible(true); //Now you can see the GUI
-        setSize(200, 200); //Inicial size
+        setSize(500, 500); //Inicial size
         setLocationRelativeTo(null); //Opens in the center of the screen
         
         cp.setLayout(new GridBagLayout()); //Sets the layout of the frame
@@ -116,7 +118,7 @@ public class chStatsGUI extends JFrame{
         c.gridy = 0;
         c.gridwidth = 0;
         
-        cp.add(tblPly.getTableHeader()); //Adds the table inside the frame
+        cp.add(tblCh.getTableHeader()); //Adds the table inside the frame
         
         c.insets = new Insets(0, 10, 10, 10);
         c.gridy = 1;

@@ -105,6 +105,8 @@ public class teamStatsGUI extends JFrame {
         JTable tblTeam = new JTable(data, columnNames);
         
         tblTeam.setEnabled(false);
+        
+        tblTeam.setAutoCreateRowSorter(true);
              
         checkVersion checkVersion = new checkVersion();
         
