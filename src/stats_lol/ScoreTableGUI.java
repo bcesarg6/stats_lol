@@ -6,8 +6,9 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import javax.swing.JFrame;
 import javax.swing.JTable;
-import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import static stats_lol.Stats_lol.*;
+import static stats_lol.checkVersion.*;
+import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 
 /*I will only comment things that are new in each class, 
 90% of the comments in the "chStatsGUI" can be used in all other classes */
@@ -18,8 +19,6 @@ import static stats_lol.Stats_lol.*;
  */
 
 public class ScoreTableGUI extends JFrame {
-    
-    checkVersion checkVersion = new checkVersion();
     
     ReadWrite rw = new ReadWrite();
      
@@ -54,10 +53,10 @@ public class ScoreTableGUI extends JFrame {
         pa = new double[8];
         
         for(int i = 0; i < 8; i++){
-            rw.readWrite(false, -2, i);
-            p[i] = Integer.parseInt(rw.nB);
-            rw.readWrite(false, 13, i);
-            tg[i] = Integer.parseInt(rw.nB);
+            rw.readWrite(false, 1, i, 7, 0);
+            p[i] = Integer.parseInt(rw.rl);
+            rw.readWrite(false, 1, i, 1, 0);
+            tg[i] = Integer.parseInt(rw.rl);
             if(tg[i] == 0){
                 tg[i] = 1;
             }
@@ -65,10 +64,10 @@ public class ScoreTableGUI extends JFrame {
             if(g[i] == 0.5){
                 g[i] = 0;
             }
-            rw.readWrite(false, 1, i);
-            tw[i] = Integer.parseInt(rw.nB);
-            rw.readWrite(false, 12, i);
-            t[i] = Integer.parseInt(rw.nB);
+            rw.readWrite(false, 1, i, 7, 0);
+            tw[i] = Integer.parseInt(rw.rl);
+            rw.readWrite(false, 1, i, 8, 0);
+            t[i] = Integer.parseInt(rw.rl);
             tl[i] = tg[i] - tw[i];
             wr[i] = 100*(tw[i]/tg[i]);
             pa[i] = g[i] == 0 ? 0 : 100*(p[i]/(g[i]*3));
@@ -116,10 +115,9 @@ public class ScoreTableGUI extends JFrame {
         JTable tblScore = new JTable(data, columnNames);
         
         tblScore.setEnabled(false); 
-        
         tblScore.setAutoCreateRowSorter(true);
         
-        setTitle("LoL Stats Maker " + checkVersion.version);
+        setTitle("LoL Stats Maker " + version);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setVisible(true);
         setSize(200, 200);
@@ -142,6 +140,5 @@ public class ScoreTableGUI extends JFrame {
         cp.add(tblScore, c);
         
         pack();
-    }
-    
+    } 
 }

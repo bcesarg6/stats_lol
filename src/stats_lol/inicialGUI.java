@@ -8,14 +8,12 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import static stats_lol.checkVersion.*;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 
 /**
@@ -35,15 +33,14 @@ public class inicialGUI extends JFrame{
     
     public inicialGUI(){
         
-        checkVersion checkVersion = new checkVersion();
-        
-        setTitle("LoL Stats Maker " + checkVersion.version);
+        setTitle("LoL Stats Maker " + version);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setVisible(true);
         setSize(300, 200);
         setLocationRelativeTo(null);
         
         cp.setLayout(new GridBagLayout());
+        
         GridBagConstraints c = new GridBagConstraints();
         c.anchor = GridBagConstraints.PAGE_START;
         c.insets = new Insets(5, 5, 5, 5);
@@ -65,30 +62,28 @@ public class inicialGUI extends JFrame{
         
         cp.add(btnClear, c);
         
-        btnStats.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-               new statsGUI(); //Opens the statsGUI if clicked
-            }
+        btnStats.addActionListener((ActionEvent e) -> {
+            
+            statsGUI statsGUI = new statsGUI(); //Opens the statsGUI if clicked
+            
         });
-        btnInsMt.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new insMtGUI(0);
-            }
+        
+        btnInsMt.addActionListener((ActionEvent e) -> {
+            
+            insMtGUI insMtGUI = new insMtGUI(0);
+            
         });
-        btnClear.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                ClearData cD = new ClearData();
-                try {
-                    cD.clearData();
-                } catch (IOException | URISyntaxException ex) {}
-                dispose();
-            }
+        
+        btnClear.addActionListener((ActionEvent e) -> {
+            
+            ClearData cD = new ClearData();
+            
+            try {
+                cD.clearData();
+            } 
+            catch (IOException | URISyntaxException ex) {}
+            
+            dispose();
         });
     }
 }

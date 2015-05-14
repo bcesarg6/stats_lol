@@ -67,6 +67,7 @@ public class Stats_lol {
         File rdm = new File("data/README");
         
         if(!dt.exists()){
+            
             dt.mkdir();        //Creates data directory    
             
             if(!plDt.exists()){
@@ -89,10 +90,12 @@ public class Stats_lol {
         File rd = new File(rdm, "README.txt");
         
         if(!rd.exists()){
+            
             rd.createNewFile(); //Creates README.txt file
         }
         
         for(int i = 0; i < 40; i++){
+            
             File pl = new File(plDt, player[i]);
             
             if(!pl.exists()){
@@ -101,6 +104,7 @@ public class Stats_lol {
         }
         
         for(int i = 0; i < 8; i++){
+            
             File tm = new File(tmDt, team[i]);
             
             if(!tm.exists()){
@@ -109,28 +113,28 @@ public class Stats_lol {
         }
         
         for(int i = 0; i < 124; i++){
+            
             File ch = new File(chDt, champion[i]);
             
             if(!ch.exists()){
                 ch.createNewFile(); //Creates README.txt file
             }          
         }
-              
-        FileWriter reW = new FileWriter(rd);
-        BufferedWriter reB = new BufferedWriter(reW); //Set the writer to the REAMDE file
-        reB.write("Program made to create statistics for championships of the League of Legends game."); //Write this
-        reB.newLine(); //Jumps to the next line
-        reB.write("Chose between seeing actual championship stats or insert new game stats.");
-        reB.newLine();
-        reB.write("The stats will be shown in tables.");
-        reB.newLine();
-        reB.write("The game data will be stored in .txt files.");
-        reB.newLine();
-        reB.write("If you find any problem contact me and, if possible, take a screenshot.");
-        reB.newLine();
-        reB.close();//Ends the buffer
-        reW.close();//Ends the writer
         
-        new inicialGUI(); //Calls inicialGUI        
+        try (FileWriter reW = new FileWriter(rd); BufferedWriter reB = new BufferedWriter(reW)) { //Set the writer to the REAMDE file
+            
+            reB.write("Program made to create statistics for championships of the League of Legends game."); //Write this
+            reB.newLine(); //Jumps to the next line
+            reB.write("Chose between seeing actual championship stats or insert new game stats.");
+            reB.newLine();
+            reB.write("The stats will be shown in tables.");
+            reB.newLine();
+            reB.write("The game data will be stored in .txt files.");
+            reB.newLine();
+            reB.write("If you find any problem contact me and, if possible, take a screenshot.");
+            reB.newLine();
+        }
+        
+        inicialGUI inicialGUI = new inicialGUI(); //Calls inicialGUI        
     }
 }

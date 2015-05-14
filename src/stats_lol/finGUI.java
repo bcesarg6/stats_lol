@@ -8,10 +8,10 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import static stats_lol.checkVersion.*;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 
 /**
@@ -29,16 +29,9 @@ public class finGUI extends JFrame {
     
     ReadWrite rw = new ReadWrite();
     
-    public int t, r, s;
-    
     public finGUI(int d, int a, int b) {
-        t = d;
-        r = a;
-        s = b;
         
-       checkVersion checkVersion = new checkVersion();
-        
-        setTitle("LoL Stats Maker " + checkVersion.version);
+        setTitle("LoL Stats Maker " + version);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setVisible(true);
         setSize(300, 100);
@@ -60,39 +53,38 @@ public class finGUI extends JFrame {
         
         cp.add(btnFin, c);
         
-        btnFin.addActionListener(new ActionListener() { //"Listens" to the button click
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if(t == -1){
-                    System.out.println("red");
-                    rw.readWrite(true, -1, s);//red
-                    rw.readWrite(true, -3, r);
-                }
-                else if(t == -2){
-                    System.out.println("tie");
-                    rw.readWrite(true, -2, s);//tie
-                    rw.readWrite(true, -2, r);
-                    rw.readWrite(true, 12, s);
-                    rw.readWrite(true, 12, r);
-                }
-                else if(t == 3){
-                    System.out.println("blue");
-                    rw.readWrite(true, -1, r);//blue
-                    rw.readWrite(true, -3, s);
-                }
-                else if(t == 4){
-                    System.out.println("tie");
-                    rw.readWrite(true, -2, s);//tie
-                    rw.readWrite(true, -2, r);
-                    rw.readWrite(true, 12, s);
-                    rw.readWrite(true, 12, r);
-                }
-                dispose(); //Closes the actual GUI
-               
+        btnFin.addActionListener((ActionEvent e) -> {
+            
+            if(d == -1){
+                
+                System.out.println("red");
+                rw.readWrite(true, 1, b, 7, 3);//red
             }
+            
+            else if(d == -2){
+                
+                System.out.println("tie");
+                rw.readWrite(true, 1, a, 7, 1);//tie
+                rw.readWrite(true, 1, a, 8, 1);
+                rw.readWrite(true, 1, b, 7, 1);
+                rw.readWrite(true, 1, b, 8, 1);
+            }
+            
+            else if(d == 3){
+                
+                System.out.println("blue");
+                rw.readWrite(true, 1, a, 7, 3);//blue
+            }
+            
+            else if(d == 4){
+                
+                System.out.println("tie");
+                rw.readWrite(true, 1, a, 7, 1);//tie
+                rw.readWrite(true, 1, a, 8, 1);
+                rw.readWrite(true, 1, b, 7, 1);
+                rw.readWrite(true, 1, b, 8, 1);
+            }
+            dispose(); //Closes the actual GUI
         });
-    
     }
-    
 }

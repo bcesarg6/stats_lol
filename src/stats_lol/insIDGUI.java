@@ -15,6 +15,8 @@ import javax.swing.JLabel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.ButtonGroup;
+import static stats_lol.Stats_lol.*;
+import static stats_lol.checkVersion.*;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 
 /**
@@ -25,11 +27,10 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 //Here is the second GUI called to insert new game, the user puts the bans, winner side and match time
 public class insIDGUI extends JFrame{
     
-    Stats_lol st = new Stats_lol();
     ReadWrite rw = new ReadWrite();
     
-    public String ban1, ban2, ban3, ban4, ban5, ban6, nB, mtT, w1, w2, s1, s2, sp;
-    int nb, mtt, i, x, t;
+    public String ban1, ban2, ban3, ban4, ban5, ban6, nB, mtT, w1;
+    int mtt, i, t;
     int h = 0;
     JLabel lblBans = new JLabel("       Bans        "); //Spacement required to put things in the middle
     JLabel lblWin = new JLabel("Winner side");
@@ -42,8 +43,8 @@ public class insIDGUI extends JFrame{
     JTextField txtBan5 = new JTextField();
     JTextField txtBan6 = new JTextField();
     JTextField txtTmp = new JTextField();
-    JRadioButton rbtBlue = new JRadioButton(st.sideB);
-    JRadioButton rbtRed = new JRadioButton(st.sideR);
+    JRadioButton rbtBlue = new JRadioButton(sideB);
+    JRadioButton rbtRed = new JRadioButton(sideR);
     ButtonGroup  btgWin = new ButtonGroup(); //This putts the radio buttons inside one thing so they can be used at the same time
     JButton btnNext = new JButton("Next");    
     
@@ -56,12 +57,10 @@ public class insIDGUI extends JFrame{
         btgWin.add(rbtBlue); //Puts the radio button blue insede the buttongroup
         btgWin.add(rbtRed); //Same as above gut the red
         
-        rbtBlue.setActionCommand(st.sideB);
-        rbtRed.setActionCommand(st.sideR);
+        rbtBlue.setActionCommand(sideB);
+        rbtRed.setActionCommand(sideR);
         
-        checkVersion checkVersion = new checkVersion();
-        
-        setTitle("LoL Stats Maker " + checkVersion.version);
+        setTitle("LoL Stats Maker " + version);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setVisible(true);
         setSize(400, 150);
@@ -139,69 +138,68 @@ public class insIDGUI extends JFrame{
         
         pack();
         
-        btnNext.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                ban1 = txtBan1.getText();
-                ban2 = txtBan2.getText();
-                ban3 = txtBan3.getText();
-                ban4 = txtBan4.getText();
-                ban5 = txtBan5.getText();
-                ban6 = txtBan6.getText();
-                rw.mtT = txtTmp.getText();
-                rw.mtt = Integer.parseInt(rw.mtT);
-                for(i = 0; i < 124; i++){
-                    if(ban1.equals(st.champion[i])){
-                        rw.readWrite(true, 0, i);
-                    }
-                    else if(ban2.equals(st.champion[i])){
-                        rw.readWrite(true, 0, i);
-                    }
-                    else if(ban3.equals(st.champion[i])){
-                        rw.readWrite(true, 0, i);
-                    }
-                    else if(ban4.equals(st.champion[i])){
-                        rw.readWrite(true, 0, i);
-                    }
-                    else if(ban5.equals(st.champion[i])){
-                        rw.readWrite(true, 0, i);
-                    }
-                    else if(ban6.equals(st.champion[i])){
-                        rw.readWrite(true, 0, i);
-                    }
+        btnNext.addActionListener((ActionEvent e) -> {
+            
+            ban1 = txtBan1.getText();
+            ban2 = txtBan2.getText();
+            ban3 = txtBan3.getText();
+            ban4 = txtBan4.getText();
+            ban5 = txtBan5.getText();
+            ban6 = txtBan6.getText();
+            
+            mtT = txtTmp.getText();
+            mtt = Integer.parseInt(mtT);
+            
+            for(i = 0; i < 124; i++){
+                
+                if(ban1.equals(champion[i])){
+                    rw.readWrite(true, 2, i, 1, 1);
                 }
-                if(w1.equals("Blue")){
+                else if(ban2.equals(champion[i])){
+                    rw.readWrite(true, 2, i, 1, 1);
+                }
+                else if(ban3.equals(champion[i])){
+                    rw.readWrite(true, 2, i, 1, 1);
+                }
+                else if(ban4.equals(champion[i])){
+                    rw.readWrite(true, 2, i, 1, 1);
+                }
+                else if(ban5.equals(champion[i])){
+                    rw.readWrite(true, 2, i, 1, 1);
+                }
+                else if(ban6.equals(champion[i])){
+                    rw.readWrite(true, 2, i, 1, 1);
+                }
+            }
+            
+            switch (w1) {
+                case "Blue":
                     t++;
                     h++;
-                    rw.readWrite(true, 1, a);
-                    rw.readWrite(true, 2, a);
-                    rw.readWrite(true, 2, b);
-                }
-                else if(w1.equals("Red")){
-                    rw.readWrite(true, 1, b);
-                    rw.readWrite(true, 2, b);
-                    rw.readWrite(true, 2, a);
-                }
-                new insBDGUI(t, a, b, h); //Drpoboxes index needed to the next class
-                dispose();
-               
+                    rw.readWrite(true, 1, a, 2, 1);
+                    rw.readWrite(true, 1, a, 3, mtt);
+                    rw.readWrite(true, 1, b, 3, mtt);
+                    break;
+                case "Red":
+                    rw.readWrite(true, 1, b, 2, 1);
+                    rw.readWrite(true, 1, a, 3, mtt);
+                    rw.readWrite(true, 1, b, 3, mtt);
+                    break;
             }
+            
+            insBDGUI insBDGUI = new insBDGUI(t, a, b, h); //Drpoboxes index needed to the next class
+            
+            dispose();
         });
-        rbtBlue.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-               w1 = e.getActionCommand();
-            }
+        
+        rbtBlue.addActionListener((ActionEvent e) -> {
+            
+            w1 = e.getActionCommand();     
         });
-        rbtRed.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-               w1 = e.getActionCommand();
-            }
+        
+        rbtRed.addActionListener((ActionEvent e) -> {
+            
+            w1 = e.getActionCommand();
         });
-    }
-    
+    }   
 }

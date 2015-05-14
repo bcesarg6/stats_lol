@@ -9,6 +9,8 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import javax.swing.JFrame;
 import javax.swing.JTable;
+import static stats_lol.Stats_lol.*;
+import static stats_lol.checkVersion.*;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 
 /**
@@ -22,8 +24,6 @@ public class teamStatsGUI extends JFrame {
     Object data[][];
     
     ReadWrite rw = new ReadWrite();
-    
-    Stats_lol tm = new Stats_lol();
     
     double[] at, ad, ab, am, wr, t, d, b, mt, w, games;
     
@@ -51,18 +51,18 @@ public class teamStatsGUI extends JFrame {
         games = new double[8];
         
         for(int i = 0; i < 8; i++){
-            rw.readWrite(false, 3, i);
-            t[i] = Integer.parseInt(rw.nB);
-            rw.readWrite(false, 4, i);
-            d[i] = Integer.parseInt(rw.nB);
-            rw.readWrite(false, 5, i);
-            b[i] = Integer.parseInt(rw.nB);
-            rw.readWrite(false, 2, i);
-            mt[i] = Integer.parseInt(rw.nB);
-            rw.readWrite(false, 1, i);
-            w[i] = Integer.parseInt(rw.nB);
-            rw.readWrite(false, 13, i);
-            games[i] = Integer.parseInt(rw.nB);
+            rw.readWrite(false, 1, i, 4, 0);
+            t[i] = Integer.parseInt(rw.rl);
+            rw.readWrite(false, 1, i, 5, 0);
+            d[i] = Integer.parseInt(rw.rl);
+            rw.readWrite(false, 1, i, 6, 0);
+            b[i] = Integer.parseInt(rw.rl);
+            rw.readWrite(false, 1, i, 3, 0);
+            mt[i] = Integer.parseInt(rw.rl);
+            rw.readWrite(false, 1, i, 2, 0);
+            w[i] = Integer.parseInt(rw.rl);
+            rw.readWrite(false, 1, i, 1, 0);
+            games[i] = Integer.parseInt(rw.rl);
             if(games[i] == 0){
                 games[i] = 1;
             }
@@ -82,7 +82,7 @@ public class teamStatsGUI extends JFrame {
         for(int i = 0; i < 8; i++){
             for(int j = 0; j < 6; j++){
                 if(j == 0){
-                    data[i][j] = tm.team[i];
+                    data[i][j] = team[i];
                 }
                 else if(j == 1){
                     data[i][j] = at[i];
@@ -105,12 +105,9 @@ public class teamStatsGUI extends JFrame {
         JTable tblTeam = new JTable(data, columnNames);
         
         tblTeam.setEnabled(false);
-        
         tblTeam.setAutoCreateRowSorter(true);
-             
-        checkVersion checkVersion = new checkVersion();
         
-        setTitle("LoL Stats Maker " + checkVersion.version);
+        setTitle("LoL Stats Maker " +version);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setVisible(true);
         setSize(200, 200);
@@ -133,7 +130,5 @@ public class teamStatsGUI extends JFrame {
         cp.add(tblTeam, c);
         
         pack();
-        
-     
     }
 }

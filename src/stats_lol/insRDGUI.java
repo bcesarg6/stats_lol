@@ -8,11 +8,12 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import static stats_lol.Stats_lol.*;
+import static stats_lol.checkVersion.*;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 
 /**
@@ -24,11 +25,10 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 (The code here is almost the same as in the insBDGUI, just a few chages (commented))*/
 public class insRDGUI extends JFrame{
     
-    int i = 0;
-    int tr, dr, br;
-    public String[] ch, kl, as, dt, cr, gl;
+    String[] ch, kl, as, dt, cr, gl;
+    int tr, dr, br, t;
+    int[] kill, death, assist, creep, gold;
     
-    Stats_lol pl = new Stats_lol();
     ReadWrite rw = new ReadWrite();
     
     public JLabel[] lblPlayer;
@@ -52,7 +52,6 @@ public class insRDGUI extends JFrame{
     JButton btnNext = new JButton("Next");
     
     Container cp = getContentPane();
-    public int t, r, s;
     
     public insRDGUI(int d, int a, int b, int h){ //Gets the second index
         
@@ -63,10 +62,12 @@ public class insRDGUI extends JFrame{
         cr = new String[5];
         gl = new String[5];
         
-        t = d;
-        r = a;
-        s = b;
-        
+        kill = new int[5];
+        death = new int[5];
+        assist = new int[5];
+        creep = new int[5];
+        gold = new int[5];
+
         lblPlayer = new JLabel[40];
         
         txtChamp = new JTextField[5];
@@ -76,32 +77,30 @@ public class insRDGUI extends JFrame{
         txtCreep = new JTextField[5];
         txtGold = new JTextField[5];
         
-        for(i = 0; i < 40; i++){
-            lblPlayer[i] = new JLabel("" + pl.player[i]);
+        for(int i = 0; i < 40; i++){
+            lblPlayer[i] = new JLabel(player[i]);
         }
         
-        for(i = 0; i < 5; i++){
+        for(int i = 0; i < 5; i++){
             txtChamp[i] = new JTextField();
         }
-        for(i = 0; i < 5; i++){
+        for(int i = 0; i < 5; i++){
             txtKill[i] = new JTextField();
         }
-        for(i = 0; i < 5; i++){
+        for(int i = 0; i < 5; i++){
             txtAssist[i] = new JTextField();
         }
-        for(i = 0; i < 5; i++){
+        for(int i = 0; i < 5; i++){
             txtDeath[i] = new JTextField();
         }
-        for(i = 0; i < 5; i++){
+        for(int i = 0; i < 5; i++){
             txtCreep[i] = new JTextField();
         }
-        for(i = 0; i < 5; i++){
+        for(int i = 0; i < 5; i++){
             txtGold[i] = new JTextField();
         }
         
-        checkVersion checkVersion = new checkVersion();
-        
-        setTitle("LoL Stats Maker " + checkVersion.version);
+        setTitle("LoL Stats Maker " + version);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setVisible(true);
         setSize(400, 150);
@@ -126,56 +125,56 @@ public class insRDGUI extends JFrame{
        //------------------------
         switch(b){ //Case team X labels a, b, c, d and e will be put
             case 0:
-                for(i = 0; i < 5; i++){
+                for(int i = 0; i < 5; i++){
                     c.gridy = i+2;
                     cp.add(lblPlayer[i], c);
                 }
                 break;
                 
             case 1:
-                for(i = 5; i < 10; i++){
+                for(int i = 5; i < 10; i++){
                     c.gridy = i-3;
                     cp.add(lblPlayer[i], c);
                 }
                 break;
                 
             case 2:
-                for(i = 10; i < 15; i++){
+                for(int i = 10; i < 15; i++){
                     c.gridy = i-8;
                     cp.add(lblPlayer[i], c);                    
                 }
                 break;
                 
             case 3:
-                for(i = 15; i < 20; i++){
+                for(int i = 15; i < 20; i++){
                     c.gridy = i-13;
                     cp.add(lblPlayer[i], c);
                 }
                 break;
                 
             case 4:
-                for(i = 20; i < 25; i++){
+                for(int i = 20; i < 25; i++){
                     c.gridy = i-18;
                     cp.add(lblPlayer[i], c);
                 }
                 break;
                 
             case 5:
-                for(i = 25; i < 30; i++){
+                for(int i = 25; i < 30; i++){
                     c.gridy = i-23;
                     cp.add(lblPlayer[i], c);
                 }
                 break;
                 
             case 6:
-                for(i = 30; i < 35; i++){
+                for(int i = 30; i < 35; i++){
                     c.gridy = i-28;
                     cp.add(lblPlayer[i], c);
                 }
                 break;
                 
             case 7:
-                for(i = 35; i < 40; i++){
+                for(int i = 35; i < 40; i++){
                     c.gridy = i-33;
                     cp.add(lblPlayer[i], c);
                 }
@@ -213,38 +212,42 @@ public class insRDGUI extends JFrame{
         //------------------
         c.gridx = 1;
         
-       for(i = 0; i < 5; i++){
+       for(int i = 0; i < 5; i++){
             c.gridy = i+2;
             cp.add(txtChamp[i], c);
         }
         //----------------------------
         c.gridx = 2;
         
-        for(i = 0; i < 5; i++){
+        for(int i = 0; i < 5; i++){
             c.gridy = i+2;
             cp.add(txtKill[i], c);
         }
         //-----------------------
         c.gridx = 3;
-        for(i = 0; i < 5; i++){
+        
+        for(int i = 0; i < 5; i++){
             c.gridy = i+2;
             cp.add(txtDeath[i], c);
         }
         //------------------
         c.gridx = 4;
-        for(i = 0; i < 5; i++){
+        
+        for(int i = 0; i < 5; i++){
             c.gridy = i+2;
             cp.add(txtAssist[i], c);
         }        
         //-----------------------
         c.gridx = 5;
-         for(i = 0; i < 5; i++){
+        
+         for(int i = 0; i < 5; i++){
             c.gridy = i+2;
             cp.add(txtCreep[i], c);
         } 
         //---------------------
         c.gridx = 6;
-         for(i = 0; i < 5; i++){
+        
+         for(int i = 0; i < 5; i++){
             c.gridy = i+2;
             cp.add(txtGold[i], c);
         } 
@@ -280,125 +283,143 @@ public class insRDGUI extends JFrame{
         
         pack();
         
-        btnNext.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                for(i = 0; i < 5; i++){
-                    ch[i] = txtChamp[i].getText();
-                    rw.kl[i] = Integer.parseInt(txtKill[i].getText());
-                    rw.dt[i] = Integer.parseInt(txtDeath[i].getText());
-                    rw.as[i] = Integer.parseInt(txtAssist[i].getText());
-                    rw.cr[i] = Integer.parseInt(txtCreep[i].getText());
-                    rw.gl[i] = Integer.parseInt(txtGold[i].getText());
-                }
-                switch(b){
-                    case 0:
-                        rw.p = 0;
-                        for(i = 0; i < 5; i++){
-                            for(int j = 7;j < 12;j++){                              
-                                rw.readWrite(true, j, i);                                
-                            }
-                            rw.p++;
-                        }
-                        break;
-                    case 1:
-                        rw.p = 0;
-                        for(i = 5; i < 10; i++){
-                            for(int j = 7;j < 12;j++){                              
-                                rw.readWrite(true, j, i);                                
-                            }
-                            rw.p++;
-                        }
-                        break;
-                    case 2:
-                        rw.p = 0;
-                        for(i = 10; i < 15; i++){
-                            for(int j = 7;j < 12;j++){                              
-                                rw.readWrite(true, j, i);                                
-                            }
-                            rw.p++;
-                        }
-                        break;
-                    case 3:
-                        rw.p = 0;
-                        for(i = 15; i < 20; i++){
-                            for(int j = 7;j < 12;j++){                              
-                                rw.readWrite(true, j, i);                                
-                            }
-                            rw.p++;
-                        }
-                        break;
-                    case 4:
-                        rw.p = 0;
-                        for(i = 20; i < 25; i++){
-                           for(int j = 7;j < 12;j++){                              
-                                rw.readWrite(true, j, i);                                
-                            }
-                           rw.p++;
-                        }
-                        break;
-                    case 5:
-                        rw.p = 0;
-                        for(i = 25; i < 30; i++){
-                            for(int j = 7;j < 12;j++){                              
-                                rw.readWrite(true, j, i);                                
-                            }
-                            rw.p++;
-                        }
-                        break;
-                    case 6:
-                        rw.p = 0;
-                        for(i = 30; i < 35; i++){
-                            for(int j = 7;j < 12;j++){                              
-                                rw.readWrite(true, j, i);                                
-                            }
-                            rw.p++;
-                        }
-                        break;
-                    case 7:
-                        rw.p = 0;
-                        for(i = 35; i < 40; i++){
-                            for(int j = 7;j < 12;j++){                              
-                                rw.readWrite(true, j, i);                                
-                            }
-                            rw.p++;
-                        }
-                        break;
-                }
-                for(i = 0; i < 124; i++){
-                    for(int j = 0; j < 5; j++){
-                        if(ch[j].equals(pl.champion[i])){
-                            rw.readWrite(true, -4, i);
-                            if(h == 0){
-                               rw.readWrite(true, -5, i);
-                            }
+        btnNext.addActionListener((ActionEvent e) -> {
+            
+            for(int i = 0; i < 5; i++){
+                ch[i] = txtChamp[i].getText();
+                kill[i] = Integer.parseInt(txtKill[i].getText());
+                death[i] = Integer.parseInt(txtDeath[i].getText());
+                assist[i] = Integer.parseInt(txtAssist[i].getText());
+                creep[i] = Integer.parseInt(txtCreep[i].getText());
+                gold[i] = Integer.parseInt(txtGold[i].getText());
+            }
+            
+            switch(b){
+                case 0:
+                    t = 0;
+                    for(int i = 0; i < 5; i++){
+                        int j = 1;
+                        rw.readWrite(true, 0, i, j++, kill[i-t]);
+                        rw.readWrite(true, 0, i, j++, death[i-t]);
+                        rw.readWrite(true, 0, i, j++, assist[i-t]);
+                        rw.readWrite(true, 0, i, j++, creep[i-t]);
+                        rw.readWrite(true, 0, i, j, gold[i-t]);
+                    }
+                    break;
+                case 1:
+                    t = 5;
+                    for(int i = 5; i < 10; i++){
+                        int j = 1;
+                        rw.readWrite(true, 0, i, j++, kill[i-t]);
+                        rw.readWrite(true, 0, i, j++, death[i-t]);
+                        rw.readWrite(true, 0, i, j++, assist[i-t]);
+                        rw.readWrite(true, 0, i, j++, creep[i-t]);
+                        rw.readWrite(true, 0, i, j, gold[i-t]);
+                    }
+                    break;
+                case 2:
+                    t = 10;
+                    for(int i = 10; i < 15; i++){
+                        int j = 1;
+                        rw.readWrite(true, 0, i, j++, kill[i-t]);
+                        rw.readWrite(true, 0, i, j++, death[i-t]);
+                        rw.readWrite(true, 0, i, j++, assist[i-t]);
+                        rw.readWrite(true, 0, i, j++, creep[i-t]);
+                        rw.readWrite(true, 0, i, j, gold[i-t]);
+                    }
+                    break;
+                case 3:
+                    t = 15;
+                    for(int i = 15; i < 20; i++){
+                        int j = 1;
+                        rw.readWrite(true, 0, i, j++, kill[i-t]);
+                        rw.readWrite(true, 0, i, j++, death[i-t]);
+                        rw.readWrite(true, 0, i, j++, assist[i-t]);
+                        rw.readWrite(true, 0, i, j++, creep[i-t]);
+                        rw.readWrite(true, 0, i, j, gold[i-t]);
+                    }
+                    break;
+                case 4:
+                    t = 20;
+                    for(int i = 20; i < 25; i++){
+                        int j = 1;
+                        rw.readWrite(true, 0, i, j++, kill[i-t]);
+                        rw.readWrite(true, 0, i, j++, death[i-t]);
+                        rw.readWrite(true, 0, i, j++, assist[i-t]);
+                        rw.readWrite(true, 0, i, j++, creep[i-t]);
+                        rw.readWrite(true, 0, i, j, gold[i-t]);
+                    }
+                    break;
+                case 5:
+                    t = 25;
+                    for(int i = 25; i < 30; i++){
+                        int j = 1;
+                        rw.readWrite(true, 0, i, j++, kill[i-t]);
+                        rw.readWrite(true, 0, i, j++, death[i-t]);
+                        rw.readWrite(true, 0, i, j++, assist[i-t]);
+                        rw.readWrite(true, 0, i, j++, creep[i-t]);
+                        rw.readWrite(true, 0, i, j, gold[i-t]);
+                    }
+                    break;
+                case 6:
+                    t = 30;
+                    for(int i = 30; i < 35; i++){
+                        int j = 1;
+                        rw.readWrite(true, 0, i, j++, kill[i-t]);
+                        rw.readWrite(true, 0, i, j++, death[i-t]);
+                        rw.readWrite(true, 0, i, j++, assist[i-t]);
+                        rw.readWrite(true, 0, i, j++, creep[i-t]);
+                        rw.readWrite(true, 0, i, j, gold[i-t]);
+                    }
+                    break;
+                case 7:
+                    t = 35;
+                    for(int i = 35; i < 40; i++){
+                        int j = 1;
+                        rw.readWrite(true, 0, i, j++, kill[i-t]);
+                        rw.readWrite(true, 0, i, j++, death[i-t]);
+                        rw.readWrite(true, 0, i, j++, assist[i-t]);
+                        rw.readWrite(true, 0, i, j++, creep[i-t]);
+                        rw.readWrite(true, 0, i, j, gold[i-t]);
+                    }
+                    break;
+            }
+            
+            for(int i = 0; i < 124; i++){
+                for(int j = 0; j < 5; j++){
+                    if(ch[j].equals(champion[i])){
+                        rw.readWrite(true, 2, i, 2, 1);
+                        if(h == 0){
+                            rw.readWrite(true, 2, i, 3, 1);
                         }
                     }
                 }
-                //--------------------------------------------------
-                rw.tr = Integer.parseInt(txtTurret.getText());
-                rw.dr = Integer.parseInt(txtDrag.getText());
-                rw.br = Integer.parseInt(txtBaron.getText());
-                rw.readWrite(true, 3, b);
-                rw.readWrite(true, 4, b);
-                rw.readWrite(true, 5, b);
-                if(t == 1){
-                    t += 2;
-                    new insIDGUI(t, s, r);
-                    dispose();
-                }
-                else if(t == 0){
-                    t -= 2;
-                    new insIDGUI(t, s, r);
-                    dispose();
-                }
-                else if((t == -1) || (t == -2) || (t == 3) || (t == 4)){
-                    new finGUI(t, s, r); //Calls the final GUI
-                    dispose();
-                }              
+            }
+            
+            tr = Integer.parseInt(txtTurret.getText());
+            dr = Integer.parseInt(txtDrag.getText());
+            br = Integer.parseInt(txtBaron.getText());
+            
+            rw.readWrite(true, 1, b, 4, tr);
+            rw.readWrite(true, 1, b, 5, dr);
+            rw.readWrite(true, 1, b, 6, br);
+            
+            if(d == 1){
+                insIDGUI insIDGUI = new insIDGUI((d+2), b, a);
+                
+                dispose();
+            }
+            else if(d == 0){
+                insIDGUI insIDGUI = new insIDGUI((d-2), b, a);
+                
+                dispose();
+            }
+            
+            else if((d == -1) || (d == -2) || (d == 3) || (d == 4)){              
+                finGUI finGUI = new finGUI(d, b, a); //Calls the final GUI
+                
+                dispose();              
             }
         });
-   
     }
 }

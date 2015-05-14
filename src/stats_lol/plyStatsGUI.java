@@ -10,6 +10,8 @@ import java.awt.Insets;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import static stats_lol.Stats_lol.*;
+import static stats_lol.checkVersion.*;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 
 /**
@@ -27,8 +29,6 @@ public class plyStatsGUI extends JFrame {
              games, time, tk;
     
     ReadWrite rw = new ReadWrite();
-    
-    Stats_lol pl  = new Stats_lol();
     
     String[] columnNames =  {"Player",
                         "KDA",
@@ -58,25 +58,25 @@ public class plyStatsGUI extends JFrame {
         tk = new double[8];
         
         for(int i = 0; i < 40; i++){
-            for(int h = 7; h < 12; h++){
-                rw.readWrite(false, h, i);
-                if(h == 7){
-                    kl[i] = Integer.parseInt(rw.nB);
+            for(int h = 1; h < 6; h++){
+                rw.readWrite(false, 0, i, h, 0);
+                if(h == 1){
+                    kl[i] = Integer.parseInt(rw.rl);
                 }
-                else if(h == 8){
-                    dt[i] = Integer.parseInt(rw.nB);
+                else if(h == 2){
+                    dt[i] = Integer.parseInt(rw.rl);
                     if(dt[i] == 0){
                         dt[i] = 1;
                     }
                 }
-                else if(h == 9){
-                    as[i] = Integer.parseInt(rw.nB);
+                else if(h == 3){
+                    as[i] = Integer.parseInt(rw.rl);
                 }
-                else if(h == 10){
-                    cr[i] = Integer.parseInt(rw.nB);
+                else if(h == 4){
+                    cr[i] = Integer.parseInt(rw.rl);
                 }
-                else if(h == 11){
-                    gl[i] = Integer.parseInt(rw.nB);
+                else if(h == 5){
+                    gl[i] = Integer.parseInt(rw.rl);
                 }
             }
         }
@@ -86,10 +86,10 @@ public class plyStatsGUI extends JFrame {
             for(int j = 0; j < 5; j++){
                 tk[i] += k[j+h];   
             }
-            rw.readWrite(false, 13, i);
-            games[i] = Integer.parseInt(rw.nB);
-            rw.readWrite(false, 2, i);
-            time[i] = Integer.parseInt(rw.nB);
+            rw.readWrite(false, 1, i, 1, 0);
+            games[i] = Integer.parseInt(rw.rl);
+            rw.readWrite(false, 1, i, 3, 0);
+            time[i] = Integer.parseInt(rw.rl);
             if(games[i] == 0){
                 games[i] = 1;
             }
@@ -110,6 +110,7 @@ public class plyStatsGUI extends JFrame {
                                     (j = (i > 24) && (i < 30) ? 5 :
                                         (j = (i > 29) && (i < 35) ? 6 :
                                             (j = (i > 34) && (i < 40) ? 7 : null)))))));
+            
             k[i] = (int) ((kl[i] + as[i])/dt[i]);
             af[i] = (int) (cr[i]/games[j]);
             f[i] = (int) (cr[i]/time[j]);
@@ -123,7 +124,7 @@ public class plyStatsGUI extends JFrame {
         for(int i = 0; i < 40; i++){
             for(int j = 0; j < 7; j++){
                 if(j == 0){
-                    data[i][j] = pl.player[i];
+                    data[i][j] = player[i];
                 }
                 else if(j == 1){
                     data[i][j] = k[i];
@@ -146,17 +147,14 @@ public class plyStatsGUI extends JFrame {
             }
         }
         
-        JTable tblPly = new JTable(data, columnNames);
-        
+        JTable tblPly = new JTable(data, columnNames); 
         JScrollPane scroll = new JScrollPane(tblPly);
         
         tblPly.setEnabled(false);
         
         tblPly.setAutoCreateRowSorter(true);
-             
-        checkVersion checkVersion = new checkVersion();
         
-        setTitle("LoL Stats Maker " + checkVersion.version);
+        setTitle("LoL Stats Maker " + version);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setVisible(true);
         setSize(200, 200);
@@ -182,4 +180,3 @@ public class plyStatsGUI extends JFrame {
      
     }
 }
-//Nothing new to comment here

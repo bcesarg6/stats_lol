@@ -7,6 +7,8 @@ import java.awt.Insets; //Spacements
 import javax.swing.JFrame; //The frame
 import javax.swing.JScrollPane;
 import javax.swing.JTable; //Table
+import static stats_lol.Stats_lol.*;
+import static stats_lol.checkVersion.*;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE; //Imports the class that closes the program when you hit the "x"
 
 /**
@@ -23,8 +25,6 @@ public class chStatsGUI extends JFrame{
     int tGames;
     
     ReadWrite rw = new ReadWrite();
-    
-    Stats_lol ch = new Stats_lol(); //Takes the Stats_lol variables
     
     String[] columnNames =  {"champion",//Set the column Names
                         "pick %", 
@@ -44,8 +44,8 @@ public class chStatsGUI extends JFrame{
         g = new double[124];
         
         for(int i = 0; i < 8; i++){
-            rw.readWrite(false, 13, i);
-            tGames += Integer.parseInt(rw.nB);
+            rw.readWrite(false, 1, i, 1, 0);
+            tGames += Integer.parseInt(rw.rl);
         }
         
         if(tGames == 0){
@@ -55,12 +55,12 @@ public class chStatsGUI extends JFrame{
         tGames = tGames/2;
         
         for(int i = 0; i < 124; i++){
-            rw.readWrite(false, -4, i);
-            p[i] = Integer.parseInt(rw.nB);
-            rw.readWrite(false, 0, i);
-            b[i] = Integer.parseInt(rw.nB);
-            rw.readWrite(false, -5, i);
-            w[i] = Integer.parseInt(rw.nB);
+            rw.readWrite(false, 2, i, 2, 0);
+            p[i] = Integer.parseInt(rw.rl);
+            rw.readWrite(false, 2, i, 1, 0);
+            b[i] = Integer.parseInt(rw.rl);
+            rw.readWrite(false, 2, i, 3, 0);
+            w[i] = Integer.parseInt(rw.rl);
             g[i] = p[i];
             if(g[i] == 0){
                 g[i] = 1;
@@ -78,7 +78,7 @@ public class chStatsGUI extends JFrame{
         for(int i = 0; i < 124; i++){
             for(int j = 0; j < 4; j++){
                 if(j == 0){
-                    data[i][j] = ch.champion[i];
+                    data[i][j] = champion[i];
                 }
                 else if(j == 1){
                     data[i][j] = pr[i];
@@ -95,14 +95,11 @@ public class chStatsGUI extends JFrame{
         JTable tblCh = new JTable(data, columnNames); //Calls the table
         
         tblCh.setEnabled(false); //You can't edit the cells (false)
-        
         tblCh.setAutoCreateRowSorter(true);
         
         JScrollPane scroll = new JScrollPane(tblCh); //Puts the table inside of a scroll panel
-             
-        checkVersion checkVersion = new checkVersion(); //To use the version variable
         
-        setTitle("LoL Stats Maker " + checkVersion.version); //Sets the tile off the frame in case "LoL Stats Maker #.##"
+        setTitle("LoL Stats Maker " + version); //Sets the tile off the frame in case "LoL Stats Maker #.##"
         setDefaultCloseOperation(DISPOSE_ON_CLOSE); //Closes the frame if hit the "x"
         setVisible(true); //Now you can see the GUI
         setSize(500, 500); //Inicial size

@@ -8,11 +8,12 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import static stats_lol.Stats_lol.*;
+import static stats_lol.checkVersion.*;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 
 /**
@@ -23,33 +24,29 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 //First GUI to insert new game. Select the teams.
 public class insMtGUI extends JFrame{
     
-    int nG;
-    String sNg;
     int blueIn;
     int redIn;
     
-    ReadWrite rw = new ReadWrite();
-    Stats_lol tm = new Stats_lol(); //To use Stats_lol variables  
+    ReadWrite rw = new ReadWrite();  
     
     JLabel lblBlue = new JLabel("Blue side:");
     JLabel lblRed = new JLabel("Red side:");
-    JComboBox blue = new JComboBox(tm.team); //Creates a combobox (aka dropbox) with the team String (from the main class)
-    JComboBox red = new JComboBox(tm.team); //Above
+    JComboBox blue = new JComboBox(team); //Creates a combobox (aka dropbox) with the team String (from the main class)
+    JComboBox red = new JComboBox(team); //Above
     JButton btnNext = new JButton("Next");
     
     Container cp = getContentPane();
     
     public insMtGUI(int d){
-           
-        checkVersion checkVersion = new checkVersion();
-        
-        setTitle("LoL Stats Maker " + checkVersion.version);
+       
+        setTitle("LoL Stats Maker " + version);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setVisible(true);
         setSize(400, 150);
         setLocationRelativeTo(null);
         
         cp.setLayout(new GridBagLayout());
+        
         GridBagConstraints c = new GridBagConstraints();
         c.anchor = GridBagConstraints.NORTHWEST;
         c.insets = new Insets(5, 5, 5, 5);
@@ -80,31 +77,33 @@ public class insMtGUI extends JFrame{
         c.gridy = 2;
         
         cp.add(btnNext, c);
+        
         pack();
         
-        btnNext.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e){
-                blueIn = blue.getSelectedIndex();
-                redIn = red.getSelectedIndex();
-               if(blueIn != redIn){ //If the teams selected are different
-                   for(int i = 0; i < 8; i++){
-                       if(blueIn == i){
-                           rw.readWrite(true, 13, i);
-                       }
-                       else if(redIn == i){
-                           rw.readWrite(true, 13, i);
-                       }
-                   }
-                   dispose();
-                   new insIDGUI(d, blueIn, redIn); //Sends the index to the next class
-               }
-               else{
-                   new errGUI(); //Else calls the error GUI
-               }
+        btnNext.addActionListener((ActionEvent e) -> {
+            
+            blueIn = blue.getSelectedIndex();
+            redIn = red.getSelectedIndex();
+            
+            if(blueIn != redIn){ //If the teams selected are different
+                for(int i = 0; i < 8; i++){
+                    if(blueIn == i){
+                        rw.readWrite(true, 1, i, 1, 2);
+                    }
+                    else if(redIn == i){
+                        rw.readWrite(true, 1, i, 1, 2);
+                    }
+                }
+                
+                dispose();
+                
+                insIDGUI insIDGUI = new insIDGUI(d, blueIn, redIn); //Sends the index to the next class
+            }
+            
+            else{
+                
+                errGUI errGUI = new errGUI(); //Else calls the error GUI
             }
         });
-   
     }
 }
