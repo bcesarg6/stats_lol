@@ -7,11 +7,13 @@ import java.awt.Container;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JTable;
 import static stats_lol.Stats_lol.*;
-import static stats_lol.checkVersion.*;
+import static stats_lol.CheckVersion.*;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
+import javax.swing.table.TableColumn;
 
 /**
  *
@@ -19,14 +21,13 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
  */
 
 //Teams stats GUI
-public class teamStatsGUI extends JFrame {
-    
-    Object data[][];
+public class TeamStatsGUI extends JFrame {
     
     ReadWrite rw = new ReadWrite();
+    RowSorter rs = new RowSorter();
     
+    Object data[][], v[];
     double[] at, ad, ab, am, wr, t, d, b, mt, w, games;
-    
     String[] columnNames =  {"Team",
                         "Averge turrets",
                         "Averge dragons",
@@ -36,19 +37,35 @@ public class teamStatsGUI extends JFrame {
     
     Container cp = getContentPane();
     
-    public teamStatsGUI(){
+    public TeamStatsGUI(){
         
-        at = new double[8];
-        ad = new double[8];
-        ab = new double[8];
-        am = new double[8];
-        wr = new double[8];
+        JButton[] btn;
+        TableColumn[] tc;
+        JTable tblTeam;
+        
+        v = new Object[columnNames.length];
+        
+        v[0] = team;
+        v[1] = at = new double[8];
+        v[2] = ad = new double[8];
+        v[3] = ab = new double[8];
+        v[4] = am = new double[8];
+        v[5] = wr = new double[8];
         t = new double[8];
         d = new double[8];
         b = new double[8];
         mt = new double[8];
         w = new double[8];
         games = new double[8];
+        
+        data = new Object[8][6];
+        
+        btn = new JButton[v.length];
+        tc = new TableColumn[v.length];
+        
+        for(int i = 0; i< v.length; i++){
+            btn[i] = new JButton(columnNames[i]);
+        }
         
         for(int i = 0; i < 8; i++){
             rw.readWrite(false, 1, i, 4, 0);
@@ -75,9 +92,6 @@ public class teamStatsGUI extends JFrame {
             am[i] = mt[i]/games[i];
             wr[i] = 100*(w[i]/games[i]);
         }
-        
-        
-        data = new Object[8][6];
                                         
         for(int i = 0; i < 8; i++){
             for(int j = 0; j < 6; j++){
@@ -102,10 +116,17 @@ public class teamStatsGUI extends JFrame {
             }
         }
         
-        JTable tblTeam = new JTable(data, columnNames);
+        tblTeam = new JTable(data, columnNames);
         
-        tblTeam.setEnabled(false);
-        tblTeam.setAutoCreateRowSorter(true);
+        for(int i = 1; i < (v.length); i++){
+            tc[i] = tblTeam.getColumnModel().getColumn(i);
+            tc[i].setHeaderRenderer(new EditableHeaderRenderer(btn[i], (double[])v[i], (double[])v[5], tblTeam));               
+        }
+        
+        for (int c = 0; c < tblTeam.getColumnCount(); c++){
+            Class<?> col_class = tblTeam.getColumnClass(c);
+            tblTeam.setDefaultEditor(col_class, null);        // remove editor
+        }
         
         setTitle("LoL Stats Maker " +version);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);

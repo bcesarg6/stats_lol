@@ -56,7 +56,7 @@ public class Stats_lol {
   
     public static void main(String args[]) throws IOException, URISyntaxException{
         
-        checkVersion checkVersion = new checkVersion();
+        CheckVersion checkVersion = new CheckVersion();
         checkVersion.checkVersion(); //Verifies if the program version is the actual version
         
         
@@ -135,6 +135,6 @@ public class Stats_lol {
             reB.newLine();
         }
         
-        inicialGUI inicialGUI = new inicialGUI(); //Calls inicialGUI        
+        InicialGUI inicialGUI = new InicialGUI(); //Calls InicialGUI        
     }
 }

@@ -1,7 +1,7 @@
 package stats_lol;
 
 /*I will only comment things that are new in each class, 
-90% of the comments in the "chStatsGUI" can be used in all other classes */
+90% of the comments in the "ChStatsGUI" can be used in all other classes */
 
 import java.awt.Container;
 import java.awt.GridBagConstraints;
@@ -12,6 +12,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import static stats_lol.CheckVersion.*;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 
 /**
@@ -20,7 +21,7 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
  */
 
 //This is the second GUI, here you chose witch stat you want to see
-public class statsGUI extends JFrame{
+public class StatsGUI extends JFrame{
     
     JLabel lblTitle = new JLabel("Chose your option");
     JButton btnPlySts = new JButton("Players stats");
@@ -30,10 +31,10 @@ public class statsGUI extends JFrame{
     
     Container cp = getContentPane();
     
-    public statsGUI(){
-        checkVersion checkVersion = new checkVersion();
+    public StatsGUI(){
+        CheckVersion checkVersion = new CheckVersion();
         
-        setTitle("LoL Stats Maker " + checkVersion.version);
+        setTitle("LoL Stats Maker " + version);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setVisible(true);
         setSize(300, 250);
@@ -65,41 +66,20 @@ public class statsGUI extends JFrame{
         
         cp.add(btnTable, c);
         
-        btnPlySts.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                
-                new plyStatsGUI(); //Opens the player table
-               
-                }
+        btnPlySts.addActionListener((ActionEvent e) -> {
+            PlyStatsGUI plyStatsGUI = new PlyStatsGUI(); //Opens the player table
         });
-        btnTeamSts.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                
-                new teamStatsGUI(); //Opens the teams table
-               
-                }
+        
+        btnTeamSts.addActionListener((ActionEvent e) -> {
+            TeamStatsGUI teamStatsGUI = new TeamStatsGUI(); //Opens the teams table
         });
-        btnChSts.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                
-                new chStatsGUI(); //Opens the champion table
-               
-                }
+        
+        btnChSts.addActionListener((ActionEvent e) -> {
+            ChStatsGUI chStatsGUI = new ChStatsGUI(); //Opens the champion table
         });
-        btnTable.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                
-                new ScoreTableGUI(); //Opens the player table
-               
-                }
+        
+        btnTable.addActionListener((ActionEvent e) -> {
+            ScoreTableGUI scoreTableGUI = new ScoreTableGUI(); //Opens the player table
         });
     }
 }

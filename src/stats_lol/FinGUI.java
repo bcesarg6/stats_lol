@@ -11,7 +11,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import static stats_lol.checkVersion.*;
+import static stats_lol.CheckVersion.*;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 
 /**
@@ -20,7 +20,7 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
  */
 
 //GUI called when the user finishes putting data
-public class finGUI extends JFrame {
+public class FinGUI extends JFrame {
     
     JLabel lblFin = new JLabel("Match added successfuly");
     JButton btnFin = new JButton("Finish");
@@ -29,7 +29,7 @@ public class finGUI extends JFrame {
     
     ReadWrite rw = new ReadWrite();
     
-    public finGUI(int d, int a, int b) {
+    public FinGUI(int d, int a, int b) {
         
         setTitle("LoL Stats Maker " + version);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);

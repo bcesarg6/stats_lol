@@ -13,7 +13,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import static stats_lol.Stats_lol.*;
-import static stats_lol.checkVersion.*;
+import static stats_lol.CheckVersion.*;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 
 /**
@@ -22,7 +22,7 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
  */
 
 //First GUI to insert new game. Select the teams.
-public class insMtGUI extends JFrame{
+public class InsMtGUI extends JFrame{
     
     int blueIn;
     int redIn;
@@ -37,7 +37,7 @@ public class insMtGUI extends JFrame{
     
     Container cp = getContentPane();
     
-    public insMtGUI(int d){
+    public InsMtGUI(int d){
        
         setTitle("LoL Stats Maker " + version);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -86,6 +86,7 @@ public class insMtGUI extends JFrame{
             redIn = red.getSelectedIndex();
             
             if(blueIn != redIn){ //If the teams selected are different
+                
                 for(int i = 0; i < 8; i++){
                     if(blueIn == i){
                         rw.readWrite(true, 1, i, 1, 2);
@@ -97,12 +98,12 @@ public class insMtGUI extends JFrame{
                 
                 dispose();
                 
-                insIDGUI insIDGUI = new insIDGUI(d, blueIn, redIn); //Sends the index to the next class
+                InsIDGUI insIDGUI = new InsIDGUI(d, blueIn, redIn); //Sends the index to the next class
             }
             
             else{
                 
-                errGUI errGUI = new errGUI(); //Else calls the error GUI
+                ErrGUI errGUI = new ErrGUI(); //Else calls the error GUI
             }
         });
     }

@@ -7,12 +7,14 @@ import java.awt.Container;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import static stats_lol.Stats_lol.*;
-import static stats_lol.checkVersion.*;
+import static stats_lol.CheckVersion.*;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
+import javax.swing.table.TableColumn;
 
 /**
  *
@@ -20,16 +22,15 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
  */
 
 //Player stats table
-public class plyStatsGUI extends JFrame {
+public class PlyStatsGUI extends JFrame {
     
-    Object data[][];
+    ReadWrite rw = new ReadWrite();
+    RowSorter rs = new RowSorter();
     
+    Object data[][], v[];
     double[] k, af, f, g, gm, kp,
              kl, dt, as, cr, gl,
              games, time, tk;
-    
-    ReadWrite rw = new ReadWrite();
-    
     String[] columnNames =  {"Player",
                         "KDA",
                         "Averge farm",
@@ -40,22 +41,38 @@ public class plyStatsGUI extends JFrame {
     
     Container cp = getContentPane();
     
-    public plyStatsGUI(){
+    public PlyStatsGUI(){
         
+        JButton[] btn;
+        TableColumn[] tc;
+        JTable tblPly;
+        
+        v = new Object[columnNames.length];
+        
+        v[0] = player;
+        v[1] = k = new double[40];
+        v[2] = af = new double[40];
+        v[3] = f = new double[40];
+        v[4] = g = new double[40];
+        v[5] = gm = new double[40];
+        v[6] = kp = new double[40];
         kl = new double[40];
         dt = new double[40];
         as = new double[40];
         cr = new double[40];
         gl = new double[40];
-        k = new double[40];
-        af = new double[40];
-        f = new double[40];
-        g = new double[40];
-        gm = new double[40];
-        kp = new double[40];
         games = new double[8];
         time = new double[8];
         tk = new double[8];
+        
+        data = new Object[40][7];
+        
+        btn = new JButton[v.length];
+        tc = new TableColumn[v.length];
+        
+        for(int i = 0; i< v.length; i++){
+            btn[i] = new JButton(columnNames[i]);
+        }
         
         for(int i = 0; i < 40; i++){
             for(int h = 1; h < 6; h++){
@@ -118,8 +135,6 @@ public class plyStatsGUI extends JFrame {
             gm[i] = (int) (1000*(gl[i]/time[j]));
             kp[i] = (int) ((kl[i] + as[i])/tk[j]) ;
         }
-        
-        data = new Object[40][7];
                                         
         for(int i = 0; i < 40; i++){
             for(int j = 0; j < 7; j++){
@@ -147,12 +162,20 @@ public class plyStatsGUI extends JFrame {
             }
         }
         
-        JTable tblPly = new JTable(data, columnNames); 
+        tblPly = new JTable(data, columnNames); 
+        
+        for(int i = 1; i < (v.length); i++){
+            tc[i] = tblPly.getColumnModel().getColumn(i);
+            tc[i].setHeaderRenderer(new EditableHeaderRenderer(btn[i], (double[])v[i], (double[])v[1], tblPly));               
+        }
+        
+        for (int c = 0; c < tblPly.getColumnCount(); c++){
+            
+            Class<?> col_class = tblPly.getColumnClass(c);
+            tblPly.setDefaultEditor(col_class, null);        // remove editor
+        }
+        
         JScrollPane scroll = new JScrollPane(tblPly);
-        
-        tblPly.setEnabled(false);
-        
-        tblPly.setAutoCreateRowSorter(true);
         
         setTitle("LoL Stats Maker " + version);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);

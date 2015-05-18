@@ -13,7 +13,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import static stats_lol.Stats_lol.*;
-import static stats_lol.checkVersion.*;
+import static stats_lol.CheckVersion.*;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 
 /**
@@ -23,7 +23,7 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 
 /*Here the user inserts the red side data (after the blue data). 
 (The code here is almost the same as in the insBDGUI, just a few chages (commented))*/
-public class insRDGUI extends JFrame{
+public class InsRDGUI extends JFrame{
     
     String[] ch, kl, as, dt, cr, gl;
     int tr, dr, br, t;
@@ -53,7 +53,7 @@ public class insRDGUI extends JFrame{
     
     Container cp = getContentPane();
     
-    public insRDGUI(int d, int a, int b, int h){ //Gets the second index
+    public InsRDGUI(int d, int a, int b, int h){ //Gets the second index
         
         ch = new String[5];
         kl = new String[5];
@@ -405,18 +405,18 @@ public class insRDGUI extends JFrame{
             rw.readWrite(true, 1, b, 6, br);
             
             if(d == 1){
-                insIDGUI insIDGUI = new insIDGUI((d+2), b, a);
+                InsIDGUI insIDGUI = new InsIDGUI((d+2), b, a);
                 
                 dispose();
             }
             else if(d == 0){
-                insIDGUI insIDGUI = new insIDGUI((d-2), b, a);
+                InsIDGUI insIDGUI = new InsIDGUI((d-2), b, a);
                 
                 dispose();
             }
             
             else if((d == -1) || (d == -2) || (d == 3) || (d == 4)){              
-                finGUI finGUI = new finGUI(d, b, a); //Calls the final GUI
+                FinGUI finGUI = new FinGUI(d, b, a); //Calls the final GUI
                 
                 dispose();              
             }

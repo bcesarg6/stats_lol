@@ -8,7 +8,6 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -16,7 +15,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.ButtonGroup;
 import static stats_lol.Stats_lol.*;
-import static stats_lol.checkVersion.*;
+import static stats_lol.CheckVersion.*;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 
 /**
@@ -25,13 +24,14 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
  */
 
 //Here is the second GUI called to insert new game, the user puts the bans, winner side and match time
-public class insIDGUI extends JFrame{
+public class InsIDGUI extends JFrame{
     
     ReadWrite rw = new ReadWrite();
     
     public String ban1, ban2, ban3, ban4, ban5, ban6, nB, mtT, w1;
     int mtt, i, t;
     int h = 0;
+    
     JLabel lblBans = new JLabel("       Bans        "); //Spacement required to put things in the middle
     JLabel lblWin = new JLabel("Winner side");
     JLabel lblTmp = new JLabel("Match time");
@@ -50,7 +50,7 @@ public class insIDGUI extends JFrame{
     
     Container cp = getContentPane();
     
-    public insIDGUI(int d, int a, int b){ //Recieves the dropboxes index
+    public InsIDGUI(int d, int a, int b){ //Recieves the dropboxes index
         
         t = d;
                       
@@ -187,7 +187,7 @@ public class insIDGUI extends JFrame{
                     break;
             }
             
-            insBDGUI insBDGUI = new insBDGUI(t, a, b, h); //Drpoboxes index needed to the next class
+            InsBDGUI insBDGUI = new InsBDGUI(t, a, b, h); //Drpoboxes index needed to the next class
             
             dispose();
         });

@@ -9,7 +9,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import static stats_lol.checkVersion.*;
+import static stats_lol.CheckVersion.*;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 
 /**
@@ -19,13 +19,13 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 
 //This GUI is called if the teams selected in the insMTGUI are equal
 
-public class errGUI extends JFrame{
+public class ErrGUI extends JFrame{
     
     JLabel lblErr = new JLabel("Same teams, select different teams"); //Sets the label and the content on it
     
     Container cp = getContentPane();
     
-    public errGUI(){
+    public ErrGUI(){
         
         setTitle("LoL Stats Maker " + version);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);

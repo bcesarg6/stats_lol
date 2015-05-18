@@ -13,7 +13,7 @@ import java.net.URISyntaxException;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import static stats_lol.checkVersion.*;
+import static stats_lol.CheckVersion.*;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 
 /**
@@ -22,7 +22,7 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
  */
 
 //This is the first GUI of the program, here you chose between seeing stats or inserting new data
-public class inicialGUI extends JFrame{
+public class InicialGUI extends JFrame{
            
     JLabel lblTitle = new JLabel("Select your option");
     JButton btnStats = new JButton("See stats");
@@ -31,7 +31,7 @@ public class inicialGUI extends JFrame{
     
     Container cp = getContentPane();
     
-    public inicialGUI(){
+    public InicialGUI(){
         
         setTitle("LoL Stats Maker " + version);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -64,26 +64,27 @@ public class inicialGUI extends JFrame{
         
         btnStats.addActionListener((ActionEvent e) -> {
             
-            statsGUI statsGUI = new statsGUI(); //Opens the statsGUI if clicked
+            StatsGUI statsGUI = new StatsGUI(); //Opens the StatsGUI if clicked
             
         });
         
         btnInsMt.addActionListener((ActionEvent e) -> {
             
-            insMtGUI insMtGUI = new insMtGUI(0);
+            InsMtGUI insMtGUI = new InsMtGUI(0);
             
         });
         
         btnClear.addActionListener((ActionEvent e) -> {
-            
+            int r = 1;
             ClearData cD = new ClearData();
             
             try {
-                cD.clearData();
+                r = cD.clearData();
             } 
             catch (IOException | URISyntaxException ex) {}
-            
-            dispose();
+            if(r == 0){
+                dispose();
+            }
         });
     }
 }

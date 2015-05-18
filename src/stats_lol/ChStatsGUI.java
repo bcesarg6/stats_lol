@@ -4,12 +4,14 @@ import java.awt.Container; //Imports the container that the GUI is in
 import java.awt.GridBagConstraints; //The constrains of the conatainer
 import java.awt.GridBagLayout; //The layout of the container
 import java.awt.Insets; //Spacements
+import javax.swing.JButton;
 import javax.swing.JFrame; //The frame
 import javax.swing.JScrollPane;
 import javax.swing.JTable; //Table
 import static stats_lol.Stats_lol.*;
-import static stats_lol.checkVersion.*;
+import static stats_lol.CheckVersion.*;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE; //Imports the class that closes the program when you hit the "x"
+import javax.swing.table.TableColumn;
 
 /**
  *
@@ -17,15 +19,14 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE; //Imports the class 
  */
 
 //Table with the champion stats
-public class chStatsGUI extends JFrame{
-    
-    Object data[][];
-    
-    double[] pr, br, wr, p, b, w, g;
-    int tGames;
+public class ChStatsGUI extends JFrame{
     
     ReadWrite rw = new ReadWrite();
+    RowSorter rs = new RowSorter();
     
+    Object data[][], v[];
+    double[] pr, br, wr, p, b, w, g;
+    int tGames;
     String[] columnNames =  {"champion",//Set the column Names
                         "pick %", 
                         "ban %",
@@ -33,16 +34,33 @@ public class chStatsGUI extends JFrame{
     
     Container cp = getContentPane(); //Calls the container
     
-    public chStatsGUI(){
+    public ChStatsGUI(){
         
-        pr = new double[124];
-        br = new double[124];
-        wr = new double[124];
+        JButton[] btn;
+        TableColumn[] tc;
+        JTable tblCh;
+        
+        v = new Object[columnNames.length];
+        
+        v[0] = champion;
+        v[1] = pr = new double[124];
+        v[2] = br = new double[124];
+        v[3] = wr = new double[124];
         b = new double[124];
         p = new double[124];
         w = new double[124];
         g = new double[124];
         
+        data = new Object[124][4];
+        
+        btn = new JButton[v.length];
+        tc = new TableColumn[v.length];
+        
+        for(int i = 0; i< v.length; i++){
+            btn[i] = new JButton(columnNames[i]);
+        }
+        
+        //this part reads the data of the archives and make the calcs to show the stats
         for(int i = 0; i < 8; i++){
             rw.readWrite(false, 1, i, 1, 0);
             tGames += Integer.parseInt(rw.rl);
@@ -72,8 +90,6 @@ public class chStatsGUI extends JFrame{
             br[i] = 100*(b[i]/tGames);
             wr[i] = 100*(w[i]/g[i]);
         }
-        
-        data = new Object[124][4];
                                         //Set the content of each column in respective order
         for(int i = 0; i < 124; i++){
             for(int j = 0; j < 4; j++){
@@ -92,10 +108,17 @@ public class chStatsGUI extends JFrame{
             }
         }
         
-        JTable tblCh = new JTable(data, columnNames); //Calls the table
+        tblCh = new JTable(data, columnNames); //Calls the table
         
-        tblCh.setEnabled(false); //You can't edit the cells (false)
-        tblCh.setAutoCreateRowSorter(true);
+        for(int i = 1; i < (v.length); i++){
+            tc[i] = tblCh.getColumnModel().getColumn(i);
+            tc[i].setHeaderRenderer(new EditableHeaderRenderer(btn[i], (double[])v[i], (double[])v[2], tblCh));               
+        }
+        
+        for (int c = 0; c < tblCh.getColumnCount(); c++){
+            Class<?> col_class = tblCh.getColumnClass(c);
+            tblCh.setDefaultEditor(col_class, null);        // remove editor
+        }
         
         JScrollPane scroll = new JScrollPane(tblCh); //Puts the table inside of a scroll panel
         

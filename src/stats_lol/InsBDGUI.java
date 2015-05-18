@@ -13,7 +13,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import static stats_lol.Stats_lol.*;
-import static stats_lol.checkVersion.*;
+import static stats_lol.CheckVersion.*;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 
 /**
@@ -22,7 +22,7 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
  */
 
 //After the 2º GUI the user inserts the blue side data here
-public class insBDGUI extends JFrame{
+public class InsBDGUI extends JFrame{
     
     String[] ch, kl, as, dt, cr, gl;
     int tr, dr, br, t;
@@ -53,7 +53,7 @@ public class insBDGUI extends JFrame{
     
     Container cp = getContentPane();
     
-    public insBDGUI(int d, int a, int b, int h){ //Recieves the data of the insMtGUI (dropbox index 1 and dropbox index 2)
+    public InsBDGUI(int d, int a, int b, int h){ //Recieves the data of the insMtGUI (dropbox index 1 and dropbox index 2)
         
         ch = new String[5];
         kl = new String[5];
@@ -412,7 +412,7 @@ public class insBDGUI extends JFrame{
             rw.readWrite(true, 1, a, 5, dr);
             rw.readWrite(true, 1, a, 6, br);
             
-            insRDGUI insRDGUI = new insRDGUI(d, a, b, h); //Go to the next step giving the information of the dropbox index
+            InsRDGUI insRDGUI = new InsRDGUI(d, a, b, h); //Go to the next step giving the information of the dropbox index
             
             dispose();
         });
