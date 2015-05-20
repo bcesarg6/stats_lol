@@ -25,7 +25,6 @@ import javax.swing.table.TableColumn;
 public class PlyStatsGUI extends JFrame {
     
     ReadWrite rw = new ReadWrite();
-    RowSorter rs = new RowSorter();
     
     Object data[][], v[];
     double[] k, af, f, g, gm, kp,
@@ -37,7 +36,14 @@ public class PlyStatsGUI extends JFrame {
                         "Farm per minute",
                         "Gold",
                         "Gold per minute",
-                        "kill participation",};
+                        "Kill participation",};
+    String[] toolTipText = {"Player name", 
+                        "(Kill + assists)/deaths",
+                        "Total farm/total games",
+                        "Total farm/total time played",
+                        "Total gold/total games",
+                        "Total gold/total time played",
+                        "Total kill of the team/player's kill+assists"};
     
     Container cp = getContentPane();
     
@@ -142,31 +148,31 @@ public class PlyStatsGUI extends JFrame {
                     data[i][j] = player[i];
                 }
                 else if(j == 1){
-                    data[i][j] = k[i];
+                    data[i][j] = (int)k[i];
                 }
                 else if(j == 2){
-                    data[i][j] = af[i];
+                    data[i][j] = (int)af[i];
                 }
                 else if(j == 3){
-                    data[i][j] = f[i];
+                    data[i][j] = (int)f[i];
                 }
                 else if(j == 4){
-                    data[i][j] = g[i];
+                    data[i][j] = (int)g[i];
                 }
                 else if(j == 5){
-                    data[i][j] = gm[i];                  
+                    data[i][j] = (int)gm[i];                  
                 }
                 else if(j == 6){
-                    data[i][j] = kp[i];                   
+                    data[i][j] = (int)kp[i];                   
                 }
             }
         }
         
         tblPly = new JTable(data, columnNames); 
         
-        for(int i = 1; i < (v.length); i++){
+        for(int i = (v.length-1); i > -1; i--){
             tc[i] = tblPly.getColumnModel().getColumn(i);
-            tc[i].setHeaderRenderer(new EditableHeaderRenderer(btn[i], (double[])v[i], (double[])v[1], tblPly));               
+            tc[i].setHeaderRenderer(new EditableHeaderRenderer(btn[i], i, (double[])v[1], tblPly, toolTipText[i]));
         }
         
         for (int c = 0; c < tblPly.getColumnCount(); c++){

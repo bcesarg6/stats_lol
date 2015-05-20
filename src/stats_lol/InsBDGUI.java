@@ -51,6 +51,23 @@ public class InsBDGUI extends JFrame{
     JTextField txtBaron = new JTextField();
     JButton btnNext = new JButton("Next");
     
+    final int pl(int i, int a){
+        a = (a*5)+i; 
+        return a;
+    }
+    
+    final String txtToolTip(String pl, int i) {
+        String[] txt = {"Champion used by " + pl,
+                        "Total kills of " + pl,
+                        "Total assists of " + pl,
+                        "Total deaths of" + pl,
+                        "Total farm of " + pl,
+                        "Total gold of " + pl};
+        return txt[i];
+    }
+    
+    String[] ply;
+    
     Container cp = getContentPane();
     
     public InsBDGUI(int d, int a, int b, int h){ //Recieves the data of the insMtGUI (dropbox index 1 and dropbox index 2)
@@ -61,6 +78,7 @@ public class InsBDGUI extends JFrame{
         as = new String[5];
         cr = new String[5];
         gl = new String[5];
+        ply = new String[5];
         
         kill = new int[5];
         death = new int[5];
@@ -68,7 +86,7 @@ public class InsBDGUI extends JFrame{
         creep = new int[5];
         gold = new int[5];
         
-        lblPlayer = new JLabel[40];
+        lblPlayer = new JLabel[5];
         
         txtChamp = new JTextField[5];
         txtKill = new JTextField[5];
@@ -77,33 +95,32 @@ public class InsBDGUI extends JFrame{
         txtCreep = new JTextField[5];
         txtGold = new JTextField[5];
         
-        for(int i = 0; i < 40; i++){
-            lblPlayer[i] = new JLabel(player[i]);
-        }
-        
         for(int i = 0; i < 5; i++){
+            ply[i] = player[pl(a,i)];
+            lblPlayer[i] = new JLabel(ply[i]);
+            
             txtChamp[i] = new JTextField();
-        }
-        
-        for(int i = 0; i < 5; i++){
+            txtChamp[i].setToolTipText(txtToolTip(ply[i], 0));
+            
             txtKill[i] = new JTextField();
-        }
-        
-        for(int i = 0; i < 5; i++){
+            txtKill[i].setToolTipText(txtToolTip(ply[i], 1));
+            
             txtAssist[i] = new JTextField();
-        }
-        
-        for(int i = 0; i < 5; i++){
+            txtAssist[i].setToolTipText(txtToolTip(ply[i], 2));
+            
             txtDeath[i] = new JTextField();
-        }
-        
-        for(int i = 0; i < 5; i++){
+            txtDeath[i].setToolTipText(txtToolTip(ply[i], 3));
+            
             txtCreep[i] = new JTextField();
+            txtCreep[i].setToolTipText(txtToolTip(ply[i], 4));
+            
+            txtGold[i] = new JTextField();
+            txtGold[i].setToolTipText(txtToolTip(ply[i], 5));
         }
         
-        for(int i = 0; i < 5; i++){
-            txtGold[i] = new JTextField();
-        }
+        txtTurret.setToolTipText("Turrets destroyed by "+ team[a]);
+        txtDrag.setToolTipText("Turrets destroyed by "+ team[a]);
+        txtBaron.setToolTipText("Turrets destroyed by "+ team[a]);
         
         setTitle("LoL Stats Maker " + version);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -128,63 +145,12 @@ public class InsBDGUI extends JFrame{
  
         cp.add(lblPlayers, c);
        //------------------------
-        switch(a){ //Case team X labels a, b, c, d and e will be put
-            case 0:
-                for(int i = 0; i < 5; i++){
-                    c.gridy = i+2;
-                    cp.add(lblPlayer[i], c);
-                }
-                break;
-                
-            case 1:
-                for(int i = 5; i < 10; i++){
-                    c.gridy = i-3;
-                    cp.add(lblPlayer[i], c);
-                }
-                break;
-                
-            case 2:
-                for(int i = 10; i < 15; i++){
-                    c.gridy = i-8;
-                    cp.add(lblPlayer[i], c);                    
-                }
-                break;
-                
-            case 3:
-                for(int i = 15; i < 20; i++){
-                    c.gridy = i-13;
-                    cp.add(lblPlayer[i], c);
-                }
-                break;
-                
-            case 4:
-                for(int i = 20; i < 25; i++){
-                    c.gridy = i-18;
-                    cp.add(lblPlayer[i], c);
-                }
-                break;
-                
-            case 5:
-                for(int i = 25; i < 30; i++){
-                    c.gridy = i-23;
-                    cp.add(lblPlayer[i], c);
-                }
-                break;
-                
-            case 6:
-                for(int i = 30; i < 35; i++){
-                    c.gridy = i-28;
-                    cp.add(lblPlayer[i], c);
-                }
-                break;
-                
-            case 7:
-                for(int i = 35; i < 40; i++){
-                    c.gridy = i-33;
-                    cp.add(lblPlayer[i], c);
-                }
-                break;               
-        }
+
+        for(int i = 0; i < 5; i++){
+            c.gridy = i+2;
+            cp.add(lblPlayer[i], c);
+        }               
+        
         //------------------
         c.gridy = 1;
         c.gridx = 1;
@@ -302,95 +268,14 @@ public class InsBDGUI extends JFrame{
                 gold[i] = Integer.parseInt(txtGold[i].getText());
             }
             
-            switch(a){
-                case 0:
-                    t = 0;
-                    for(int i = 0; i < 5; i++){
-                        int j = 1;
-                        rw.readWrite(true, 0, i, j++, kill[i-t]);
-                        rw.readWrite(true, 0, i, j++, death[i-t]);
-                        rw.readWrite(true, 0, i, j++, assist[i-t]);
-                        rw.readWrite(true, 0, i, j++, creep[i-t]);
-                        rw.readWrite(true, 0, i, j, gold[i-t]);
-                    }
-                    break;
-                case 1:
-                    t = 5;
-                    for(int i = 5; i < 10; i++){
-                        int j = 1;
-                        rw.readWrite(true, 0, i, j++, kill[i-t]);
-                        rw.readWrite(true, 0, i, j++, death[i-t]);
-                        rw.readWrite(true, 0, i, j++, assist[i-t]);
-                        rw.readWrite(true, 0, i, j++, creep[i-t]);
-                        rw.readWrite(true, 0, i, j, gold[i-t]);
-                    }
-                    break;
-                case 2:
-                    t = 10;
-                    for(int i = 10; i < 15; i++){
-                        int j = 1;
-                        rw.readWrite(true, 0, i, j++, kill[i-t]);
-                        rw.readWrite(true, 0, i, j++, death[i-t]);
-                        rw.readWrite(true, 0, i, j++, assist[i-t]);
-                        rw.readWrite(true, 0, i, j++, creep[i-t]);
-                        rw.readWrite(true, 0, i, j, gold[i-t]);
-                    }
-                    break;
-                case 3:
-                    t = 15;
-                    for(int i = 15; i < 20; i++){
-                        int j = 1;
-                        rw.readWrite(true, 0, i, j++, kill[i-t]);
-                        rw.readWrite(true, 0, i, j++, death[i-t]);
-                        rw.readWrite(true, 0, i, j++, assist[i-t]);
-                        rw.readWrite(true, 0, i, j++, creep[i-t]);
-                        rw.readWrite(true, 0, i, j, gold[i-t]);
-                    }
-                    break;
-                case 4:
-                    t = 20;
-                    for(int i = 20; i < 25; i++){
-                        int j = 1;
-                        rw.readWrite(true, 0, i, j++, kill[i-t]);
-                        rw.readWrite(true, 0, i, j++, death[i-t]);
-                        rw.readWrite(true, 0, i, j++, assist[i-t]);
-                        rw.readWrite(true, 0, i, j++, creep[i-t]);
-                        rw.readWrite(true, 0, i, j, gold[i-t]);
-                    }
-                    break;
-                case 5:
-                    t = 25;
-                    for(int i = 25; i < 30; i++){
-                        int j = 1;
-                        rw.readWrite(true, 0, i, j++, kill[i-t]);
-                        rw.readWrite(true, 0, i, j++, death[i-t]);
-                        rw.readWrite(true, 0, i, j++, assist[i-t]);
-                        rw.readWrite(true, 0, i, j++, creep[i-t]);
-                        rw.readWrite(true, 0, i, j, gold[i-t]);
-                    }
-                    break;
-                case 6:
-                    t = 30;
-                    for(int i = 30; i < 35; i++){
-                        int j = 1;
-                        rw.readWrite(true, 0, i, j++, kill[i-t]);
-                        rw.readWrite(true, 0, i, j++, death[i-t]);
-                        rw.readWrite(true, 0, i, j++, assist[i-t]);
-                        rw.readWrite(true, 0, i, j++, creep[i-t]);
-                        rw.readWrite(true, 0, i, j, gold[i-t]);
-                    }
-                    break;
-                case 7:
-                    t = 35;
-                    for(int i = 35; i < 40; i++){
-                        int j = 1;
-                        rw.readWrite(true, 0, i, j++, kill[i-t]);
-                        rw.readWrite(true, 0, i, j++, death[i-t]);
-                        rw.readWrite(true, 0, i, j++, assist[i-t]);
-                        rw.readWrite(true, 0, i, j++, creep[i-t]);
-                        rw.readWrite(true, 0, i, j, gold[i-t]);
-                    }
-                    break;
+            
+            for(int i = 0; i < 5; i++){
+                int j = 1;
+                rw.readWrite(true, 0, pl(a, i), j++, kill[i]);
+                rw.readWrite(true, 0, pl(a, i), j++, death[i]);
+                rw.readWrite(true, 0, pl(a, i), j++, assist[i]);
+                rw.readWrite(true, 0, pl(a, i), j++, creep[i]);
+                rw.readWrite(true, 0, pl(a, i), j, gold[i]);
             }
             
             for(int i = 0; i < 124; i++){

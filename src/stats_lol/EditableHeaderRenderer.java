@@ -20,26 +20,25 @@ class EditableHeaderRenderer implements TableCellRenderer {
     private JTable table = null;
     private MouseEventReposter reporter = null;
     private final JButton editor;
-    private final double[] d, k;
-    private final JTable tb;
     public int cl = 0;
 
-    EditableHeaderRenderer(JButton editor, double d[], double k[], JTable tb){
+    EditableHeaderRenderer(JButton editor, int colm, double k[], JTable tb, String txt){
         this.editor = editor;
-        this.d = d;
-        this.k = k;
-        this.tb = tb;
+
         this.editor.setBorder(UIManager.getBorder("TableHeader.cellBorder"));
         
-        rs.rowSorter(d, k, tb, cl);
+        rs.rowSorter(colm, k, tb, 0);
         cl = 2;
         
+        editor.setToolTipText(txt);
+        
         editor.addActionListener((ActionEvent e) -> {
-            rs.rowSorter(d, k, tb, cl);
+            int c = tb.convertColumnIndexToView(colm);
+            rs.rowSorter(c, k, tb, cl);
             cl++;
         });
     }
-
+    
     @Override
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int col) {
         if (table != null && this.table != table) {
@@ -91,6 +90,7 @@ class EditableHeaderRenderer implements TableCellRenderer {
             if (dispatchComponent == null) {
                 return false;
             }
+            
             MouseEvent e2 = SwingUtilities.convertMouseEvent(header, e, dispatchComponent);
             dispatchComponent.dispatchEvent(e2);
             return true;
@@ -122,4 +122,5 @@ class EditableHeaderRenderer implements TableCellRenderer {
             header.remove(editor);
         }
     }
+    
 }

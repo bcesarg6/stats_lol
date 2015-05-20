@@ -23,7 +23,6 @@ import javax.swing.table.TableColumn;
 public class ScoreTableGUI extends JFrame {
     
     ReadWrite rw = new ReadWrite();
-    RowSorter rs = new RowSorter();
 
     double[] wr, pa, p, g, w, t, l, tw, tl, tg;
     Object data[][], v[];
@@ -37,7 +36,16 @@ public class ScoreTableGUI extends JFrame {
                         "Total loses",
                         "Win ratio",
                         "%",};
-    int colm = columnNames.length;
+    String[] toolTipText = {"Team name",
+                        "Win = 3, T = 1, L = 0",
+                        "Total BO2 games",
+                        "BO2 wins",
+                        "BO2 ties",
+                        "BO2 loses",
+                        "Single games wins",
+                        "Single games loses",
+                        "Total single wins/total single games",
+                        "Points/total points played"};
     
     Container cp = getContentPane();
 
@@ -47,7 +55,7 @@ public class ScoreTableGUI extends JFrame {
         TableColumn[] tc;
         JTable tblScore;
         
-        v = new Object[colm];
+        v = new Object[columnNames.length];
         
         v[0] = team;
         v[1] = p = new double[8];
@@ -121,21 +129,21 @@ public class ScoreTableGUI extends JFrame {
                     data[i][j] = (int)tl[i];
                 }
                 else if(j == 8){
-                    data[i][j] = Math.round(wr[i]);
+                    data[i][j] = (int)Math.round(wr[i]);
                 }
                 else if(j == 9){
-                    data[i][j] = Math.round(pa[i]);
+                    data[i][j] = (int)Math.round(pa[i]);
                 }
             }
         }
         
         tblScore = new JTable(data, columnNames);
         
-        for(int i = 1; i < v.length; i++){
+        for(int i = (v.length-1); i > -1; i--){
             tc[i] = tblScore.getColumnModel().getColumn(i);
-            tc[i].setHeaderRenderer(new EditableHeaderRenderer(btn[i], (double[])v[i], (double[])v[1], tblScore));               
+            tc[i].setHeaderRenderer(new EditableHeaderRenderer(btn[i], i, (double[])v[1], tblScore, toolTipText[i]));
         }   //sets the type of sorter for each column    
-
+        
         for (int c = 0; c < tblScore.getColumnCount(); c++){
             
             Class<?> col_class = tblScore.getColumnClass(c);
@@ -165,6 +173,6 @@ public class ScoreTableGUI extends JFrame {
         
         cp.add(tblScore, c);
         
-        pack(); 
+        pack();
     }
 }

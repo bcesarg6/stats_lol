@@ -12,6 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import static stats_lol.Stats_lol.*;
 import static stats_lol.CheckVersion.*;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
@@ -31,8 +32,8 @@ public class InsMtGUI extends JFrame{
     
     JLabel lblBlue = new JLabel("Blue side:");
     JLabel lblRed = new JLabel("Red side:");
-    JComboBox blue = new JComboBox(team); //Creates a combobox (aka dropbox) with the team String (from the main class)
-    JComboBox red = new JComboBox(team); //Above
+    JComboBox blue = new JComboBox<>(team); //Creates a combobox (aka dropbox) with the team String (from the main class)
+    JComboBox red = new JComboBox<>(team); //Above
     JButton btnNext = new JButton("Next");
     
     Container cp = getContentPane();
@@ -102,8 +103,7 @@ public class InsMtGUI extends JFrame{
             }
             
             else{
-                
-                ErrGUI errGUI = new ErrGUI(); //Else calls the error GUI
+                JOptionPane.showMessageDialog(cp, "Same teams, select different teams", "Error", JOptionPane.OK_OPTION);
             }
         });
     }

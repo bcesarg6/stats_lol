@@ -1,0 +1,16 @@
+a1.0:
+First realese
+
+a1.1:
+Added row sorter
+
+a1.1.1
+Rewrited the way the program reads the data
+
+a1.1.2
+Made an own row sorter
+
+a1.1.3
+Rewrited the way the sorter works
+Added tooltips
+Minor changes

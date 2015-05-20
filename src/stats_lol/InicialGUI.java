@@ -25,13 +25,25 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 public class InicialGUI extends JFrame{
            
     JLabel lblTitle = new JLabel("Select your option");
-    JButton btnStats = new JButton("See stats");
-    JButton btnInsMt = new JButton("Insert new match");
-    JButton btnClear = new JButton("Clear all data");
+    JButton[] btn;
+    
+    String btnTxt[] = {"See stats",
+                    "Insert new match",
+                    "Clear all data"};
+    String btnToolTipTxt[] = {"Opens a new interface with stats options",
+                        "Starts the insertion of a new game",
+                        "Clears all data made untill now"};
     
     Container cp = getContentPane();
     
     public InicialGUI(){
+        
+        btn = new JButton[3];
+        
+        for(int i = 0; i < btn.length; i++){
+            btn[i] = new JButton(btnTxt[i]);
+            btn[i].setToolTipText(btnToolTipTxt[i]);
+        }
         
         setTitle("LoL Stats Maker " + version);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -52,29 +64,29 @@ public class InicialGUI extends JFrame{
         c.gridy = 1;
         c.anchor = GridBagConstraints.CENTER;
         
-        cp.add(btnStats, c);
+        cp.add(btn[0], c);
         
         c.gridy = 2;
         
-        cp.add(btnInsMt, c);
+        cp.add(btn[1], c);
         
         c.gridy = 3;
         
-        cp.add(btnClear, c);
+        cp.add(btn[2], c);
         
-        btnStats.addActionListener((ActionEvent e) -> {
+        btn[0].addActionListener((ActionEvent e) -> {
             
             StatsGUI statsGUI = new StatsGUI(); //Opens the StatsGUI if clicked
             
         });
         
-        btnInsMt.addActionListener((ActionEvent e) -> {
+        btn[1].addActionListener((ActionEvent e) -> {
             
             InsMtGUI insMtGUI = new InsMtGUI(0);
             
         });
         
-        btnClear.addActionListener((ActionEvent e) -> {
+        btn[2].addActionListener((ActionEvent e) -> {
             int r = 1;
             ClearData cD = new ClearData();
             

@@ -24,7 +24,6 @@ import javax.swing.table.TableColumn;
 public class TeamStatsGUI extends JFrame {
     
     ReadWrite rw = new ReadWrite();
-    RowSorter rs = new RowSorter();
     
     Object data[][], v[];
     double[] at, ad, ab, am, wr, t, d, b, mt, w, games;
@@ -34,6 +33,12 @@ public class TeamStatsGUI extends JFrame {
                         "Averge Barons",
                         "Averge match time",
                         "Win ratio",};
+    String[] toolTipText = {"Team name",
+                        "Total turrets/total games",
+                        "Total dragons/total games",
+                        "Total barons/total games",
+                        "Total time played/total games",
+                        "Total wins/total games"};
     
     Container cp = getContentPane();
     
@@ -99,28 +104,28 @@ public class TeamStatsGUI extends JFrame {
                     data[i][j] = team[i];
                 }
                 else if(j == 1){
-                    data[i][j] = at[i];
+                    data[i][j] = (int)at[i];
                 }
                 else if(j == 2){
-                    data[i][j] = ad[i];
+                    data[i][j] = (int)ad[i];
                 }
                 else if(j == 3){
-                    data[i][j] = ab[i];
+                    data[i][j] = (int)ab[i];
                 }
                 else if(j == 4){
-                    data[i][j] = am[i];
+                    data[i][j] = (int)am[i];
                 }
                 else if(j == 5){
-                    data[i][j] = wr[i];                  
+                    data[i][j] = (int)wr[i];                  
                 }
             }
         }
         
         tblTeam = new JTable(data, columnNames);
         
-        for(int i = 1; i < (v.length); i++){
+        for(int i = (v.length-1); i > -1; i--){
             tc[i] = tblTeam.getColumnModel().getColumn(i);
-            tc[i].setHeaderRenderer(new EditableHeaderRenderer(btn[i], (double[])v[i], (double[])v[5], tblTeam));               
+            tc[i].setHeaderRenderer(new EditableHeaderRenderer(btn[i], i, (double[])v[5], tblTeam, toolTipText[i]));
         }
         
         for (int c = 0; c < tblTeam.getColumnCount(); c++){

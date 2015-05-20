@@ -28,37 +28,52 @@ public class InsIDGUI extends JFrame{
     
     ReadWrite rw = new ReadWrite();
     
-    public String ban1, ban2, ban3, ban4, ban5, ban6, nB, mtT, w1;
-    int mtt, i, t;
+    public String ban[], nB, mtT, w1;
+    int mtt, t;
     int h = 0;
     
     JLabel lblBans = new JLabel("       Bans        "); //Spacement required to put things in the middle
     JLabel lblWin = new JLabel("Winner side");
     JLabel lblTmp = new JLabel("Match time");
     JLabel lbl = new JLabel("                        ");//See above
-    JTextField txtBan1 = new JTextField();
-    JTextField txtBan2 = new JTextField();
-    JTextField txtBan3 = new JTextField();
-    JTextField txtBan4 = new JTextField();
-    JTextField txtBan5 = new JTextField();
-    JTextField txtBan6 = new JTextField();
+    JTextField txtBan[];
     JTextField txtTmp = new JTextField();
     JRadioButton rbtBlue = new JRadioButton(sideB);
     JRadioButton rbtRed = new JRadioButton(sideR);
     ButtonGroup  btgWin = new ButtonGroup(); //This putts the radio buttons inside one thing so they can be used at the same time
     JButton btnNext = new JButton("Next");    
     
+    final String toolTipText(int a, int b, int i){
+        String[] txt = {"Champion banned in the match "+team[a]+" vs "+team[b],
+                        "Select if team"+team[a]+" won",
+                        "Select if team"+team[b]+" won",
+                        "Time of the match"};
+        return txt[i];
+    }
+    
     Container cp = getContentPane();
     
     public InsIDGUI(int d, int a, int b){ //Recieves the dropboxes index
         
         t = d;
+        
+        txtBan = new JTextField[6];
+        ban = new String[6];
+        
+        for(int i = 0; i < txtBan.length; i++){
+            txtBan[i] = new JTextField();
+            txtBan[i].setToolTipText(toolTipText(a, b, 0));
+        }
+        
+        txtTmp.setToolTipText(toolTipText(a, b, 3));
                       
         btgWin.add(rbtBlue); //Puts the radio button blue insede the buttongroup
         btgWin.add(rbtRed); //Same as above gut the red
         
         rbtBlue.setActionCommand(sideB);
+        rbtBlue.setToolTipText(toolTipText(a, b, 1));
         rbtRed.setActionCommand(sideR);
+        rbtRed.setToolTipText(toolTipText(a, b, 2));
         
         setTitle("LoL Stats Maker " + version);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -86,31 +101,12 @@ public class InsIDGUI extends JFrame{
         
         cp.add(lblWin, c);
         
-        c.gridx = 0;
-        c.gridy = 1;
         
-        cp.add(txtBan1, c);
-        
-        c.gridx = 1;
-        
-        cp.add(txtBan2, c);
-        
-        c.gridx = 2;
-        
-        cp.add(txtBan3, c);
-        
-        c.gridx = 0;
-        c.gridy = 2;
-        
-        cp.add(txtBan4, c);
-        
-        c.gridx = 1;
-        
-        cp.add(txtBan5, c);
-        
-        c.gridx = 2;
-        
-        cp.add(txtBan6, c);
+        for(int i = 0; i < txtBan.length; i++){
+            c.gridx = i < 3 ? i : (i-3);
+            c.gridy = i < 3 ? 1 : 2;
+            cp.add(txtBan[i], c);
+        }
         
         c.gridx = 3;
         c.gridy = 1;
@@ -140,34 +136,16 @@ public class InsIDGUI extends JFrame{
         
         btnNext.addActionListener((ActionEvent e) -> {
             
-            ban1 = txtBan1.getText();
-            ban2 = txtBan2.getText();
-            ban3 = txtBan3.getText();
-            ban4 = txtBan4.getText();
-            ban5 = txtBan5.getText();
-            ban6 = txtBan6.getText();
+            for(int i = 0; i < ban.length; i++){
+                ban[i] = txtBan[i].getText();
+            }
             
             mtT = txtTmp.getText();
             mtt = Integer.parseInt(mtT);
             
-            for(i = 0; i < 124; i++){
+            for(int i = 0; i < 124; i++){
                 
-                if(ban1.equals(champion[i])){
-                    rw.readWrite(true, 2, i, 1, 1);
-                }
-                else if(ban2.equals(champion[i])){
-                    rw.readWrite(true, 2, i, 1, 1);
-                }
-                else if(ban3.equals(champion[i])){
-                    rw.readWrite(true, 2, i, 1, 1);
-                }
-                else if(ban4.equals(champion[i])){
-                    rw.readWrite(true, 2, i, 1, 1);
-                }
-                else if(ban5.equals(champion[i])){
-                    rw.readWrite(true, 2, i, 1, 1);
-                }
-                else if(ban6.equals(champion[i])){
+                if(ban[i].equals(champion[i])){
                     rw.readWrite(true, 2, i, 1, 1);
                 }
             }

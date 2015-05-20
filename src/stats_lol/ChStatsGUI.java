@@ -22,15 +22,18 @@ import javax.swing.table.TableColumn;
 public class ChStatsGUI extends JFrame{
     
     ReadWrite rw = new ReadWrite();
-    RowSorter rs = new RowSorter();
     
     Object data[][], v[];
     double[] pr, br, wr, p, b, w, g;
     int tGames;
-    String[] columnNames =  {"champion",//Set the column Names
-                        "pick %", 
-                        "ban %",
-                        "win ratio",};
+    String[] columnNames =  {"Champion",//Set the column Names
+                        "Pick %", 
+                        "Ban %",
+                        "Win ratio",};
+    String[] toolTipText = {"Champion name",
+                        "% of times picked",
+                        "% of times baned",
+                        "% of win ratio"};
     
     Container cp = getContentPane(); //Calls the container
     
@@ -97,22 +100,22 @@ public class ChStatsGUI extends JFrame{
                     data[i][j] = champion[i];
                 }
                 else if(j == 1){
-                    data[i][j] = pr[i];
+                    data[i][j] = (int)pr[i];
                 }
                 else if(j == 2){
-                    data[i][j] = br[i];
+                    data[i][j] = (int)br[i];
                 }
                 else if(j == 3){
-                    data[i][j] = wr[i];
+                    data[i][j] = (int)wr[i];
                 }
             }
         }
         
         tblCh = new JTable(data, columnNames); //Calls the table
         
-        for(int i = 1; i < (v.length); i++){
+        for(int i = (v.length-1); i > -1; i--){
             tc[i] = tblCh.getColumnModel().getColumn(i);
-            tc[i].setHeaderRenderer(new EditableHeaderRenderer(btn[i], (double[])v[i], (double[])v[2], tblCh));               
+            tc[i].setHeaderRenderer(new EditableHeaderRenderer(btn[i], i, (double[])v[2], tblCh, toolTipText[i]));
         }
         
         for (int c = 0; c < tblCh.getColumnCount(); c++){

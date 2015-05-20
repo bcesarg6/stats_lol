@@ -8,7 +8,6 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -29,10 +28,19 @@ public class StatsGUI extends JFrame{
     JButton btnChSts = new JButton("Champions stats");
     JButton btnTable = new JButton("Score table");
     
+    String[] toolTipText = {"Opens a table with all players stats",
+                            "Opens a table with all teams stats",
+                            "Opens a table with all champion stats",
+                            "Opens the score table"};
+    
     Container cp = getContentPane();
     
     public StatsGUI(){
-        CheckVersion checkVersion = new CheckVersion();
+        
+        btnPlySts.setToolTipText(toolTipText[0]);
+        btnTeamSts.setToolTipText(toolTipText[1]);
+        btnChSts.setToolTipText(toolTipText[2]);
+        btnTable.setToolTipText(toolTipText[3]);
         
         setTitle("LoL Stats Maker " + version);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
