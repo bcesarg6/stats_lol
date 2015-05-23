@@ -8,10 +8,13 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
+import java.io.IOException;
+import java.net.URISyntaxException;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import static stats_lol.CheckVersion.*;
+import static stats_lol.Stats_lol.tmp;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 
 /**
@@ -29,7 +32,7 @@ public class FinGUI extends JFrame {
     
     ReadWrite rw = new ReadWrite();
     
-    public FinGUI(int d, int a, int b) {
+    public FinGUI(int d, int a, int b){
         
         setTitle("LoL Stats Maker " + version);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -54,37 +57,43 @@ public class FinGUI extends JFrame {
         cp.add(btnFin, c);
         
         btnFin.addActionListener((ActionEvent e) -> {
-            
-            if(d == -1){
+            try{
+                if(d == -1){
+
+                    rw.tmpReadWrite(1, b, 7, 3);//red
                 
-                System.out.println("red");
-                rw.readWrite(true, 1, b, 7, 3);//red
-            }
+                }
             
-            else if(d == -2){
+                else if(d == -2){
+
+                    rw.tmpReadWrite(1, a, 7, 1);//tie
+                    rw.tmpReadWrite(1, a, 8, 1);
+                    rw.tmpReadWrite(1, b, 7, 1);
+                    rw.tmpReadWrite(1, b, 8, 1);
                 
-                System.out.println("tie");
-                rw.readWrite(true, 1, a, 7, 1);//tie
-                rw.readWrite(true, 1, a, 8, 1);
-                rw.readWrite(true, 1, b, 7, 1);
-                rw.readWrite(true, 1, b, 8, 1);
-            }
+                }
             
-            else if(d == 3){
+                else if(d == 3){
+                    
+                    rw.tmpReadWrite(1, a, 7, 3);//blue
                 
-                System.out.println("blue");
-                rw.readWrite(true, 1, a, 7, 3);//blue
-            }
+                }
             
-            else if(d == 4){
+                else if(d == 4){
+                    
+                    rw.tmpReadWrite(1, a, 7, 1);//tie
+                    rw.tmpReadWrite(1, a, 8, 1);
+                    rw.tmpReadWrite(1, b, 7, 1);
+                    rw.tmpReadWrite(1, b, 8, 1);
                 
-                System.out.println("tie");
-                rw.readWrite(true, 1, a, 7, 1);//tie
-                rw.readWrite(true, 1, a, 8, 1);
-                rw.readWrite(true, 1, b, 7, 1);
-                rw.readWrite(true, 1, b, 8, 1);
-            }
-            dispose(); //Closes the actual GUI
+                }
+                rw.tmpToReal();
+
+                ClearData cl = new ClearData();
+                cl.clearData(tmp);
+            
+                dispose(); //Closes the actual GUI
+            }catch(IOException | URISyntaxException ex){System.out.println(ex);}
         });
     }
 }

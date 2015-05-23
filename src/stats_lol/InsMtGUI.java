@@ -8,6 +8,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
+import java.io.IOException;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -89,12 +90,15 @@ public class InsMtGUI extends JFrame{
             if(blueIn != redIn){ //If the teams selected are different
                 
                 for(int i = 0; i < 8; i++){
-                    if(blueIn == i){
-                        rw.readWrite(true, 1, i, 1, 2);
-                    }
-                    else if(redIn == i){
-                        rw.readWrite(true, 1, i, 1, 2);
-                    }
+                    try{
+                        if(blueIn == i){
+                            rw.tmpReadWrite(1, i, 1, 2);
+                        }
+                    
+                        else if(redIn == i){
+                            rw.tmpReadWrite(1, i, 1, 2);
+                        }
+                    }catch(IOException ex){}
                 }
                 
                 dispose();

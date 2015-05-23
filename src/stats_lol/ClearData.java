@@ -13,33 +13,35 @@ import static stats_lol.Stats_lol.*;
 
 public class ClearData {
     
-    public int clearData() throws IOException, URISyntaxException{
-        
-        final int updateQ = JOptionPane.showConfirmDialog(null,"You will be ereasing all data, are you sure?","Clear data",JOptionPane.YES_NO_OPTION);
-        
-        if(updateQ == 0){
-            
-            File plDt = new File("data/plData");
-            File tmDt = new File("data/tmData");
-            File chDt = new File("data/chData");
-        
-            for(int i = 0; i < 40; i++){
-                File pl = new File(plDt, player[i]);
-                pl.delete();           
-            }       
-        
-            for(int i = 0; i < 8; i++){
-                File tm = new File(tmDt, team[i]);
-                tm.delete();
+    public int clearData(File dir) throws IOException, URISyntaxException{
+        int clear = 1;
+        if(dir == dt){
+            Stats_lol.main(team);
+            clear = JOptionPane.showConfirmDialog(null,"You will be ereasing all data, are you sure?","Clear data",JOptionPane.YES_NO_OPTION);
+            if(clear == 0){
+                deleteDirectory(dir);
             }
-        
-            for(int i = 0; i < 124; i++){
-                File ch = new File(chDt, champion[i]);
-                ch.delete();          
-            }
-        
-            Stats_lol.main(team);  
         }
-        return updateQ;
-    }  
+        else{
+            deleteDirectory(dir);
+        }
+        return clear;
+        
+    }
+    
+    static public boolean deleteDirectory(File path){
+        if(path.exists()) {
+            File[] files = path.listFiles();
+                
+            for(int i=0; i<files.length; i++){
+                if(files[i].isDirectory()){
+                    deleteDirectory(files[i]);
+                }
+                else{
+                    files[i].delete();
+                }
+            }
+        }
+    return(path.delete());
+    }
 }

@@ -8,6 +8,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
+import java.io.IOException;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -55,7 +56,6 @@ public class InsBDGUI extends JFrame{
         a = (a*5)+i; 
         return a;
     }
-    
     final String txtToolTip(String pl, int i) {
         String[] txt = {"Champion used by " + pl,
                         "Total kills of " + pl,
@@ -96,7 +96,7 @@ public class InsBDGUI extends JFrame{
         txtGold = new JTextField[5];
         
         for(int i = 0; i < 5; i++){
-            ply[i] = player[pl(a,i)];
+            ply[i] = player[pl(i, a)];
             lblPlayer[i] = new JLabel(ply[i]);
             
             txtChamp[i] = new JTextField();
@@ -258,48 +258,47 @@ public class InsBDGUI extends JFrame{
         pack();
         
         btnNext.addActionListener((ActionEvent e) -> {
+            try{
+                for(int i = 0; i < 5; i++){
+                    ch[i] = txtChamp[i].getText();
+                    kill[i] = Integer.parseInt(txtKill[i].getText());
+                    death[i] = Integer.parseInt(txtDeath[i].getText());
+                    assist[i] = Integer.parseInt(txtAssist[i].getText());
+                    creep[i] = Integer.parseInt(txtCreep[i].getText());
+                    gold[i] = Integer.parseInt(txtGold[i].getText());
+                }
             
-            for(int i = 0; i < 5; i++){
-                ch[i] = txtChamp[i].getText();
-                kill[i] = Integer.parseInt(txtKill[i].getText());
-                death[i] = Integer.parseInt(txtDeath[i].getText());
-                assist[i] = Integer.parseInt(txtAssist[i].getText());
-                creep[i] = Integer.parseInt(txtCreep[i].getText());
-                gold[i] = Integer.parseInt(txtGold[i].getText());
-            }
+                for(int i = 0; i < 5; i++){
+                    int j = 1;
+                    rw.tmpReadWrite(0, pl(i, a), j++, kill[i]);
+                    rw.tmpReadWrite(0, pl(i, a), j++, death[i]);
+                    rw.tmpReadWrite(0, pl(i, a), j++, assist[i]);
+                    rw.tmpReadWrite(0, pl(i, a), j++, creep[i]);
+                    rw.tmpReadWrite(0, pl(i, a), j, gold[i]);
+                }
             
-            
-            for(int i = 0; i < 5; i++){
-                int j = 1;
-                rw.readWrite(true, 0, pl(a, i), j++, kill[i]);
-                rw.readWrite(true, 0, pl(a, i), j++, death[i]);
-                rw.readWrite(true, 0, pl(a, i), j++, assist[i]);
-                rw.readWrite(true, 0, pl(a, i), j++, creep[i]);
-                rw.readWrite(true, 0, pl(a, i), j, gold[i]);
-            }
-            
-            for(int i = 0; i < 124; i++){
-                for(int j = 0; j < 5; j++){
-                    if(ch[j].equals(champion[i])){
-                        rw.readWrite(true, 2, i, 2, 1);
-                        if(h == 1){
-                            rw.readWrite(true, 2, i, 3, 1);
+                for(int i = 0; i < 124; i++){
+                    for(int j = 0; j < 5; j++){
+                        if(ch[j].equals(champion[i])){
+                            rw.tmpReadWrite(2, i, 2, 1);
+                            if(h == 1){
+                                rw.tmpReadWrite(2, i, 3, 1);
+                            }
                         }
                     }
                 }
-            }
             
-            tr = Integer.parseInt(txtTurret.getText());
-            dr = Integer.parseInt(txtDrag.getText());
-            br = Integer.parseInt(txtBaron.getText());
+                tr = Integer.parseInt(txtTurret.getText());
+                dr = Integer.parseInt(txtDrag.getText());
+                br = Integer.parseInt(txtBaron.getText());
             
-            rw.readWrite(true, 1, a, 4, tr);
-            rw.readWrite(true, 1, a, 5, dr);
-            rw.readWrite(true, 1, a, 6, br);
+                rw.tmpReadWrite(1, a, 4, tr);
+                rw.tmpReadWrite(1, a, 5, dr);
+                rw.tmpReadWrite(1, a, 6, br);
             
-            InsRDGUI insRDGUI = new InsRDGUI(d, a, b, h); //Go to the next step giving the information of the dropbox index
-            
-            dispose();
+                InsRDGUI insRDGUI = new InsRDGUI(d, a, b, h); //Go to the next step giving the information of the dropbox index
+                dispose();
+            }catch(IOException ex){}
         });
     }
 }

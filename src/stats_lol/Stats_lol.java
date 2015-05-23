@@ -14,6 +14,12 @@ import java.net.URISyntaxException;
 //This is the main class of the program. This will call the main GUI
 public class Stats_lol {
     
+    //Gets user OS
+    public static String os = System.getProperty("os.name").toLowerCase();
+    
+    //OSs
+    public static String[] oss = {"linux", "windows 7", "windows 8", "windows 8.1", "mac"};
+    
     //Team names
     public static String team[] = {"O Famoso Clã", "Moleques Transantes", "ProXdigious", "TPMstronda",
                             "Vivo Dibra", "Não Temos Nome", "Cassiolurdes", "Team Pulse Gaming"};
@@ -53,23 +59,25 @@ public class Stats_lol {
                                  "Udyr", "Urgot", "Varus", "Vayne", "Veigar", "Vel'Koz", "Vi",
                                  "Viktor", "Vladimir", "Volibear", "Warwick", "Wukong", "Xerath",
                                  "Xin'Zhao", "Yasuo", "Yorick", "Zac", "Zed", "Ziggs", "Zilean", "Zyra"};
-  
+    
+    public static final File dt = new File("data");
+    public static final File plDt = new File("data/plData/");
+    public static final File tmDt = new File("data/tmData/");
+    public static final File chDt = new File("data/chData/");
+    public static final File rdm = new File("data/README");
+    public static final File tmp = new File("data/.temp/");
+    public static final File rd = new File(rdm, "README.txt");
+    public static final File[] dirs = {plDt, tmDt, chDt};
+    
     public static void main(String args[]) throws IOException, URISyntaxException{
         
         CheckVersion checkVersion = new CheckVersion();
         checkVersion.checkVersion(); //Verifies if the program version is the actual version
-        
-        
-        File dt = new File("data");
-        File plDt = new File("data/plData");
-        File tmDt = new File("data/tmData");
-        File chDt = new File("data/chData");
-        File rdm = new File("data/README");
-        
+
         if(!dt.exists()){
             
-            dt.mkdir();        //Creates data directory    
-            
+            dt.mkdir();        //Creates data directory             
+
             if(!plDt.exists()){
                 plDt.mkdir();     //Creates plData directory
             }
@@ -84,13 +92,11 @@ public class Stats_lol {
             
             if(!rdm.exists()){
                 rdm.mkdir();    //Creates README directory
-            }  
-        }
-        
-        File rd = new File(rdm, "README.txt");
-        
-        if(!rd.exists()){
+            }
             
+        }
+
+        if(!rd.exists()){           
             rd.createNewFile(); //Creates README.txt file
         }
         

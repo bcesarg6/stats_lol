@@ -3,6 +3,7 @@ package stats_lol;
 import java.io.*;
 import java.net.*;
 import javax.swing.*;
+import static stats_lol.Stats_lol.*;
 
 /**
  *
@@ -12,10 +13,8 @@ import javax.swing.*;
 //Checks if the version is compatible, if not asks to download the new one
 public class CheckVersion {
     
-    public static String version = "a1.1.3"; //Version of the program
+    public static String version = "a1.2"; //Version of the program
     public String currentVersion; //Atual version
-    public String os = System.getProperty("os.name").toLowerCase(); //Gets user OS
-    public String[] ops = {"linux", "windows 7", "windows 8", "windows 8.1", "mac"}; //OSs
     public String versionURL = "http://pastebin.com/raw.php?i=tqZcCMdQ"; //URL that is checked to see the version
     public String downloadURL = "http://lolstatsmaker.webs.com/LoL%20Stats%20Maker.rar"; //Download URL
     Runtime runtime = Runtime.getRuntime(); //CMD
@@ -38,7 +37,7 @@ public class CheckVersion {
         else{ //Opens an window if the versions are diferent
             final int updateQ = JOptionPane.showConfirmDialog(null,"LoL Stats Maker is outdated, update to the current version?","New Version avaible" + os,JOptionPane.YES_NO_OPTION); 
             if(updateQ==0){
-                if(os.equals(ops[0])){ //If it is linux
+                if(os.equals(oss[0])){ //If it is linux
                     try{
                         String[] browsers = {"epiphany", "firefox", "mozilla", "konqueror",
                                                         "netscape","opera","links","lynx"};
@@ -51,22 +50,18 @@ public class CheckVersion {
                     }
                 }
                 
-                else if(os.equals(ops[1]) || os.equals(ops[2]) || os.equals(ops[3])){ //if it is Windows
+                else if(os.equals(oss[1]) || os.equals(oss[2]) || os.equals(oss[3])){ //if it is Windows
                     try{
                         runtime.exec("rundll32 url.dll,FileProtocolHandler " + downloadURL);
                     }
-                    catch(Exception E){
-                        
-                    }
+                    catch(Exception E){}  
                 }
                 
-                else if(os.equals(ops[3])){ //If it is Mac
+                else if(os.equals(oss[3])){ //If it is Mac
                     try{
                         runtime.exec( "open" + downloadURL);
                     }
-                    catch(Exception E){
-                        
-                    }
+                    catch(Exception E){}
                 }
             }
         }                               

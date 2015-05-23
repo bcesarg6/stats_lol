@@ -73,18 +73,12 @@ public class TeamStatsGUI extends JFrame {
         }
         
         for(int i = 0; i < 8; i++){
-            rw.readWrite(false, 1, i, 4, 0);
-            t[i] = Integer.parseInt(rw.rl);
-            rw.readWrite(false, 1, i, 5, 0);
-            d[i] = Integer.parseInt(rw.rl);
-            rw.readWrite(false, 1, i, 6, 0);
-            b[i] = Integer.parseInt(rw.rl);
-            rw.readWrite(false, 1, i, 3, 0);
-            mt[i] = Integer.parseInt(rw.rl);
-            rw.readWrite(false, 1, i, 2, 0);
-            w[i] = Integer.parseInt(rw.rl);
-            rw.readWrite(false, 1, i, 1, 0);
-            games[i] = Integer.parseInt(rw.rl);
+            t[i] = rw.readWrite(false, 1, i, 4, 0);
+            d[i] = rw.readWrite(false, 1, i, 5, 0);
+            b[i] = rw.readWrite(false, 1, i, 6, 0);
+            mt[i] = rw.readWrite(false, 1, i, 3, 0);
+            w[i] = rw.readWrite(false, 1, i, 2, 0);
+            games[i] = rw.readWrite(false, 1, i, 1, 0);
             if(games[i] == 0){
                 games[i] = 1;
             }
@@ -125,7 +119,7 @@ public class TeamStatsGUI extends JFrame {
         
         for(int i = (v.length-1); i > -1; i--){
             tc[i] = tblTeam.getColumnModel().getColumn(i);
-            tc[i].setHeaderRenderer(new EditableHeaderRenderer(btn[i], i, (double[])v[5], tblTeam, toolTipText[i]));
+            tc[i].setHeaderRenderer(new EditableHeaderRenderer(btn[i], i, 0, tblTeam, toolTipText[i]));
         }
         
         for (int c = 0; c < tblTeam.getColumnCount(); c++){

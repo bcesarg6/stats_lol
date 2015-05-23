@@ -8,6 +8,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
+import java.io.IOException;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -45,8 +46,8 @@ public class InsIDGUI extends JFrame{
     
     final String toolTipText(int a, int b, int i){
         String[] txt = {"Champion banned in the match "+team[a]+" vs "+team[b],
-                        "Select if team"+team[a]+" won",
-                        "Select if team"+team[b]+" won",
+                        "Select if team "+team[a]+" won",
+                        "Select if team "+team[b]+" won",
                         "Time of the match"};
         return txt[i];
     }
@@ -142,29 +143,30 @@ public class InsIDGUI extends JFrame{
             
             mtT = txtTmp.getText();
             mtt = Integer.parseInt(mtT);
-            
-            for(int i = 0; i < 124; i++){
-                
-                if(ban[i].equals(champion[i])){
-                    rw.readWrite(true, 2, i, 1, 1);
+            try{
+                for(int i = 0; i < 124; i++){
+                    for(int j = 0; j < 6; j++){
+                    
+                        if(ban[j].equals(champion[i])){
+                            rw.tmpReadWrite(2, i, 1, 1);
+                        }
+                    }
                 }
-            }
-            
-            switch (w1) {
-                case "Blue":
-                    t++;
-                    h++;
-                    rw.readWrite(true, 1, a, 2, 1);
-                    rw.readWrite(true, 1, a, 3, mtt);
-                    rw.readWrite(true, 1, b, 3, mtt);
-                    break;
-                case "Red":
-                    rw.readWrite(true, 1, b, 2, 1);
-                    rw.readWrite(true, 1, a, 3, mtt);
-                    rw.readWrite(true, 1, b, 3, mtt);
-                    break;
-            }
-            
+                switch (w1) {
+                    case "Blue":
+                        t++;
+                        h++;
+                        rw.tmpReadWrite(1, a, 2, 1);
+                        rw.tmpReadWrite(1, a, 3, mtt);
+                        rw.tmpReadWrite(1, b, 3, mtt);
+                        break;
+                    case "Red":
+                        rw.tmpReadWrite(1, b, 2, 1);
+                        rw.tmpReadWrite(1, a, 3, mtt);
+                        rw.tmpReadWrite(1, b, 3, mtt);
+                        break;
+                }
+            }catch(IOException ex){}
             InsBDGUI insBDGUI = new InsBDGUI(t, a, b, h); //Drpoboxes index needed to the next class
             
             dispose();

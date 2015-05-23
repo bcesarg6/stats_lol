@@ -65,8 +65,7 @@ public class ChStatsGUI extends JFrame{
         
         //this part reads the data of the archives and make the calcs to show the stats
         for(int i = 0; i < 8; i++){
-            rw.readWrite(false, 1, i, 1, 0);
-            tGames += Integer.parseInt(rw.rl);
+            tGames += rw.readWrite(false, 1, i, 1, 0);
         }
         
         if(tGames == 0){
@@ -76,12 +75,9 @@ public class ChStatsGUI extends JFrame{
         tGames = tGames/2;
         
         for(int i = 0; i < 124; i++){
-            rw.readWrite(false, 2, i, 2, 0);
-            p[i] = Integer.parseInt(rw.rl);
-            rw.readWrite(false, 2, i, 1, 0);
-            b[i] = Integer.parseInt(rw.rl);
-            rw.readWrite(false, 2, i, 3, 0);
-            w[i] = Integer.parseInt(rw.rl);
+            p[i] = rw.readWrite(false, 2, i, 2, 0);
+            b[i] = rw.readWrite(false, 2, i, 1, 0);
+            w[i] = rw.readWrite(false, 2, i, 3, 0);
             g[i] = p[i];
             if(g[i] == 0){
                 g[i] = 1;
@@ -115,7 +111,7 @@ public class ChStatsGUI extends JFrame{
         
         for(int i = (v.length-1); i > -1; i--){
             tc[i] = tblCh.getColumnModel().getColumn(i);
-            tc[i].setHeaderRenderer(new EditableHeaderRenderer(btn[i], i, (double[])v[2], tblCh, toolTipText[i]));
+            tc[i].setHeaderRenderer(new EditableHeaderRenderer(btn[i], i, 0, tblCh, toolTipText[i]));
         }
         
         for (int c = 0; c < tblCh.getColumnCount(); c++){

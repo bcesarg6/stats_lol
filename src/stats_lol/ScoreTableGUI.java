@@ -80,10 +80,8 @@ public class ScoreTableGUI extends JFrame {
         }
         
         for(int i = 0; i < 8; i++){
-            rw.readWrite(false, 1, i, 7, 0);
-            p[i] = Integer.parseInt(rw.rl);
-            rw.readWrite(false, 1, i, 1, 0);
-            tg[i] = Integer.parseInt(rw.rl);
+            p[i] = rw.readWrite(false, 1, i, 7, 0);
+            tg[i] = rw.readWrite(false, 1, i, 1, 0);
             if(tg[i] == 0){
                 tg[i] = 1;
             }
@@ -91,11 +89,9 @@ public class ScoreTableGUI extends JFrame {
             if(g[i] == 0.5){
                 g[i] = 0;
             }
-            rw.readWrite(false, 1, i, 2, 0);
-            tw[i] = Integer.parseInt(rw.rl);
-            rw.readWrite(false, 1, i, 8, 0);
-            t[i] = Integer.parseInt(rw.rl);
-            tl[i] = tg[i] - tw[i];
+            tw[i] = rw.readWrite(false, 1, i, 2, 0);
+            t[i] = rw.readWrite(false, 1, i, 8, 0);
+            tl[i] = tg[i] == 1 ? 0 : tg[i] - tw[i];
             wr[i] = 100*(tw[i]/tg[i]);
             pa[i] = g[i] == 0 ? 0 : 100*(p[i]/(g[i]*3));
             w[i] = tw[i] == 0 ? 0 :(tw[i] - (t[i]))/2;
@@ -131,7 +127,7 @@ public class ScoreTableGUI extends JFrame {
                 else if(j == 8){
                     data[i][j] = (int)Math.round(wr[i]);
                 }
-                else if(j == 9){
+                else if(j == 9){            
                     data[i][j] = (int)Math.round(pa[i]);
                 }
             }
@@ -139,9 +135,9 @@ public class ScoreTableGUI extends JFrame {
         
         tblScore = new JTable(data, columnNames);
         
-        for(int i = (v.length-1); i > -1; i--){
+        for(int i = 0; i < v.length; i++){
             tc[i] = tblScore.getColumnModel().getColumn(i);
-            tc[i].setHeaderRenderer(new EditableHeaderRenderer(btn[i], i, (double[])v[1], tblScore, toolTipText[i]));
+            tc[i].setHeaderRenderer(new EditableHeaderRenderer(btn[i], i, 0, tblScore, toolTipText[i]));
         }   //sets the type of sorter for each column    
         
         for (int c = 0; c < tblScore.getColumnCount(); c++){

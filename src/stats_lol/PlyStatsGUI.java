@@ -82,24 +82,24 @@ public class PlyStatsGUI extends JFrame {
         
         for(int i = 0; i < 40; i++){
             for(int h = 1; h < 6; h++){
-                rw.readWrite(false, 0, i, h, 0);
+                int rl = rw.readWrite(false, 0, i, h, 0);
                 if(h == 1){
-                    kl[i] = Integer.parseInt(rw.rl);
+                    kl[i] = rl;
                 }
                 else if(h == 2){
-                    dt[i] = Integer.parseInt(rw.rl);
+                    dt[i] = rl;
                     if(dt[i] == 0){
                         dt[i] = 1;
                     }
                 }
                 else if(h == 3){
-                    as[i] = Integer.parseInt(rw.rl);
+                    as[i] = rl;
                 }
                 else if(h == 4){
-                    cr[i] = Integer.parseInt(rw.rl);
+                    cr[i] = rl;
                 }
                 else if(h == 5){
-                    gl[i] = Integer.parseInt(rw.rl);
+                    gl[i] = rl;
                 }
             }
         }
@@ -109,10 +109,8 @@ public class PlyStatsGUI extends JFrame {
             for(int j = 0; j < 5; j++){
                 tk[i] += k[j+h];   
             }
-            rw.readWrite(false, 1, i, 1, 0);
-            games[i] = Integer.parseInt(rw.rl);
-            rw.readWrite(false, 1, i, 3, 0);
-            time[i] = Integer.parseInt(rw.rl);
+            games[i] = rw.readWrite(false, 1, i, 1, 0);
+            time[i] = rw.readWrite(false, 1, i, 3, 0);
             if(games[i] == 0){
                 games[i] = 1;
             }
@@ -125,20 +123,12 @@ public class PlyStatsGUI extends JFrame {
         }
         
         for(int i = 0; i < 40; i++){
-            int j = i < 5 ? 0 :(
-                    (i > 4) && (i < 10) ? 1 : 
-                        (j = (i > 9) && (i < 15) ? 2 : 
-                            (j = (i > 14) && (i < 20) ? 3 :
-                                (j = (i > 19) && (i < 25) ? 4 :
-                                    (j = (i > 24) && (i < 30) ? 5 :
-                                        (j = (i > 29) && (i < 35) ? 6 :
-                                            (j = (i > 34) && (i < 40) ? 7 : null)))))));
-            
+            int j = i/5;
             k[i] = (int) ((kl[i] + as[i])/dt[i]);
             af[i] = (int) (cr[i]/games[j]);
             f[i] = (int) (cr[i]/time[j]);
             g[i] = (int) (gl[i]/games[j]);
-            gm[i] = (int) (1000*(gl[i]/time[j]));
+            gm[i] = (int) ((1000*gl[i])/time[j]);
             kp[i] = (int) ((kl[i] + as[i])/tk[j]) ;
         }
                                         
@@ -172,11 +162,10 @@ public class PlyStatsGUI extends JFrame {
         
         for(int i = (v.length-1); i > -1; i--){
             tc[i] = tblPly.getColumnModel().getColumn(i);
-            tc[i].setHeaderRenderer(new EditableHeaderRenderer(btn[i], i, (double[])v[1], tblPly, toolTipText[i]));
+            tc[i].setHeaderRenderer(new EditableHeaderRenderer(btn[i], i, 0, tblPly, toolTipText[i]));
         }
         
-        for (int c = 0; c < tblPly.getColumnCount(); c++){
-            
+        for (int c = 0; c < tblPly.getColumnCount(); c++){           
             Class<?> col_class = tblPly.getColumnClass(c);
             tblPly.setDefaultEditor(col_class, null);        // remove editor
         }

@@ -14,6 +14,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import static stats_lol.CheckVersion.*;
+import static stats_lol.Stats_lol.dt;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 
 /**
@@ -23,6 +24,7 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 
 //This is the first GUI of the program, here you chose between seeing stats or inserting new data
 public class InicialGUI extends JFrame{
+    ReadWrite rw = new ReadWrite();
            
     JLabel lblTitle = new JLabel("Select your option");
     JButton[] btn;
@@ -81,9 +83,13 @@ public class InicialGUI extends JFrame{
         });
         
         btn[1].addActionListener((ActionEvent e) -> {
-            
-            InsMtGUI insMtGUI = new InsMtGUI(0);
-            
+
+            boolean ex = rw.tmpExists();
+            if(ex){                
+            }
+            else{
+                InsMtGUI insMtGUI = new InsMtGUI(0);
+            }
         });
         
         btn[2].addActionListener((ActionEvent e) -> {
@@ -91,7 +97,7 @@ public class InicialGUI extends JFrame{
             ClearData cD = new ClearData();
             
             try {
-                r = cD.clearData();
+                r = cD.clearData(dt);
             } 
             catch (IOException | URISyntaxException ex) {}
             if(r == 0){

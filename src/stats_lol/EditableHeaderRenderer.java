@@ -20,22 +20,23 @@ class EditableHeaderRenderer implements TableCellRenderer {
     private JTable table = null;
     private MouseEventReposter reporter = null;
     private final JButton editor;
-    public int cl = 0;
+    public int time = 0;
 
-    EditableHeaderRenderer(JButton editor, int colm, double k[], JTable tb, String txt){
+    EditableHeaderRenderer(JButton editor, int colm, int colm2, JTable tb, String txt){
         this.editor = editor;
 
         this.editor.setBorder(UIManager.getBorder("TableHeader.cellBorder"));
         
-        rs.rowSorter(colm, k, tb, 0);
-        cl = 2;
+        rs.rowSorter(colm, colm2, tb, 0);
+        time = 2;
         
         editor.setToolTipText(txt);
         
         editor.addActionListener((ActionEvent e) -> {
             int c = tb.convertColumnIndexToView(colm);
-            rs.rowSorter(c, k, tb, cl);
-            cl++;
+            int d = tb.convertColumnIndexToView(colm2);
+            rs.rowSorter(c, d, tb, time);
+            time++;
         });
     }
     
