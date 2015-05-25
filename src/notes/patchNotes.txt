@@ -19,3 +19,5 @@ First realese
     Now the files are saved only in the end of an insertion
     The sorter NOW works rigth
     Some little (big) changes to the way it saves data
+        a1.2.1
+        Added temporary files checker

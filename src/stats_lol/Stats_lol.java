@@ -17,6 +17,9 @@ public class Stats_lol {
     //Gets user OS
     public static String os = System.getProperty("os.name").toLowerCase();
     
+    //Gets the user home
+    public static final String appdata = System.getProperty("user.home")+"/LoL Stats Maker/";
+    
     //OSs
     public static String[] oss = {"linux", "windows 7", "windows 8", "windows 8.1", "mac"};
     
@@ -60,17 +63,18 @@ public class Stats_lol {
                                  "Viktor", "Vladimir", "Volibear", "Warwick", "Wukong", "Xerath",
                                  "Xin'Zhao", "Yasuo", "Yorick", "Zac", "Zed", "Ziggs", "Zilean", "Zyra"};
     
-    public static final File dt = new File("data");
-    public static final File plDt = new File("data/plData/");
-    public static final File tmDt = new File("data/tmData/");
-    public static final File chDt = new File("data/chData/");
-    public static final File rdm = new File("data/README");
-    public static final File tmp = new File("data/.temp/");
+    public static final File dt = new File(appdata+"data");
+    public static final File plDt = new File(appdata+"data/plData/");
+    public static final File tmDt = new File(appdata+"data/tmData/");
+    public static final File chDt = new File(appdata+"data/chData/");
+    public static final File rdm = new File(appdata+"data/README");
+    public static final File tmp = new File(appdata+"data/.temp/");
+    public static final File tmpStage = new File(tmp.getAbsolutePath()+"/stage");
     public static final File rd = new File(rdm, "README.txt");
     public static final File[] dirs = {plDt, tmDt, chDt};
     
     public static void main(String args[]) throws IOException, URISyntaxException{
-        
+        System.out.println(appdata);
         CheckVersion checkVersion = new CheckVersion();
         checkVersion.checkVersion(); //Verifies if the program version is the actual version
 

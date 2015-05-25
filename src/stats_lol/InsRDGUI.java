@@ -302,20 +302,26 @@ public class InsRDGUI extends JFrame{
                 rw.tmpReadWrite(1, b, 4, tr);
                 rw.tmpReadWrite(1, b, 5, dr);
                 rw.tmpReadWrite(1, b, 6, br);
-
+                
                 if(d == 1){
+                    int par[] = {d+2, b, a};
+                    rw.tmpSetStage(1, par);
                     InsIDGUI insIDGUI = new InsIDGUI((d+2), b, a);
                 
                     dispose();
                 }
                 
                 else if(d == 0){
+                    int par[] = {d-2, b, a};
+                    rw.tmpSetStage(1, par);
                     InsIDGUI insIDGUI = new InsIDGUI((d-2), b, a);
                 
                     dispose();
                 }
             
-                else if((d == -1) || (d == -2) || (d == 3) || (d == 4)){              
+                else if((d == -1) || (d == -2) || (d == 3) || (d == 4)){ 
+                    int par[] = {d, b, a};
+                    rw.tmpSetStage(4, par);
                     FinGUI finGUI = new FinGUI(d, b, a); //Calls the final GUI
                 
                     dispose();              

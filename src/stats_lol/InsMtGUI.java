@@ -102,7 +102,8 @@ public class InsMtGUI extends JFrame{
                 }
                 
                 dispose();
-                
+                int par[] = {d, blueIn, redIn};
+                rw.tmpSetStage(1, par);
                 InsIDGUI insIDGUI = new InsIDGUI(d, blueIn, redIn); //Sends the index to the next class
             }
             

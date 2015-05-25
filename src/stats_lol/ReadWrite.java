@@ -9,7 +9,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
-import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 import javax.swing.JOptionPane;
 import static stats_lol.Stats_lol.*;
 
@@ -20,22 +19,17 @@ import static stats_lol.Stats_lol.*;
 
 public class ReadWrite {
     
-    String lnB[], lnA[], rl, directory, tmpDirectory, tmpArchive;
-    int l, n, rL;
-    
-    public int readWrite(boolean wr, int dir, int ar, int ln, int ad){
+    public int readWrite(boolean wr, int dir, int ar, int ln, Object ad){
         
-        l = dir == 0 ? 4 :
+        int l = dir == 0 ? 4 :
             dir == 1 ? 7 :
             dir == 2 ? 2 : null;
         
-        
-        
-        directory = dir == 0 ? plDt.getPath()+"/"+player[ar] : 
+        String directory = dir == 0 ? plDt.getPath()+"/"+player[ar] : 
                     dir == 1 ? tmDt.getPath()+"/"+team[ar] :
                     dir == 2 ? chDt.getPath()+"/"+champion[ar] : null;
         
-        return readWrite(wr, directory, ln, ad);
+        return readWrite(wr, directory, ln, l, ad);
     }
     
     public boolean tmpExists(){
@@ -57,8 +51,9 @@ public class ReadWrite {
     }
     
     public void tmpReadWrite(int dir, int ar, int ln, int ad) throws IOException{
+        String directory, tmpDirectory, tmpArchive;
         
-        l = dir == 0 ? 4 :
+        int l = dir == 0 ? 4 :
             dir == 1 ? 7 :
             dir == 2 ? 2 : null;
         
@@ -91,17 +86,19 @@ public class ReadWrite {
         if(!(tmpAr.exists())){
             Files.copy(dr.toPath(), tmpAr.toPath());
         }
-        readWrite(true, tmpArchive, ln, ad);
+        readWrite(true, tmpArchive, ln, l, ad);
     }
     
-    public int readWrite(boolean wr, String archive, int ln, int ad){
+    public int readWrite(boolean wr, String archive, int ln, int l, int ad){
+        String rl;
+        int rL = 0;
         
         ln -= 1;
         
-        n = l - ln;
+        int n = l - ln;
         
-        lnB = new String[ln];
-        lnA = new String[n];
+        String lnB[] = new String[ln];
+        String lnA[] = new String[n];
         
         try{
             File te = new File(archive);
@@ -129,15 +126,17 @@ public class ReadWrite {
                             lnA[i] = "0";
                         }
                     }
-                }
-                
+                }  
+            bR.close();
+            in.close();
+            fR.close();
             }
             
             rL = Integer.parseInt(rl) + ad;
 
             if(wr == true){
                 
-                try (FileWriter fW = new FileWriter(te); BufferedWriter bW = new BufferedWriter(fW)) {
+                try (FileWriter fW = new FileWriter(te); BufferedWriter bW = new BufferedWriter(fW)){
                     
                     if(ln != 0){
                         for(int i = 0; i < ln; i++){
@@ -154,13 +153,52 @@ public class ReadWrite {
                             bW.write(lnA[i]);
                             bW.newLine();
                         }
-                    }              
+                    }
+                    bW.close();
+                    fW.close();
                 }
             }
         }
         catch(IOException E){}
     return rL;    
     }
+    
+    public int[] tmpGetStage(){
+        int line[];
+        line = new int[5];
+        String lin;
+        try (FileInputStream fR = new FileInputStream(tmpStage);
+                 InputStreamReader in = new InputStreamReader(fR); BufferedReader bR = new BufferedReader(in)){
+            for (int i = 0; i < line.length; i++){
+                lin = bR.readLine();
+                line[i] = lin != null ? Integer.parseInt(lin) : 0;   
+            }
+        bR.close();
+        in.close();
+        fR.close();    
+        }catch(IOException ex){}
+        return line;
+    }
+    
+    public void tmpSetStage(int stage, int par[]){
+        try (FileWriter fW = new FileWriter(tmpStage); BufferedWriter bW = new BufferedWriter(fW)){
+            for (int i = 0; i < par.length; i++){
+                if(i == 0){
+                    bW.write(Integer.toString(stage));
+                    bW.newLine();
+                    bW.write(Integer.toString(par[i]));
+                    bW.newLine();
+                }
+                else{
+                    bW.write(Integer.toString(par[i]));
+                    bW.newLine();
+                }
+            }
+            bW.close();
+            fW.close();
+        }catch(IOException ex){}
+    }
+    
     public boolean tmpToReal() throws IOException{
         
         File tmpPl = new File(tmp.getPath()+"/"+plDt.getPath());

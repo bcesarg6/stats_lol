@@ -16,11 +16,11 @@ public class ClearData {
     public int clearData(File dir) throws IOException, URISyntaxException{
         int clear = 1;
         if(dir == dt){
-            Stats_lol.main(team);
             clear = JOptionPane.showConfirmDialog(null,"You will be ereasing all data, are you sure?","Clear data",JOptionPane.YES_NO_OPTION);
             if(clear == 0){
                 deleteDirectory(dir);
             }
+            Stats_lol.main(team);
         }
         else{
             deleteDirectory(dir);

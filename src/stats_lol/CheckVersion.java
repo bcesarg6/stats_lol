@@ -13,7 +13,7 @@ import static stats_lol.Stats_lol.*;
 //Checks if the version is compatible, if not asks to download the new one
 public class CheckVersion {
     
-    public static String version = "a1.2"; //Version of the program
+    public static String version = "a1.2.1"; //Version of the program
     public String currentVersion; //Atual version
     public String versionURL = "http://pastebin.com/raw.php?i=tqZcCMdQ"; //URL that is checked to see the version
     public String downloadURL = "http://lolstatsmaker.webs.com/LoL%20Stats%20Maker.rar"; //Download URL

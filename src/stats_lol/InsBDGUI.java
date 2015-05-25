@@ -295,7 +295,9 @@ public class InsBDGUI extends JFrame{
                 rw.tmpReadWrite(1, a, 4, tr);
                 rw.tmpReadWrite(1, a, 5, dr);
                 rw.tmpReadWrite(1, a, 6, br);
-            
+                
+                int par[] = {d, a, b, h};
+                rw.tmpSetStage(3, par);
                 InsRDGUI insRDGUI = new InsRDGUI(d, a, b, h); //Go to the next step giving the information of the dropbox index
                 dispose();
             }catch(IOException ex){}

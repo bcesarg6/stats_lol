@@ -85,7 +85,22 @@ public class InicialGUI extends JFrame{
         btn[1].addActionListener((ActionEvent e) -> {
 
             boolean ex = rw.tmpExists();
-            if(ex){                
+            if(ex){
+                int[] s;
+                s = rw.tmpGetStage();
+                switch(s[0]){
+                    case 1:
+                        InsIDGUI insIDGUI = new InsIDGUI(s[1], s[2], s[3]);
+                        break;
+                    case 2:
+                        InsBDGUI insBDGUI = new InsBDGUI(s[1], s[2], s[3], s[4]);
+                        break;
+                    case 3:
+                        InsRDGUI insRDGUI = new InsRDGUI(s[1], s[2], s[3], s[4]);
+                        break;
+                    case 4:
+                        FinGUI finGUI = new FinGUI(s[1], s[2], s[3]);
+                }
             }
             else{
                 InsMtGUI insMtGUI = new InsMtGUI(0);

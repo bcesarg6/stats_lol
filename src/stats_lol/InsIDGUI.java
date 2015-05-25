@@ -166,6 +166,8 @@ public class InsIDGUI extends JFrame{
                         rw.tmpReadWrite(1, b, 3, mtt);
                         break;
                 }
+                int par[] = {t, a, b, h};
+                rw.tmpSetStage(2, par);
             }catch(IOException ex){}
             InsBDGUI insBDGUI = new InsBDGUI(t, a, b, h); //Drpoboxes index needed to the next class
             
