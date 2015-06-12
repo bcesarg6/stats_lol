@@ -7,6 +7,7 @@ import java.awt.Container;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.io.IOException;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
@@ -47,7 +48,7 @@ public class PlyStatsGUI extends JFrame {
     
     Container cp = getContentPane();
     
-    public PlyStatsGUI(){
+    public PlyStatsGUI() throws IOException{
         
         JButton[] btn;
         TableColumn[] tc;
@@ -82,7 +83,7 @@ public class PlyStatsGUI extends JFrame {
         
         for(int i = 0; i < 40; i++){
             for(int h = 1; h < 6; h++){
-                int rl = rw.readWrite(false, 0, i, h, 0);
+                int rl = (int)rw.readWrite(false, 0, i, h, 0);
                 if(h == 1){
                     kl[i] = rl;
                 }
@@ -109,8 +110,8 @@ public class PlyStatsGUI extends JFrame {
             for(int j = 0; j < 5; j++){
                 tk[i] += k[j+h];   
             }
-            games[i] = rw.readWrite(false, 1, i, 1, 0);
-            time[i] = rw.readWrite(false, 1, i, 3, 0);
+            games[i] = (int)rw.readWrite(false, 1, i, 1, 0);
+            time[i] = (int)rw.readWrite(false, 1, i, 3, 0);
             if(games[i] == 0){
                 games[i] = 1;
             }

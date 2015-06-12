@@ -9,6 +9,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -29,7 +30,8 @@ public class InsMtGUI extends JFrame{
     int blueIn;
     int redIn;
     
-    ReadWrite rw = new ReadWrite();  
+    ReadWrite rw = new ReadWrite();
+    ClearData cl = new ClearData();
     
     JLabel lblBlue = new JLabel("Blue side:");
     JLabel lblRed = new JLabel("Red side:");
@@ -40,6 +42,10 @@ public class InsMtGUI extends JFrame{
     Container cp = getContentPane();
     
     public InsMtGUI(int d){
+        
+        try {
+            cl.clearData(tmp);
+        } catch (IOException | URISyntaxException ex) {}
        
         setTitle("LoL Stats Maker " + version);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);

@@ -25,7 +25,7 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 //After the 2º GUI the user inserts the blue side data here
 public class InsBDGUI extends JFrame{
     
-    String[] ch, kl, as, dt, cr, gl;
+    String[] ch, kl, as, dt, cr, gl, ply;
     int tr, dr, br, t;
     int[] kill, death, assist, creep, gold;
     
@@ -65,8 +65,6 @@ public class InsBDGUI extends JFrame{
                         "Total gold of " + pl};
         return txt[i];
     }
-    
-    String[] ply;
     
     Container cp = getContentPane();
     

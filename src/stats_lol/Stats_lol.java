@@ -5,6 +5,9 @@ import java.io.FileWriter; //Imports java file writer
 import java.io.BufferedWriter; //Writer too
 import java.io.IOException; //IOException
 import java.net.URISyntaxException;
+import java.util.Locale;
+import static stats_lol.Team.t;
+import static stats_lol.Player.p;
 
 /**
  *
@@ -14,35 +17,43 @@ import java.net.URISyntaxException;
 //This is the main class of the program. This will call the main GUI
 public class Stats_lol {
     
+    //Gets the user home
+    //public static final String data = System.getProperty("user.home")+"/LoL Stats Maker/data/";
+    public static final String data = "LoL Stats Maker/data/";
+    
+    public static final String lang = Locale.getDefault().toLanguageTag();
+    
+    public static final File dt = new File(data);
+    public static final File config = new File(data+"data");
+    public static final File players = new File(data+"players");
+    public static final File teams = new File(data+"teams");
+    public static final File plDt = new File(data+"plData/");
+    public static final File tmDt = new File(data+"tmData/");
+    public static final File chDt = new File(data+"/chData/");
+    public static final File rdm = new File(data+"README");
+    public static final File tmp = new File(data+".temp/");
+    public static final File tmpStage = new File(tmp.getAbsolutePath()+"/stage");
+    public static final File rd = new File(rdm, "README.txt");
+    public static final File[] dirs = {plDt, tmDt, chDt};
+    
     //Gets user OS
     public static String os = System.getProperty("os.name").toLowerCase();
-    
-    //Gets the user home
-    public static final String appdata = System.getProperty("user.home")+"/LoL Stats Maker/";
     
     //OSs
     public static String[] oss = {"linux", "windows 7", "windows 8", "windows 8.1", "mac"};
     
     //Team names
-    public static String team[] = {"O Famoso Clã", "Moleques Transantes", "ProXdigious", "TPMstronda",
-                            "Vivo Dibra", "Não Temos Nome", "Cassiolurdes", "Team Pulse Gaming"};
+    public static String team[] = t;
     
     //Side names
     public static String sideB = "Blue";
     public static String sideR = "Red";
     
     //Players names
-    public static String player[] = {"Ignatius", "Vithrow", "esquelda", "tij", "Leoxes",
-                              "Xuleta JJ", "Trullian", "vargas baloso", "rS Berta1", "WISER Perachi Oz",
-                              "GHKgustavo", "proX KungBANG", "farélinho", "StarLine", "PrimooN",
-                              "Lukinhas Monxtro", "jbiyvh", "gahgreguer", "Andreeez1nPLAY", "KoitOShiro",
-                              "Jhony o Pedreiro", "rS XandimonZ", "Minkão desu RXRX", "Oceanz", "Supremo Sir Goku",
-                              "Charlie Vraum", "WISER médium", "Persh", "falconkiler", "zerovampire730",
-                              "SooLdaaDOOO", "iHamm", "SooLdaaDOO", "parag41o", "kranionakara", 
-                              "DaarkFighter", "BlazeeKryst", "xXDownloadXx", "xGlhc", "ThunderCraash"};
+    public static String player[] = p;
     
     //Champions names
-    public static String champion[] = {"Aatrox", "Ahri", "Akali", "Alistar","Amumu",
+    public static final String champion[] = {"Aatrox", "Ahri", "Akali", "Alistar","Amumu",
                                  "Anivia", "Annie", "Ashe", "Azir", "Bardo", "Blitzcrank",
                                  "Brand", "Braum", "Caitlyn", "Cassiopeia","Cho'Gath",
                                  "Corki", "Darius", "Diana", "Draven", "Dr.Mundo", "Elise",
@@ -63,20 +74,9 @@ public class Stats_lol {
                                  "Viktor", "Vladimir", "Volibear", "Warwick", "Wukong", "Xerath",
                                  "Xin'Zhao", "Yasuo", "Yorick", "Zac", "Zed", "Ziggs", "Zilean", "Zyra"};
     
-    public static final File dt = new File(appdata+"data");
-    public static final File plDt = new File(appdata+"data/plData/");
-    public static final File tmDt = new File(appdata+"data/tmData/");
-    public static final File chDt = new File(appdata+"data/chData/");
-    public static final File rdm = new File(appdata+"data/README");
-    public static final File tmp = new File(appdata+"data/.temp/");
-    public static final File tmpStage = new File(tmp.getAbsolutePath()+"/stage");
-    public static final File rd = new File(rdm, "README.txt");
-    public static final File[] dirs = {plDt, tmDt, chDt};
-    
     public static void main(String args[]) throws IOException, URISyntaxException{
-        System.out.println(appdata);
-        CheckVersion checkVersion = new CheckVersion();
-        checkVersion.checkVersion(); //Verifies if the program version is the actual version
+        System.out.println(lang);
+        new CheckVersion().checkVersion();
 
         if(!dt.exists()){
             

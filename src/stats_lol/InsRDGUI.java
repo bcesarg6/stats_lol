@@ -26,7 +26,7 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 (The code here is almost the same as in the insBDGUI, just a few chages (commented))*/
 public class InsRDGUI extends JFrame{
     
-    String[] ch, kl, as, dt, cr, gl;
+    String[] ch, kl, as, dt, cr, gl, ply;
     int tr, dr, br, t;
     int[] kill, death, assist, creep, gold;
     
@@ -72,8 +72,6 @@ public class InsRDGUI extends JFrame{
                         "Total gold of " + pl};
         return txt[i];
     }
-    
-    String[] ply;
     
     Container cp = getContentPane();
     

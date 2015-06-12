@@ -14,7 +14,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import static stats_lol.CheckVersion.*;
-import static stats_lol.Stats_lol.dt;
+import static stats_lol.Stats_lol.*;
+import static stats_lol.Lang.*;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 
 /**
@@ -26,7 +27,7 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 public class InicialGUI extends JFrame{
     ReadWrite rw = new ReadWrite();
            
-    JLabel lblTitle = new JLabel("Select your option");
+    JLabel lblTitle = new JLabel(selecOption);
     JButton[] btn;
     
     String btnTxt[] = {"See stats",
@@ -87,7 +88,12 @@ public class InicialGUI extends JFrame{
             boolean ex = rw.tmpExists();
             if(ex){
                 int[] s;
-                s = rw.tmpGetStage();
+                String[] r;
+                r = rw.readLines(5, tmpStage);
+                s = new int[r.length];
+                for (int i = 0; i < r.length; i++) {
+                    s[i] = r[i] != null ? Integer.parseInt(r[i]) : 0;                
+                }
                 switch(s[0]){
                     case 1:
                         InsIDGUI insIDGUI = new InsIDGUI(s[1], s[2], s[3]);

@@ -1,13 +1,15 @@
 package stats_lol;
 
+import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.URISyntaxException;
 import java.nio.file.Files;
 import javax.swing.JOptionPane;
 import static stats_lol.Stats_lol.*;
@@ -19,7 +21,7 @@ import static stats_lol.Stats_lol.*;
 
 public class ReadWrite {
     
-    public int readWrite(boolean wr, int dir, int ar, int ln, Object ad){
+    public Object readWrite(boolean wr, int dir, int ar, int ln, Object ad) throws FileNotFoundException, IOException{
         
         int l = dir == 0 ? 4 :
             dir == 1 ? 7 :
@@ -28,7 +30,7 @@ public class ReadWrite {
         String directory = dir == 0 ? plDt.getPath()+"/"+player[ar] : 
                     dir == 1 ? tmDt.getPath()+"/"+team[ar] :
                     dir == 2 ? chDt.getPath()+"/"+champion[ar] : null;
-        
+
         return readWrite(wr, directory, ln, l, ad);
     }
     
@@ -40,10 +42,6 @@ public class ReadWrite {
                 e = true;
             }
             else if(ex == 1){
-                ClearData cl = new ClearData();
-                try {
-                    cl.clearData(tmp);
-                } catch (IOException | URISyntaxException ex1) {}
                 e = false;
             }
         }
@@ -89,7 +87,7 @@ public class ReadWrite {
         readWrite(true, tmpArchive, ln, l, ad);
     }
     
-    public int readWrite(boolean wr, String archive, int ln, int l, int ad){
+    public int readWrite(boolean wr, String archive, int ln, int l, Object ad){
         String rl;
         int rL = 0;
         
@@ -132,7 +130,7 @@ public class ReadWrite {
             fR.close();
             }
             
-            rL = Integer.parseInt(rl) + ad;
+            rL = Integer.parseInt(rl) + (int)ad;
 
             if(wr == true){
                 
@@ -163,15 +161,13 @@ public class ReadWrite {
     return rL;    
     }
     
-    public int[] tmpGetStage(){
-        int line[];
-        line = new int[5];
-        String lin;
-        try (FileInputStream fR = new FileInputStream(tmpStage);
+    public String[] readLines(int l, File dir){
+        String line[];
+        line = new String[l];
+        try (FileInputStream fR = new FileInputStream(dir);
                  InputStreamReader in = new InputStreamReader(fR); BufferedReader bR = new BufferedReader(in)){
             for (int i = 0; i < line.length; i++){
-                lin = bR.readLine();
-                line[i] = lin != null ? Integer.parseInt(lin) : 0;   
+                line[i] = bR.readLine();
             }
         bR.close();
         in.close();
@@ -223,4 +219,44 @@ public class ReadWrite {
         }
         return true;
     }
+    public int countLines(String filename) throws IOException {
+        InputStream is = new BufferedInputStream(new FileInputStream(filename));
+        try {
+            byte[] c = new byte[1024];
+            int count = 0;
+            int readChars = 0;
+            boolean endsWithoutNewLine = false;
+            while ((readChars = is.read(c)) != -1) {
+                for (int i = 0; i < readChars; ++i) {
+                    if (c[i] == '\n')
+                        ++count;
+                }
+                endsWithoutNewLine = (c[readChars - 1] != '\n');
+            }
+            if(endsWithoutNewLine) {
+                ++count;
+            } 
+            return count;
+        } 
+        finally {
+            is.close();
+        }
+    }
+    /*public Object read(String file, int l) throws IOException{
+        int n = countLines(file);
+        if(n != 0){
+            l--;
+            String lb[] = new String[l];
+            String la[] = new String[(n-l)];
+            try{
+                File te = new File(file);
+                try (FileInputStream fR = new FileInputStream(te); 
+                    InputStreamReader in = new InputStreamReader(fR); BufferedReader bR = new BufferedReader(in)) {
+                }
+            }
+        }
+        else{
+            return 0;
+        }
+    }*/
 }

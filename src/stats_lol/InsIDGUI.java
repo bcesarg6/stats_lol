@@ -42,7 +42,7 @@ public class InsIDGUI extends JFrame{
     JRadioButton rbtBlue = new JRadioButton(sideB);
     JRadioButton rbtRed = new JRadioButton(sideR);
     ButtonGroup  btgWin = new ButtonGroup(); //This putts the radio buttons inside one thing so they can be used at the same time
-    JButton btnNext = new JButton("Next");    
+    JButton btnNext = new JButton("Next");
     
     final String toolTipText(int a, int b, int i){
         String[] txt = {"Champion banned in the match "+team[a]+" vs "+team[b],

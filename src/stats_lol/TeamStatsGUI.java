@@ -7,6 +7,7 @@ import java.awt.Container;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.io.IOException;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JTable;
@@ -42,7 +43,7 @@ public class TeamStatsGUI extends JFrame {
     
     Container cp = getContentPane();
     
-    public TeamStatsGUI(){
+    public TeamStatsGUI() throws IOException{
         
         JButton[] btn;
         TableColumn[] tc;
@@ -73,12 +74,12 @@ public class TeamStatsGUI extends JFrame {
         }
         
         for(int i = 0; i < 8; i++){
-            t[i] = rw.readWrite(false, 1, i, 4, 0);
-            d[i] = rw.readWrite(false, 1, i, 5, 0);
-            b[i] = rw.readWrite(false, 1, i, 6, 0);
-            mt[i] = rw.readWrite(false, 1, i, 3, 0);
-            w[i] = rw.readWrite(false, 1, i, 2, 0);
-            games[i] = rw.readWrite(false, 1, i, 1, 0);
+            t[i] = (int)rw.readWrite(false, 1, i, 4, 0);
+            d[i] = (int)rw.readWrite(false, 1, i, 5, 0);
+            b[i] = (int)rw.readWrite(false, 1, i, 6, 0);
+            mt[i] = (int)rw.readWrite(false, 1, i, 3, 0);
+            w[i] = (int)rw.readWrite(false, 1, i, 2, 0);
+            games[i] = (int)rw.readWrite(false, 1, i, 1, 0);
             if(games[i] == 0){
                 games[i] = 1;
             }

@@ -4,6 +4,7 @@ import java.awt.Container; //Imports the container that the GUI is in
 import java.awt.GridBagConstraints; //The constrains of the conatainer
 import java.awt.GridBagLayout; //The layout of the container
 import java.awt.Insets; //Spacements
+import java.io.IOException;
 import javax.swing.JButton;
 import javax.swing.JFrame; //The frame
 import javax.swing.JScrollPane;
@@ -37,7 +38,7 @@ public class ChStatsGUI extends JFrame{
     
     Container cp = getContentPane(); //Calls the container
     
-    public ChStatsGUI(){
+    public ChStatsGUI() throws IOException{
         
         JButton[] btn;
         TableColumn[] tc;
@@ -65,7 +66,7 @@ public class ChStatsGUI extends JFrame{
         
         //this part reads the data of the archives and make the calcs to show the stats
         for(int i = 0; i < 8; i++){
-            tGames += rw.readWrite(false, 1, i, 1, 0);
+            tGames += (int)rw.readWrite(false, 1, i, 1, 0);
         }
         
         if(tGames == 0){
@@ -75,9 +76,9 @@ public class ChStatsGUI extends JFrame{
         tGames = tGames/2;
         
         for(int i = 0; i < 124; i++){
-            p[i] = rw.readWrite(false, 2, i, 2, 0);
-            b[i] = rw.readWrite(false, 2, i, 1, 0);
-            w[i] = rw.readWrite(false, 2, i, 3, 0);
+            p[i] = (int)rw.readWrite(false, 2, i, 2, 0);
+            b[i] = (int)rw.readWrite(false, 2, i, 1, 0);
+            w[i] = (int)rw.readWrite(false, 2, i, 3, 0);
             g[i] = p[i];
             if(g[i] == 0){
                 g[i] = 1;

@@ -4,6 +4,7 @@ import java.awt.Container;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.io.IOException;
 import javax.swing.*;
 import javax.swing.JFrame;
 import javax.swing.JTable;
@@ -49,7 +50,7 @@ public class ScoreTableGUI extends JFrame {
     
     Container cp = getContentPane();
 
-    public ScoreTableGUI(){
+    public ScoreTableGUI() throws IOException{
         
         JButton[] btn;
         TableColumn[] tc;
@@ -80,8 +81,8 @@ public class ScoreTableGUI extends JFrame {
         }
         
         for(int i = 0; i < 8; i++){
-            p[i] = rw.readWrite(false, 1, i, 7, 0);
-            tg[i] = rw.readWrite(false, 1, i, 1, 0);
+            p[i] = (int)rw.readWrite(false, 1, i, 7, 0);
+            tg[i] = (int)rw.readWrite(false, 1, i, 1, 0);
             if(tg[i] == 0){
                 tg[i] = 1;
             }
@@ -89,8 +90,8 @@ public class ScoreTableGUI extends JFrame {
             if(g[i] == 0.5){
                 g[i] = 0;
             }
-            tw[i] = rw.readWrite(false, 1, i, 2, 0);
-            t[i] = rw.readWrite(false, 1, i, 8, 0);
+            tw[i] = (int)rw.readWrite(false, 1, i, 2, 0);
+            t[i] = (int)rw.readWrite(false, 1, i, 8, 0);
             tl[i] = tg[i] == 1 ? 0 : tg[i] - tw[i];
             wr[i] = 100*(tw[i]/tg[i]);
             pa[i] = g[i] == 0 ? 0 : 100*(p[i]/(g[i]*3));

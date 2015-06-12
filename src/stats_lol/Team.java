@@ -7,14 +7,14 @@ import static stats_lol.Stats_lol.*;
  * @author root
  */
 
-class Player{
-    public static final String p[] = player();    
-    static String[] player(){
+class Team{
+    public static final String t[] = team();
+    static String[] team(){
         
-        String player[];
+        String team[];
         ReadWrite rw = new ReadWrite();
         int n = rw.readWrite(false, config.getAbsolutePath(), 1, 3, 0);
-        player = rw.readLines((n*5), players);    
-        return player;
+        team = rw.readLines(n, teams);    
+        return team;
     }
 }
