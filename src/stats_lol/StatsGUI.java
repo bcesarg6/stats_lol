@@ -8,6 +8,9 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -75,19 +78,35 @@ public class StatsGUI extends JFrame{
         cp.add(btnTable, c);
         
         btnPlySts.addActionListener((ActionEvent e) -> {
-            PlyStatsGUI plyStatsGUI = new PlyStatsGUI(); //Opens the player table
+            try {
+                PlyStatsGUI plyStatsGUI = new PlyStatsGUI(); //Opens the player table
+            } catch (IOException ex) {
+                Logger.getLogger(StatsGUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
         });
         
         btnTeamSts.addActionListener((ActionEvent e) -> {
-            TeamStatsGUI teamStatsGUI = new TeamStatsGUI(); //Opens the teams table
+            try {
+                TeamStatsGUI teamStatsGUI = new TeamStatsGUI(); //Opens the teams table
+            } catch (IOException ex) {
+                Logger.getLogger(StatsGUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
         });
         
         btnChSts.addActionListener((ActionEvent e) -> {
-            ChStatsGUI chStatsGUI = new ChStatsGUI(); //Opens the champion table
+            try {
+                ChStatsGUI chStatsGUI = new ChStatsGUI(); //Opens the champion table
+            } catch (IOException ex) {
+                Logger.getLogger(StatsGUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
         });
         
         btnTable.addActionListener((ActionEvent e) -> {
-            ScoreTableGUI scoreTableGUI = new ScoreTableGUI(); //Opens the player table
+            try {
+                ScoreTableGUI scoreTableGUI = new ScoreTableGUI(); //Opens the player table
+            } catch (IOException ex) {
+                Logger.getLogger(StatsGUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
         });
     }
 }

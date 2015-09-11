@@ -13,8 +13,7 @@ class Team{
         
         String team[];
         ReadWrite rw = new ReadWrite();
-        int n = rw.readWrite(false, config.getAbsolutePath(), 1, 3, 0);
-        team = rw.readLines(n, teams);    
+        team = (String[])rw.readLines(teams);    
         return team;
     }
 }

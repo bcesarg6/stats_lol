@@ -13,8 +13,8 @@ class Player{
         
         String player[];
         ReadWrite rw = new ReadWrite();
-        int n = rw.readWrite(false, config.getAbsolutePath(), 1, 3, 0);
-        player = rw.readLines((n*5), players);    
+        player = (String[])rw.readLines(players);    
         return player;
+        
     }
 }

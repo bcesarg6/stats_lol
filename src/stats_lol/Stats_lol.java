@@ -144,7 +144,8 @@ public class Stats_lol {
             reB.write("If you find any problem contact me and, if possible, take a screenshot.");
             reB.newLine();
         }
-        
+        ReadWrite rW = new ReadWrite();
+        System.out.println(rW.readLines(rd.getAbsoluteFile())[1]);
         InicialGUI inicialGUI = new InicialGUI(); //Calls InicialGUI        
     }
 }

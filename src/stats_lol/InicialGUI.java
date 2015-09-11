@@ -27,7 +27,7 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 public class InicialGUI extends JFrame{
     ReadWrite rw = new ReadWrite();
            
-    JLabel lblTitle = new JLabel(selecOption);
+    JLabel lblTitle = new JLabel(selectOption);
     JButton[] btn;
     
     String btnTxt[] = {"See stats",
@@ -89,7 +89,7 @@ public class InicialGUI extends JFrame{
             if(ex){
                 int[] s;
                 String[] r;
-                r = rw.readLines(5, tmpStage);
+                r = (String[])rw.readLines(tmpStage);
                 s = new int[r.length];
                 for (int i = 0; i < r.length; i++) {
                     s[i] = r[i] != null ? Integer.parseInt(r[i]) : 0;                

@@ -33,7 +33,7 @@ public class InsIDGUI extends JFrame{
     int mtt, t;
     int h = 0;
     
-    JLabel lblBans = new JLabel("       Bans        "); //Spacement required to put things in the middle
+    JLabel lblBans = new JLabel("  Campeões banidos  "); //Spacement required to put things in the middle
     JLabel lblWin = new JLabel("Winner side");
     JLabel lblTmp = new JLabel("Match time");
     JLabel lbl = new JLabel("                        ");//See above
